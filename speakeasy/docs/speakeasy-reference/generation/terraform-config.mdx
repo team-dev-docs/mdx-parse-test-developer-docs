@@ -1,0 +1,59 @@
+
+import { Callout } from "~/components";
+
+# Terraform configuration options
+
+ This section details the available configuration options for the Terraform SDK. All configuration is managed in the `gen.yaml` file under the `terraform` section.
+
+## Version and general configuration
+
+```yml
+terraform:
+  version: 1.2.3
+  author: "Your Name"
+  packageName: "custom-sdk"
+```
+
+| Name                   | Required | Default Value | Description                                                                                   |
+|------------------------|----------|---------------|-----------------------------------------------------------------------------------------------|
+| `version`              | true     | `0.0.1`       | The current version of the SDK.                                                               |
+| `packageName`                     | true     | `terraform`        | The Terraform provider name.                                                                                |
+| `author`                          | true     | `speakeasy`        | The name of the author of the published package.                                                            |
+
+## Additions
+
+```yml
+terraform:
+  additionalDependencies: {}
+  additionalResources: []
+  additionalDataSources: []
+```
+
+| Name                   | Required | Default Value | Description                                                                                   |
+|------------------------|----------|---------------|-----------------------------------------------------------------------------------------------|
+| `additionalDependencies`          | false    | `{}`               | Add additional dependencies to include in the generated `go.mod`.                                      |
+| `additionalResources`             | false    | `[]`               | A list of `{ importLocation?: string, importAlias?: string, resource: string }` objects to insert into the provider resource list.    |
+| `additionalDataSources`           | false    | `[]`               | A list of `{ importLocation?: string, importAlias?: string, datasource: string }` objects to insert into the provider data source list.  |
+
+## Method and parameter management
+```yml
+terraform:
+  allowUnknownFieldsInWeakUnions: false
+```
+
+| Name                       | Required | Default Value               | Description                                                                                   |
+|----------------------------|----------|-----------------------------|-----------------------------------------------------------------------------------------------|
+|  `allowUnknownFieldsInWeakUnions`  | false    | `false`            | Allow unknown fields in weak (undiscriminated) unions.                                                     |
+
+## Environment variables
+
+```yml
+terraform:
+  environmentVariables: []
+```
+
+| Name                       | Required | Default Value               | Description                                                                                   |
+|----------------------------|----------|-----------------------------|-----------------------------------------------------------------------------------------------|
+| `environmentVariables`            | false    | `[]`               | A list of objects with `[env: string, providerAttribute: string]` keys/values to associate environment variables with a provider variable. |
+
+

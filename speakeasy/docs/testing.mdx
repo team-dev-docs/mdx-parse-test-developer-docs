@@ -1,0 +1,63 @@
+---
+title: Contract testing
+description: "Learn how to generate and run automated testing for your API and SDKs."
+---
+
+import { Callout } from '~/components';
+import { LanguageTestingGrid } from "~/features/shared/recipes";
+
+# Contract Testing
+
+<Callout title="INFO" variant="info">
+
+  Testing features are in early access. Breaking changes may occur.
+
+</Callout>
+
+Speakeasy enables you to verify API and SDK functionality by generating and running contract tests. Our solution scales from per-operation contract tests to end-to-end tests for validating any multi-step API user journey.
+
+## Design Philosophy
+
+Similar to our [SDK design philosophy](/docs/languages/philosophy), we strive to have best-in-class development experience for Contract testing as well:
+
+- **Human readable** - Generated tests are easy for developers to read and debug. We avoid convoluted abstractions.
+- **Batteries-included** - Generated tests for all SDK operations and a real API testing environment is optional. A generated mock API server works out of the box to avoid complex test environment setup, such as data seeding.
+- **Rich coverage** - Automatically generated contract tests verify all possible data fields to ensure full coverage. If data examples are not available, realistic example values for the field are used based on naming, type, and format information.
+- **Customizable** - Custom tests are supported beside generated tests.
+- **Minimal dependencies** - We start with native language libraries and layer on third-party libraries only when the customer benefits far outweigh the cost of the extra dependency. We avoid adding unnecessary dependencies.
+- **Easy integration** - Integrating our testing should fit into your existing API development and testing workflows.
+- **Open standards** - No vendor lock-in necessary.
+
+## Features
+
+Speakeasy's test generation uses the [Arazzo Specification](/openapi/arazzo) to generate tests for your API. Arazzo is a simple, human-readable, and extensible specification for defining API workflows.
+With Arazzo powering test generation, Speakeasy provides the following features:
+
+- Automatically generate contract tests for every operation in your OpenAPI specification.
+  - A `.speakeasy/tests.arazzo.yaml` file is generated or modified to include tests for your operations.
+  - Use examples available in your OpenAPI document or autogenerates examples based on the field name, type, and format of your schemas.
+  - Generates a mock server capable of responding to the API requests, making the tests functional.
+- Define custom tests & workflows for any use case and define rich tests capable of:
+  - Testing multiple operations.
+  - Testing different inputs.
+  - Validating the correct response is returned.
+  - Run against a real API or mock server.
+  - Configure setup and teardown routines for complex E2E tests.
+
+## Prerequisites
+
+The following are requirements for enabling testing features:
+
+- Existing, successfully generating SDK.
+- [Speakeasy CLI](/docs/speakeasy-reference/cli/getting-started) or GitHub repository with Actions enabled.
+- [Docker](https://www.docker.com/) or equivalent container runtime, if using the mock server for local testing.
+- [Enterprise tier account](/pricing).
+
+<LanguageTestingGrid />
+
+## Next Steps
+
+- [Enable automated test generation](/docs/customize-testing/automated-test-generation) for your SDK.
+- [Configure custom contract and end-to-end tests](/docs/customize-testing/custom-tests) for your SDK.
+- [Setup testing in GitHub Actions](/docs/customize-testing/github-actions) for your SDK.
+- [Advanced test configuration](/docs/customize-testing/advanced-test-configuration) for your tests.

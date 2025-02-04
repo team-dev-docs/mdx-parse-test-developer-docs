@@ -1,0 +1,16 @@
+---
+  title: "Changelog"
+  description: "Speakeasy Changelog covers the latest product releases and feature updates."
+  
+---
+
+import {
+  Category,
+  getStaticPaths as getCategoryStaticPaths,
+  getStaticProps as getCategoryStaticProps,
+} from "~/features/changelog/category";
+
+<Category />
+
+export const getStaticPaths = getCategoryStaticPaths;
+export const getStaticProps = getCategoryStaticProps;

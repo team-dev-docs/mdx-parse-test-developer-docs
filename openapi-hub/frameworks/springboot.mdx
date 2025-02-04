@@ -1,0 +1,462 @@
+---
+title: How to generate an OpenAPI/Swagger document with Spring Boot
+description: "Generating an OpenAPI specification with Spring Boot and using it to create SDKs with Speakeasy."
+---
+
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+import { Callout } from '~/components';
+
+# Generating an OpenAPI document and SDK from Spring Boot
+
+You have a Spring Boot API and need to generate SDKs or API documentation for other teams. Rather than writing and maintaining separate OpenAPI specs, we will walk through how to generate them directly from your Spring Boot code, and then use them to create and customize an SDK.
+
+We'll work with real code you can run locally, building a simple bookstore API to demonstrate how to properly document API structures, including inheritance between models, endpoint definitions, response types, and error handling. The examples illustrate how Spring Boot annotations map to OpenAPI concepts, so you can see how your code translates into API specifications.
+
+
+<Callout title="Example repository" variant="info">
+  The example below will guide you through the process of creating a Spring Boot project, adding the necessary dependencies, writing Spring Boot controllers with OpenAPI annotations, and generating an OpenAPI document from it.
+  To skip this setup and follow along with our example, clone the [example application](https://github.com/speakeasy-api/spring-boot-openapi-example).
+</Callout>
+
+
+## Step 1: Set up a Spring Boot project
+
+First, create a new Spring Boot project using [Spring Initializr](https://start.spring.io/). Select the following options:
+
+- Project: Maven
+- Language: Java
+- Spring Boot: 2.7.x (or the latest stable version)
+- Project Metadata: Fill in as appropriate
+- Dependencies: Spring Web
+
+Download the project and extract it to your preferred directory.
+
+## Step 2: Add OpenAPI dependencies
+
+Open the `pom.xml` file and add the following dependency:
+
+```xml pom.xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.1.0</version>
+</dependency>
+```
+
+## Step 3: Configure application properties
+
+Open the `src/main/resources/application.properties` file and add the following configuration:
+
+```properties application.properties
+# Specify the path of the OpenAPI documentation
+springdoc.api-docs.path=/api-docs
+
+springdoc.api-docs.version=OPENAPI_3_1
+
+# Specify the path of the Swagger UI
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+These properties configure the application name that identifies your service, the endpoint where the OpenAPI document will be available (`/api-docs`), the version of the OpenAPI document to generate, and the URL path where you can access the Swagger UI documentation (`/swagger-ui.html`).
+
+After starting your application, you can view the OpenAPI document at `http://localhost:8080/api-docs` and access the interactive Swagger UI at `http://localhost:8080/swagger-ui.html`.
+
+## Step 4: Write a Spring Boot application
+
+All the code in this step can be found in our example application.
+
+Open the `src/main/java/com/bookstore/BookstoreApplication.java` file in your text editor to see where to begin when adding OpenAPI annotations to your project.
+
+<ScrollyCoding fullHeight>
+
+## !!steps
+
+The `BookstoreApplication` class is the entry point for the API. Similarly, we define the entry point to the OpenAPI document.
+
+```java ! BookstoreApplication.java focus=1:34
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+
+---
+
+## !!steps
+
+The `@OpenAPIDefinition` annotation populates the OpenAPI document with essential context for anyone who wants to use the API. This tells developers what the API does and how they can use it.
+
+Use the `title`, `version`, and `description` fields to describe what the API does, its current state, and how it can be used.
+
+```java !! BookstoreApplication.java focus=14:34 mark=16:18
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+
+---
+
+## !!steps
+
+The `@Server` annotation defines any available endpoints for the API. In the example, there are two options: A production server at `https://api.bookstore.example.com` that uses live data, and a localhost server at `http://localhost:8080` for testing with sample data.
+
+```java !! BookstoreApplication.java focus=30:33
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+
+---
+
+## !!steps
+
+Open the `Models.java` file to see how you can use OpenAPI annotations to describe API data structures.
+
+```java ! Models.java focus=1:206
+!from ./assets/springboot/Models.java.txt
+```
+
+
+---
+
+## !!steps
+
+The `@Schema` annotation can be used at both the class and field levels to describe data structures in the OpenAPI documentation.
+
+At the class level, `@Schema` describes what a `Publication`, `Book`, or `Magazine` represents in the API.
+
+At the field level, fields like `id` and `author` are documented with a description of the field's purpose and an example of the value that API users should provide or expect to receive.
+
+```java !! Models.java focus=13:71 mark=15,25,28,31,34
+!from ./assets/springboot/Models.java.txt
+```
+
+
+---
+
+## !!steps
+
+The `Publication` class acts as the base schema in the OpenAPI specification.
+
+By using `@JsonTypeInfo` and `@JsonSubTypes`, we tell OpenAPI that a `Publication` can be either a `Book` or `Magazine`. This polymorphism is reflected in the OpenAPI document as a `oneOf` schema, where each endpoint that works with publications can accept or return either type.
+
+API clients will see that when working with publications, they need to include a `type` field set to either `BOOK` or `MAGAZINE` to properly identify the publication type.
+
+```java !! Models.java focus=13:71 mark=19:22
+!from ./assets/springboot/Models.java.txt
+```
+
+
+---
+
+## !!steps
+
+The `Order` class uses the `@Schema` annotation to document the `items` field, which references the `Publication` schema.
+
+This tells OpenAPI that `Orders` can contain an array of either books or magazines, using the polymorphic structure we defined earlier.
+
+```java !! Models.java focus=135:174 mark=135,143
+!from ./assets/springboot/Models.java.txt
+```
+
+
+---
+
+## !!steps
+
+To document the available statuses of an `Order`, we annotate an enum with `@Schema`.
+
+In the OpenAPI specification, this appears as a string field specifying a set of allowed values.
+
+```java !! Models.java focus=176:182 mark=176
+!from ./assets/springboot/Models.java.txt
+```
+
+
+---
+
+## !!steps
+
+We annotate the `ErrorResponse` class with `@Schema` to describe any errors users might run into when using the API endpoints.
+
+```java !! Models.java focus=184:206 mark=184,186,189
+!from ./assets/springboot/Models.java.txt
+```
+
+
+---
+
+## !!steps
+
+The next step is to define the API endpoints. We will go through the `PublicationsController.java` file to see how to map a Spring Boot controller to OpenAPI.
+
+```java ! PublicationsController.java focus=1:94
+!from ./assets/springboot/PublicationsController.java.txt
+```
+
+
+---
+
+## !!steps
+
+The `@Tag` annotation groups the operations in the controller under "Publications" in the OpenAPI document. Combined with `@RequestMapping("/publications")`, it tells API consumers that these endpoints handle publication-related operations.
+
+```java !! PublicationsController.java focus=22:23 mark=23
+!from ./assets/springboot/PublicationsController.java.txt
+```
+
+
+---
+
+## !!steps
+
+On each method, you can use the `@Operation` and `@ApiResponses` annotations to document what the endpoint does and what responses to expect.
+
+For example, `getPublication` has been annotated to show that it returns a publication successfully (`200` status) or an error (`404` status) if the publication isn't found.
+
+```java !! PublicationsController.java focus=48:54 mark=48,49
+!from ./assets/springboot/PublicationsController.java.txt
+```
+
+
+---
+
+## !!steps
+
+Use the `@Parameter` annotation to describe the requirements for input parameters.
+
+```java !! PublicationsController.java focus=74:90 mark=76
+!from ./assets/springboot/PublicationsController.java.txt
+```
+
+
+</ScrollyCoding>
+
+
+## Step 5: View the generated OpenAPI document
+
+Now that we've built the Spring Boot application, let's generate and examine the OpenAPI document to understand how the Java code translates into API specifications.
+
+First, install the necessary dependencies in the project and start the application with the following commands:
+
+```bash Terminal
+./mvnw clean install
+./mvnw spring-boot:run
+```
+
+Download the OpenAPI document while running the application:
+
+```bash Terminal
+curl http://localhost:8080/api-docs.yaml -o openapi.yaml
+```
+
+This command saves the OpenAPI document as `openapi.yaml` in your current directory.
+
+
+<ScrollyCoding fullHeight>
+
+
+## !!steps
+
+Let's scroll through the generated OpenAPI document to see how our Spring Boot annotations were translated into an OpenAPI specification.
+
+```java ! BookstoreApplication.java
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+```yaml ! openapi.yaml
+!from ./assets/springboot/openapi.yaml.txt
+```
+
+
+---
+
+## !!steps
+
+The OpenAPI document begins with version information.
+
+This version is determined by the `springdoc-openapi` library we're using. Simple, but important - it tells API consumers which OpenAPI spec version to expect.
+
+```java !! BookstoreApplication.java focus=13 mark=13
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+```yaml !! openapi.yaml focus=1
+!from ./assets/springboot/openapi.yaml.txt
+```
+
+
+---
+
+## !!steps
+
+Next comes the `info` object, which is generated from the `@OpenAPIDefinition` annotation.
+
+This Java annotation transforms directly into the corresponding OpenAPI structure.
+
+Notice how each field in the annotation maps directly to its counterpart in the OpenAPI document output. This one-to-one mapping makes it easy to understand how your code affects the final API documentation.
+
+```java !! BookstoreApplication.java focus=15:29
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+```yaml !! openapi.yaml focus=2:13
+!from ./assets/springboot/openapi.yaml.txt
+```
+
+
+---
+
+## !!steps
+
+Server configurations defined with `@Server` annotations appear in the servers array.
+
+These annotations generate the following OpenAPI structure.
+
+```java !! BookstoreApplication.java focus=30:33
+!from ./assets/springboot/BookstoreApplication.java.txt
+```
+
+```yaml !! openapi.yaml focus=14:18
+!from ./assets/springboot/openapi.yaml.txt
+```
+
+
+---
+
+## !!steps
+
+One of the more complex aspects of the API is how polymorphic models are represented.
+
+The `Publication` class has been translated into a schema that supports polymorphism through a discriminator.
+
+A few key things to notice:
+
+- The `@Schema` annotations provide descriptions and examples
+- The `@JsonTypeInfo` annotation determines the discriminator property
+- The `@JsonSubTypes` annotation defines the possible concrete implementations
+
+
+```java !! Models.java focus=15:24
+!from ./assets/springboot/Models.java.txt
+```
+
+```yaml !! openapi.yaml focus=336:379 mark=337:338,347,377:379
+!from ./assets/springboot/openapi.yaml.txt
+```
+
+
+---
+
+## !!steps
+
+Finally, let's examine how controller methods translate into API endpoints.
+
+The `@Operation` annotation provides the summary and description.
+
+Each `@ApiResponse` maps to an entry in the responses object.
+
+The `@Parameter` annotation documents the path parameter.
+
+
+```java !! PublicationsController.java focus=48:55
+!from ./assets/springboot/PublicationsController.java.txt
+```
+
+```yaml !! openapi.yaml focus=199:227
+!from ./assets/springboot/openapi.yaml.txt
+```
+
+
+</ScrollyCoding>
+
+# Create an SDK from the OpenAPI document
+
+Now that we have an OpenAPI document for the Spring Boot API, we can create an SDK using Speakeasy.
+
+First, make sure you have Speakeasy installed:
+
+```bash Terminal
+speakeasy --version
+```
+
+Now, generate a TypeScript SDK using the following command:
+
+```bash Terminal
+speakeasy quickstart
+```
+
+Follow the onscreen prompts to provide the configuration details for the new SDK such as the name, schema location, and output path. Enter `openapi.yaml` when prompted for the OpenAPI document location and select your preferred language, for example, TypeScript, when prompted for which language you would like to generate.
+
+After running this command, you'll find the generated SDK code in the specified output directory. This SDK can be used by clients to interact with your Spring Boot API in a type-safe manner.
+
+# Customize the SDK
+
+Let's add retry logic to the SDK's `listPublications` operation to handle network errors gracefully. We'll do this using an OpenAPI extension that [Speakeasy provides](/docs/customize-sdks/retries), `x-speakeasy-retries`.
+
+Instead of modifying the OpenAPI document directly, we'll add this extension to the Spring Boot controller and regenerate the OpenAPI document and SDK.
+
+First, add these imports to `src/main/java/com/bookstore/PublicationsController.java`:
+
+
+```java PublicationsController.java
+import io.swagger.v3.oas.annotations.extensions.Extension;
+import io.swagger.v3.oas.annotations.extensions.ExtensionProperty;
+```
+
+Then modify the `listPublications` operation to include the retry configuration:
+
+
+```java PublicationsController.java mark=2:7
+    @Operation(summary = "List all publications", description = "Get a list of all publications in the store", extensions = {
+        @Extension(name = "x-speakeasy-retries", properties = {
+            @ExtensionProperty(name = "strategy", value = "backoff"),
+            @ExtensionProperty(name = "backoff", parseValue = true, value = "{\"initialInterval\":500,\"maxInterval\":60000,\"maxElapsedTime\":3600000,\"exponent\":1.5}"),
+            @ExtensionProperty(name = "statusCodes", parseValue = true, value = "[\"5XX\"]"),
+            @ExtensionProperty(name = "retryConnectionErrors", parseValue = true, value = "true")
+        })
+    })
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Successful operation",
+                     content = @Content(array = @ArraySchema(schema = @Schema(implementation = PublicationListItem.class)))),
+    })
+    @GetMapping
+    public ResponseEntity<List<Publication>> listPublications() {
+        // This is a mock implementation. In a real application, you would fetch this from a database.
+        List<Publication> publications = new ArrayList<>();
+        publications.add(new Book(UUID.randomUUID().toString(), "Spring Boot in Action", "2015-10-01", 39.99f, "Craig Walls", "978-1617292545"));
+        publications.add(new Magazine(UUID.randomUUID().toString(), "National Geographic", "2023-06-01", 9.99f, 6, "National Geographic Society"));
+        return ResponseEntity.ok(publications);
+    }
+```
+
+Now that we've added the `x-speakeasy-retries` extension to the `listPublications` operation, we can regenerate the OpenAPI document:
+
+```bash Terminal
+curl http://localhost:8080/api-docs.yaml -o openapi.yaml
+```
+
+The OpenAPI document will include the retry configuration for the `listPublications` operation:
+
+```yaml openapi.yaml
+x-speakeasy-retries:
+  statusCodes:
+  - 5XX
+  backoff:
+    initialInterval: 500
+    maxInterval: 60000
+    maxElapsedTime: 3600000
+    exponent: 1.5
+  strategy: backoff
+  retryConnectionErrors: true
+```
+
+Now we can use Speakeasy to recreate the SDK:
+
+```bash
+speakeasy quickstart
+```
+
+The created SDK will now include retry logic for the `listPublications` operation, automatically handling network errors and `5XX` responses.
+
+
+### Issues and feedback
+
+Need some assistance or have a suggestion? Reach out to our team at [support@speakeasy.com](mailto:support@speakeasy.com).
+

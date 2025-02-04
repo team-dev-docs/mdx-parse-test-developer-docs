@@ -1,0 +1,128 @@
+---
+title: "Java Feature Reference"
+description: "An overview of Java features supported by Speakeasy for SDK generation from an OpenAPI / Swagger spec."
+---
+
+# Java Feature Reference
+
+## Authentication
+
+|    Name    | Support |  Docs  |   Notes |
+|------------|:---:|------------------|---------|
+| HTTP Basic |   ✅    |     Docs         |         |
+| API Key <br /> (bearer, header, cookie, query) |   ✅    |     Docs         |         |
+| OAuth <br /> implicit flow |   ✅    |     Docs         |         |
+| OAuth <br /> refresh token flow |   ✅ using security callbacks    |     Docs         |         |
+| OAuth <br /> client credentials flow |   🏗️ Partial   |     Docs         |         |
+| mTLS |   🏗️ Partial    |     Docs         |         |
+
+## Server Configuration
+
+|       Name     | Support |  Docs  |   Notes |
+|----------------|:-------:|--------------|--------|
+| URL Templating |    ✅    | [defining `variables`](/docs/customize-sdks/servers#use-templated-urls) |  |
+| Multiple server|    ✅    | [`x-speakeasy-server-id` extension](/docs/customize-sdks/servers#declare-multiple-servers) |  |
+| Describe server <br /> outside your spec  | ✅    | [`serverUrl` config](/docs/customize-sdks/servers#declare-base-server-url) |  |
+
+## Data Types
+
+### Basic Types
+
+| Name | Support |  Docs  |   Notes |
+|------|:-------:|--------------|--------|
+| Numbers |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#numbers) | `float`, `double`, `int32`, `int64` |
+| Strings |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#strings) |  |
+| Date Time |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#date-time) |  |
+| Boolean |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#booleans) |  |
+| Binary |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#binary) |  |
+| Enums |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#enumerations) |  |
+| Arrays |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#arrays) |  |
+| Maps |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#maps) |  |
+| Objects |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#objects) |  |
+| Any |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#any) |  |
+| Null |    ✅    | [data-types](https://swagger.io/docs/specification/data-models/data-types/#nil) |  |
+
+### Polymorphism
+
+| Name | Support |  Docs  |   Notes |
+|------|:-------:|--------------|--------|
+| Union Types |    ✅    | [Using `oneOf`](https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/#oneof) | `anyOf` is treated as `oneOf` and will create a union type object. |
+| Intersection Types |   🏗️ Partial     | [Using `allOf`](https://swagger.io/docs/specification/data-models/oneof-anyof-allof-not/#allof) |  |
+
+
+## Methods
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+| Namespacing |    ✅    | [grouping operations](/docs/customize-sdks/namespaces) |  |
+| Multi-level Namespacing |    ✅    | [multi-level grouping](/docs/customize-sdks/namespaces#define-multi-level-namespaces) |  |
+| Custom naming|    ✅    | [`x-speakeasy-name-override` extension](/docs/customize-sdks/methods#change-method-names) |  |
+| Exclude Methods |    ✅    | [`x-speakeasy-ignore` extension](/docs/customize-sdks/methods#exclude-methods-from-sdk) |  |
+| Deprecation |    ✅    | the [`deprecate` flag](/docs/customize-sdks/methods#deprecate-methods) |  |
+
+## Parameters
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+| Pass Inline |    ✅    | [flattening parameters](/docs/customize-sdks/methods#configuring-method-signatures) |  |
+| Pass via Request Object |    ✅    | [request object](/docs/customize-sdks/methods#configuring-method-signatures) |  |
+| Exclude Parameters |    ✅    | [`x-speakeasy-ignore` extension](/docs/customize-sdks/methods#exclude-parameters-from-signatures) |  |
+| Deprecate Parameters |    ✅    | the [`deprecate` flag](/docs/customize-sdks/deprecations#deprecate-parameters) |  |
+| Define globally |    ✅    | [global parameters](/docs/customize-sdks/globals) |  |
+
+### Path Parameters Serialization
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+| Default <br /> `(style = simple, explode = false)` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#path/) |  |
+| Basic types |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#path/) |  |
+| Simple objects |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#path/) |  |
+| `label` & `matrix` |    ❌    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#path/) |  |
+
+### Query Parameters Serialization
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+| `json` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+| `form` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+| `spaceDelimited` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+| `pipeDelimited` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+| `deepObject` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+| Basic types |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+| Simple objects |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#query/) |  |
+
+## Requests
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+| Request headers |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#header/) |  |
+| Request retries |    ✅    | [retries](/docs/customize-sdks/retries) |  |
+| `json` |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) | Both `application/json` and `text/json`  |
+| form data |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) |  |
+| binary |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) |  |
+| raw byte |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) |  |
+| plain text |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) |  |
+| `x-www-form-urlencoded` |    🏗️ Partial    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) | Including encoding, but not non-object types |
+| XML |    ❌    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) |  |
+| Other media types |    ❌    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#request-body/) |  |
+
+## Responses
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+| Pagination |    ✅    | [`x-speakeasy-pagination` extension](/docs/customize-sdks/pagination) |  |
+| Custom Errors |    ✅    | [`x-speakeasy-errors` extension](/docs/customize-sdks/errors) |  |
+| json |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#response/) |  |
+| plain text |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#response/) |  |
+| binary |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#response/) |  |
+| raw byte |    ✅    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#response/) |  |
+| XML |    ❌    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#response/) |  |
+| Other media types   |    ❌    | [Swagger Docs](https://swagger.io/docs/specification/serialization/#response/) |  |
+
+## Documentation
+
+|     Name    | Support |  Docs  |   Notes |
+|-------------|:-------:|--------------|--------|
+|  `README` generation |    ✅    | [README generation](/docs/customize-sdks/sdk-docs) |  |
+|  Usage Snippet generation |    ✅    | [snippet generation](/docs/customize-sdks/sdk-docs#usage-examples) |  |
+|  Documentation generation |    ✅    | [documentation generation](/docs/customize-sdks/sdk-docs) |  |

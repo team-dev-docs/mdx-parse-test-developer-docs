@@ -1,0 +1,206 @@
+---
+slug: "custom-schemes"
+sidebar_label: Customize Security Schemes
+description: "Customize your security and authentication SDK settings for OAuth."
+---
+
+import { Tabs } from "@speakeasy/nextra-theme";
+import { Callout } from "~/components";
+
+# Custom Security Schemes
+
+Custom Security Schemes define a JSON Schema for SDK security options. Combined with [SDK Hooks](/docs/customize/code/sdk-hooks), custom authentication and authorization schemes can be implemented beyond OpenAPI's capabilities.
+
+<Callout title="Availability" variant="info">
+  Custom Security Schemes are only available for [Business and Enterprise users](/pricing).
+
+</Callout>
+
+### Language support
+
+| TypeScript | Python | Go  | C#  | Java | PHP | Swift | Ruby |
+| ---------- | ------ | --- | --- | ---- | --- | ----- | ---- |
+| ✅         | ✅     | ✅  | 🏗️  | 🏗️   | 🏗️  | 🏗️    | 🏗️   |
+
+### Define a custom security scheme
+
+Define the custom security scheme under `components -> securitySchemes` and reference it in the `security` section. Set the `type` to `http` and the `scheme` to `custom`. Use the `x-speakeasy-custom-security-scheme` extension to specify a JSON Schema. This schema must include at least one property and can accommodate multiple properties with different schema definitions.
+
+```yaml
+openapi: 3.1.0
+info:
+  title: Custom Security Scheme Example
+  version: 1.0.0
+security:
+  - myCustomScheme: [] # reference to the custom security scheme defined below
+# ...
+components:
+  securitySchemes:
+    myCustomScheme: # defined as usual under components -> securitySchemes
+      type: http
+      scheme: custom # type: http, scheme: custom is used to identify the custom security scheme
+      x-speakeasy-custom-security-scheme: # A JSON Schema is then provided via the x-speakeasy-custom-security-scheme extension
+        schema:
+          type: object # the JSON Schema MUST be defined as an object with at least one property, but can then have any number of properties with any schema
+          properties:
+            appId:
+              type: string
+              example: app-speakeasy-123
+            secret:
+              type: string
+              example: MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI
+          required:
+            - appId
+            - secret
+```
+
+### Initialize the custom security scheme
+
+Once the SDK is regenerated, the custom security scheme can be configured globally or per operation, depending on the `security` definitions.
+
+<Tabs items={['TypeScript', 'Python', 'Go']}>
+
+<Tabs.Tab>
+```typescript
+import { SDK } from "openapi";
+
+const sdk = new SDK({
+security: {
+appId: "app-speakeasy-123",
+secret: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
+},
+});
+
+```
+</Tabs.Tab>
+<Tabs.Tab>
+```python
+import openapi
+from openapi import SDK
+
+s = SDK(
+  security=openapi.Security(
+      app_id="app-speakeasy-123",
+      secret="MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
+  ),
+)
+````
+
+</Tabs.Tab>
+<Tabs.Tab>
+```go
+package main
+
+import (
+	"context"
+	"log"
+	"openapi"
+	"openapi/models/components"
+)
+
+s := openapi.New(
+openapi.WithSecurity(components.Security{
+AppID: "app-speakeasy-123",
+Secret: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
+}),
+)
+
+```
+</Tabs.Tab>
+</Tabs>
+
+### Use the custom security scheme
+
+Use [SDK Hooks](/docs/customize/code/sdk-hooks) to access user-provided security values and enable custom authentication workflows, like adding headers to requests.
+
+The following example illustrates accessing a custom security scheme in a hook and adding headers to a request:
+
+<Tabs items={['TypeScript', 'Python', 'Go']}>
+
+<Tabs.Tab>
+```typescript
+import { Security$outboundSchema } from "../models/components/security.js";
+import { BeforeRequestContext, BeforeRequestHook } from "./types.js";
+
+export class CustomSecurityHook implements BeforeRequestHook {
+  beforeRequest(hookCtx: BeforeRequestContext, request: Request): Request {
+    let sec = hookCtx.securitySource;
+    if (typeof sec === "function") {
+      sec = sec();
+    }
+    if (!sec) {
+      throw new Error("security source is not defined");
+    }
+
+    // Use the Zod schema to parse the security object
+    const customSec = Security$outboundSchema.parse(sec);
+
+    // Access the values from the parsed object and add them to the request headers
+    request.headers.set("X-Security-App-Id", customSec.appId);
+    request.headers.set("X-Security-Secret", customSec.secret);
+
+    return request;
+  }
+}
+```
+
+</Tabs.Tab>
+<Tabs.Tab>
+```python
+import requests
+from openapi import SDK
+from typing import Union
+from .types import BeforeRequestContext, BeforeRequestHook
+
+class CustomSecurityHook(BeforeRequestHook):
+def before_request(self, hook_ctx: BeforeRequestContext, request: requests.PreparedRequest) -> Union[requests.PreparedRequest, Exception]:
+security = hook_ctx.security_source
+
+    if not security.app_id or not security.secret:
+        raise ValueError("Missing security credentials")
+
+    # Add security headers to the request
+    request.headers["X-Security-App-Id"] = security.app_id
+    request.headers["X-Security-Secret"] = security.secret
+
+    return request
+
+```
+</Tabs.Tab>
+<Tabs.Tab>
+```go
+package hooks
+
+import (
+	"errors"
+	"net/http"
+	"openapi/models/components"
+)
+
+type CustomSecurityHook struct{}
+
+func (h *CustomSecurityHook) BeforeRequest(hookCtx BeforeRequestContext, req *http.Request) (*http.Request, error) {
+	// Access security values from hookCtx.Security
+	security, ok := hookCtx.Security.(*components.Security)
+	if !ok {
+		return nil, errors.New("security context is not properly defined")
+	}
+
+	appId := security.GetAppID()
+	secret := security.GetSecret()
+
+	if appId == "" || secret == "" {
+		return nil, errors.New("missing security credentials")
+	}
+
+	// Add security values to the request headers
+	req.Header.Set("X-Security-App-Id", appId)
+	req.Header.Set("X-Security-Secret", secret)
+
+	return req, nil
+}
+
+```
+
+</Tabs.Tab>
+</Tabs>

@@ -1,0 +1,9 @@
+{
+  "name": "Go",
+  // Override the default dockerfile to use our custom Dockerfile
+  "dockerComposeFile": ["../docker-compose.yaml", "docker-compose.yaml"],
+
+  "service": "app",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose"
+}

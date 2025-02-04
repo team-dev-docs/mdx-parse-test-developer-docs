@@ -1,0 +1,128 @@
+---
+title: SDK Creation Overview
+description: "Learn how to create production-ready SDKs from your OpenAPI / Swagger spec using Speakeasy."
+---
+
+import { Callout } from "~/components";
+import { SupportedLanguagesData } from "~/data/shared/supportedLanguages"; 
+import { IconGrid } from "~/features/shared/recipes";
+
+# SDK Creation Overview
+
+<IconGrid { ...SupportedLanguagesData } />
+
+## Prerequisites
+
+- Install the Speakeasy CLI using one of the following methods:
+
+```bash
+# Homebrew (macOS)
+brew install speakeasy-api/homebrew-tap/speakeasy
+
+# Script Installation (macOS and Linux)
+curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
+
+# Windows Installation
+# Using winget:
+winget install speakeasy
+
+# Using Chocolatey:
+choco install speakeasy
+```
+
+For manual installation, download the latest release from the [releases page](https://github.com/speakeasy-api/speakeasy/releases), extract the binary, and add it to the system path.
+
+- Provide an API specification in one of the supported formats:
+
+| Spec Format         | Supported |
+| ------------------- | :-------: |
+| OpenAPI 3.0         |    ✅     |
+| OpenAPI 3.1         |    ✅     |
+| JSON Schema         |    ✅     |
+| Postman Collections |    🔜     |
+
+<Callout title="TIP" variant="success">
+  If your spec is in an unsupported format, use one of the following tools to convert it:
+
+- [Swagger 2.0 -> OpenAPI 3.0](https://editor.swagger.io/): go to **Edit > Convert to OpenAPI 3.0**
+- [Postman -> OpenAPI 3.0](https://kevinswiber.github.io/postman2openapi/)
+
+</Callout>
+
+## Interactive SDK Generation With CLI Quickstart
+
+For first-time SDK generation with Speakeasy, start with `speakeasy quickstart`. Install the Speakeasy CLI using `brew install speakeasy-api/tap/speakeasy`.
+
+Run the following command to start the quickstart process:
+
+```bash
+speakeasy quickstart
+```
+
+This command initiates an interactive session for SDK generation. The process requires creating a workspace on the [dashboard](https://app.speakeasy.com/).
+
+<Screenshot variant="cli" docs={true}>
+  ![Screenshot of the terminal after running speakeasy
+  quickstart.](./assets/create-sdks/quickstart-1.png)
+</Screenshot>
+
+The next step prompts for SDK language selection:
+
+<Screenshot variant="cli" docs={true}>
+  ![Screenshot of the terminal prompting user to select
+  language.](./assets/create-sdks/quickstart-2.png)
+</Screenshot>
+
+Complete the prompted parameter configuration:
+
+<Screenshot variant="cli" docs={true}>
+  ![Screenshot of the terminal with optional
+  parameters.](./assets/create-sdks/quickstart-3.png)
+</Screenshot>
+
+Speakeasy validates the specifications and generates the SDK after receiving all inputs. The process executes [`speakeasy run`](/docs/speakeasy-reference/cli/run) to validate, generate, compile, and set up the SDK. A confirmation message displays the generated SDK details upon successful completion:
+
+<Screenshot variant="cli" docs={true}>
+  ![Screenshot of the terminal showing
+  success.](./assets/create-sdks/quickstart-4.png)
+</Screenshot>
+
+Re-run the `speakeasy run` command after making changes to the OpenAPI document or SDK configuration.
+
+Set up the SDK on GitHub for a fully managed experience. See the GitHub setup guide [here](/docs/manage/github-setup).
+
+## Traditional SDK Generation
+
+The non-interactive approach allows specifying all parameters in a single command, suitable for script integration and automation. This method requires manual configuration of the workflow to validate, generate, compile, and publish the SDK.
+
+The recommended approach remains using `speakeasy quickstart` and `run` as shown in the [quickstart section](#interactive-sdk-generation-with-cli-quickstart) above.
+
+```shell
+speakeasy generate sdk --out <output_directory> --schema <specification_path_or_url> [options]
+```
+
+### Required Parameters:
+
+```
+--out: Destination for the generated SDK.
+--schema: Path or URL to your API spec.
+```
+
+### Additional Options
+
+```
+  -y, --auto-yes                 auto answer yes to all prompts
+  -d, --debug                    enable writing debug files with broken code
+  -H, --header string            header key to use if authentication is required for downloading schema from remote URL
+  -h, --help                     help for sdk
+  -i, --installationURL string   the language specific installation URL for installation instructions if the SDK is not published to a package manager
+  -l, --lang string              language to generate sdk for (available options: [csharp, go, java, php, python, ruby, swift, terraform, typescript, unity]) (default "go")
+  -p, --published                whether the SDK is published to a package manager or not, determines the type of installation instructions to generate
+  -r, --repo string              the repository URL for the SDK, if the published (-p) flag isn't used this will be used to generate installation instructions
+  -b, --repo-subdir string       the subdirectory of the repository where the SDK is located in the repo, helps with documentation generation
+      --token string             token value to use if authentication is required for downloading schema from remote URL
+```
+
+## Next Step: Customize Your SDK
+
+Generating SDKs is the first step but there are several optimizations you can make to improve the quality of your SDKs. Check out the following guide on [customizing your SDKs](/docs/customize-sdks/).

@@ -1,0 +1,63 @@
+---
+title: Introduction
+description: "Introduction to Speakeasy."
+---
+
+import cli_quickstart from './assets/cli-quickstart.mp4';
+
+import Image from "next/image";
+import vsCodeImageUrl from "./assets/vscode.svg"
+
+# Introduction to Speakeasy
+
+Use Speakeasy to service your API community with a best-in-class developer experience, without building and maintaining SDKs yourself.
+
+## Features
+
+* Generate production-ready SDKs in over eight programming languages. 
+
+* Customize and brand SDKs to suit your needs.
+
+* Generate Terraform providers directly from your OpenAPI document.
+
+* Use powerful primitives like sources and targets to design a code generation pipeline for local development and CI/CD.
+
+* Automate your API supply chain to detect breaking changes, versioning, and release management to package managers.
+
+* Build maintenance workflows on your OpenAPI document using [overlays](/docs/prep-openapi/overlays/create-overlays).
+
+* Use a schema registry to build API provenance, enforce standards, and simplify governance.
+
+## Getting started
+
+Start locally and manage multiple APIs through our platform. It's as easy as following these steps: 
+
+1. Create an account on [our platform](https://app.speakeasy.com).
+2. Install the Speakeasy CLI using Homebrew or curl:
+```bash
+brew install speakeasy-api/tap/speakeasy
+```
+or
+```bash
+curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
+```
+3. Run `speakeasy quickstart` in any code directory or follow the instructions on the dashboard.
+
+And you're on your way! See our [complete getting started guide](/docs/create-client-sdks) for more details.
+<br></br>
+
+<video controls={false} loop={true} autoPlay={true} muted={true} width="100%" >
+   <source src={cli_quickstart} type="video/mp4" />
+</video>
+
+## How does it work?
+
+Speakeasy understands your API specification and creates a flexible representation to generate SDKs, Terraform providers, and more.
+
+Everything can be run locally through the CLI. The Speakeasy platform tracks the different artifacts and versions you create, allowing you to manage them in one place. For more advanced use cases, the CLI can be tooled directly into your CI/CD pipelines. 
+
+If you have questions, join our [community Slack](https://join.slack.com/t/speakeasy-dev/shared\_invite/zt-1df0lalk5-HCAlpcQiqPw8vGukQWhexw) or [book a time](https://calendly.com/d/5dm-wvm-2mx/chat-with-speakeasy-team) to speak with one of us.
+
+## Work with Speakeasy in your IDE
+
+<Image src={vsCodeImageUrl} width="20" height="20" style={{display: "inline-block"}} alt="VS Code icon" /> The [Speakeasy VS Code extension](https://marketplace.visualstudio.com/items?itemName=Speakeasy.speakeasy-vscode-extension) provides syntax highlighting, autocompletion for supported file types, and linting for OpenAPI documents.
