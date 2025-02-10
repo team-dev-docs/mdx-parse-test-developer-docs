@@ -27,11 +27,11 @@ tags:
 featured_image: "/media/guide-api-design.png"
 ---
 
-import { Callout } from "~/components";
+{/* import { Callout } from "~/components"; */}
 
-<Callout title="API Design Guide" variant="success">
-  <p>If you're looking for a more comprehensive guide to API design, you can read our <a href="/api-design">REST API Design Guide</a>.</p>
-</Callout>
+<div className="Callout" data-title="API Design Guide" data-variant="success">
+  <span className="p">If you're looking for a more comprehensive guide to API design, you can read our <a href="/api-design">REST API Design Guide</a>.</span>
+</div>
 
 What we call RESTful APIs today often refer to JSON over HTTP, which is an offspring of the RESTful APIs Roy Fielding defined in his [dissertation](https://ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation_2up.pdf) in 2000. Back then, JSON was still just an idea, and the web was still in its infancy. The constraints Fielding defined in his dissertation were a reaction to the state of the web at the time, but they remain relevant to the web today. Rather than co-opting the term RESTful, JSON-over-HTTP APIs could have benefited from a new term that acknowledges their differences from Fielding's REST. 
 
@@ -133,11 +133,11 @@ curl --header "Accept: text/html" https://api.example.com/orders/123
 <!doctype html>
 <html>
   <head>
-    <title>Order 123</title>
+    <span className="title">Order 123</span>
   </head>
   <body>
-    <h1>Order 123</h1>
-    <p>Status: Shipped</p>
+    <span className="h1">Order 123</span>
+    <span className="p">Status: Shipped</span>
     <a href="/orders/123">View Order</a>
     <a href="/customers/456">View Customer</a>
   </body>

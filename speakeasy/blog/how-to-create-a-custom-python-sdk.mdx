@@ -48,7 +48,7 @@ brew install pyenv
 
 ### Decide on a Python Version
 
-<Callout title="Python Versions" variant="warning">
+<div className="Callout" data-title="Python Versions" data-variant="warning">
   Deciding on a [Python version](https://devguide.python.org/versions/) that
   your SDK will support is important. At the time of writing, Python 3.8 is the
   minimum version supported by many popular libraries and frameworks. Python
@@ -56,7 +56,7 @@ brew install pyenv
   supported, some older projects still use it, so you may need to support Python
   2.7 if your SDK is to be used in internal legacy systems that have not yet
   been updated.
-</Callout>
+</div>
 
 For this tutorial, we'll use Python 3.8, because it is the oldest version that still receives security updates.
 
@@ -96,12 +96,12 @@ python3.8 -m pip install --upgrade pip
 
 ### Decide on a Build Backend
 
-<Callout title="Python Packaging" variant="warning">
+<div className="Callout" data-title="Python Packaging" data-variant="warning">
   The [complexities of Python
   packaging](https://packaging.python.org/en/latest/) can make navigating your
   options challenging. We will outline the options briefly before selecting an
   option for this particular example.
-</Callout>
+</div>
 
 In the past, Python used a `setup.py` or `setup.cfg` configuration file to prepare Python packages for distribution, but new standards (like PEPs 517, 518, 621, and 660) and build tools are modernizing the Python packaging landscape. We want to configure a modern build backend for our SDK and we have many options to choose from:
 
@@ -794,10 +794,10 @@ To upload the build to TestPyPI, you need:
 
 2. A PyPI API token. Create one at [https://test.pypi.org/manage/account/#api-tokens](https://test.pypi.org/manage/account/#api-tokens), setting the "Scope" to "Entire account".
 
-<Callout title="PyPI API Tokens" variant="warning">
+<div className="Callout" data-title="PyPI API Tokens" data-variant="warning">
   Don't close the token page until you have copied and saved the token. For
   security reasons, the token will only appear once.
-</Callout>
+</div>
 
 If you plan to automate SDK publishing in your CI/CD pipeline, you should create per-project tokens. For automated releasing using CI/CD, it is recommended that you create per-project API tokens.
 

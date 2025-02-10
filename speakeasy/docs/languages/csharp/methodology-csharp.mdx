@@ -70,7 +70,7 @@ public class CustomHttpClient : ISpeakeasyHttpClient
     /// Sends an HTTP request asynchronously.
     /// </summary>
     /// <param name="request">The HTTP request message to send.</param>
-    /// <returns>The value of the TResult parameter contains the HTTP response message.</returns>
+    /// <span className="returns">The value of the TResult parameter contains the HTTP response message.</span>
     public virtual async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
     {
         // implement the send method
@@ -84,7 +84,7 @@ public class CustomHttpClient : ISpeakeasyHttpClient
     /// as a deep copy of the original request, including its method, URI, content, headers, and options.
     /// </remarks>
     /// <param name="request">The HTTP request message to clone.</param>
-    /// <returns>The value of the TResult parameter contains the cloned HTTP request message.</returns>
+    /// <span className="returns">The value of the TResult parameter contains the cloned HTTP request message.</span>
     public virtual async Task<HttpRequestMessage> CloneAsync(HttpRequestMessage request)
     {
        // implement the clone method

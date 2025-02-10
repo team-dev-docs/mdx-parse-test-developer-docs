@@ -4,8 +4,8 @@ description: "How to define global parameters in your OpenAPI spec and automatic
 slug: "/customize-sdks/globals/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { Callout } from "~/components"; */}
 
 # Define global parameters
 
@@ -79,9 +79,9 @@ Global parameters can be used with `in: query`, `in: path`, or `in: header` fiel
 
 The global parameter definitions in the sample above will generate the following output:
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { Speakeasybar } from "speakeasy";
@@ -100,9 +100,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import speakeasy
@@ -121,9 +121,9 @@ if res is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -151,9 +151,9 @@ func main() {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -195,9 +195,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Openapi;
@@ -215,15 +215,15 @@ try {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Hiding global parameters from method signatures
 
-<Callout variant="warning" title="Limited Support">
+<div className="Callout" data-variant="warning" data-title="Limited Support">
   Currently, this feature is only supported in Go, Python, and TypeScript.
-</Callout>
+</div>
 
 To hide global parameters from method signatures, use the `x-speakeasy-globals-hidden` extension. This is useful when you want the global parameter to be set only once during SDK instantiation and not be overridden in individual operations.
 

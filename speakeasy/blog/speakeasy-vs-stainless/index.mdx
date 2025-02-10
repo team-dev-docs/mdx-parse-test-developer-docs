@@ -12,13 +12,13 @@ tags:
 featured_image: "/media/speakeasy-vs-stainless.png"
 ---
 
-import { FileTree } from "nextra/components";
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/*import { FileTree } from "nextra/components";*/}
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
   This comparison of Speakeasy & Stainless is based on a snapshot of two developing companies as of January 2025. If you think we need to update this post, please let us know!
-</Callout>
+</div>
 
 In this post, we'll compare generated SDKs, as well as the underlying philosophies that guide the development of the two companies. And while we acknowledge that our views may be biased, we'll show our work along with our conclusions so that readers can decide for themselves.
 
@@ -103,9 +103,9 @@ In terms of pricing, both Speakeasy and Stainless offer free plans, as well as p
 
 ## Speakeasy vs Stainless: TypeScript SDK comparison
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
   For this technical comparison, we'll create SDKs with Speakeasy and Stainless using an example bookstore API. You can find the complete OpenAPI document in this [example repository](https://github.com/speakeasy-api/speakeasy-stainless-comparison).
-</Callout>
+</div>
 
 ## SDK structure
 
@@ -115,7 +115,7 @@ In terms of pricing, both Speakeasy and Stainless offer free plans, as well as p
 ### Speakeasy
 
     <div className="[&>div>div]:block">
-      <FileTree>
+      {/* <FileTree>
         <FileTree.File name="README.md" />
         <FileTree.File name="RUNTIMES.md" />
         <FileTree.File name="USAGE.md" />
@@ -238,7 +238,7 @@ In terms of pricing, both Speakeasy and Stainless offer free plans, as well as p
           </FileTree.Folder>
         </FileTree.Folder>
         <FileTree.File name="tsconfig.json" />
-      </FileTree>
+      </FileTree> */}
     </div>
 
   </div>
@@ -247,7 +247,7 @@ In terms of pricing, both Speakeasy and Stainless offer free plans, as well as p
 ### Stainless
 
     <div className="[&>div>div]:block">
-      <FileTree>
+      {/* <FileTree>
         <FileTree.File name="Brewfile" />
         <FileTree.File name="CONTRIBUTING.md" />
         <FileTree.File name="LICENSE" />
@@ -351,7 +351,7 @@ In terms of pricing, both Speakeasy and Stainless offer free plans, as well as p
         <FileTree.File name="tsconfig.dist-src.json" />
         <FileTree.File name="tsconfig.json" />
         <FileTree.File name="yarn.lock" />
-      </FileTree>
+      </FileTree> */}
     </div>
 
   </div>
@@ -739,8 +739,8 @@ function BookShelf() { // loads books from an API
     return response.json();
   });
 
-  if (status === "loading") return <p>Loading books...</p>;
-  if (status === "error") return <p>Error: {error?.message}</p>;
+  if (status === "loading") return <span className="p">Loading books...</span>;
+  if (status === "error") return <span className="p">Error: {error?.message}</span>;
 
   return (
     <ul>

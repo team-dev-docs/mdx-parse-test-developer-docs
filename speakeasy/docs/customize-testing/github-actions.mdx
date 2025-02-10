@@ -3,9 +3,9 @@ title: "Testing in GitHub Actions"
 description: "Learn how to customize testing for your API and SDKs in GitHub Actions."
 ---
 
-import { Callout } from "~/components";
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Tabs } from "@speakeasy/nextra-theme";
+{/* import { Callout } from "~/components"; */}
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
 
 # Testing in GitHub Actions
 
@@ -18,11 +18,11 @@ There are two methodologies for running Speakeasy testing in GitHub Actions depe
 
 ## Prerequisities
 
-<Callout title="TIP" variant="success">
+<div className="Callout" data-title="TIP" data-variant="success">
 
   If not previously completed as part of the SDK generation setup, the [`speakeasy configure github`](/docs/speakeasy-reference/cli/configure/github) command automates and outputs useful information for the Speakeasy setup with GitHub.
 
-</Callout>
+</div>
 
 The following are requirements for running Speakeasy testing in GitHub Actions:
 
@@ -43,7 +43,7 @@ The following are known caveats for running Speakeasy testing as a part of the e
 
 Modify the Speakeasy configuration file (`.speakeasy/workflow.yaml`) to enable testing to run as a part of the existing generation workflow in GitHub Actions.
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ### !!steps `targets`
 
@@ -75,7 +75,7 @@ targets:
 
 ---
 
-</ScrollyCoding>
+</div>
 
 ## Separate Testing GitHub Actions Workflow
 
@@ -95,8 +95,8 @@ The following are known caveats for running Speakeasy testing as a separate work
 
 Create a `.github/workflows/speakeasy-testing.yml` file with the relevant language contents:
 
-<Tabs items={['TypeScript','Python','Go']}>
-  <Tabs.Tab>
+<div className="Tabs" data-items="['TypeScript','Python','Go']">
+  <div className="TabsTab">
 
     ```yaml
     name: Speakeasy Testing
@@ -121,9 +121,9 @@ Create a `.github/workflows/speakeasy-testing.yml` file with the relevant langua
               SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
     ```
 
-  </Tabs.Tab>
+  </div>
 
-  <Tabs.Tab>
+  <div className="TabsTab">
 
     ```yaml
     name: Speakeasy Testing
@@ -150,9 +150,9 @@ Create a `.github/workflows/speakeasy-testing.yml` file with the relevant langua
               SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
     ```
 
-  </Tabs.Tab>
+  </div>
 
-  <Tabs.Tab>
+  <div className="TabsTab">
 
     ```yaml
     name: Speakeasy Testing
@@ -177,8 +177,8 @@ Create a `.github/workflows/speakeasy-testing.yml` file with the relevant langua
               SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
     ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 ### Multiple Language Testing
 

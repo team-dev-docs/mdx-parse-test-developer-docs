@@ -4,7 +4,7 @@ description: "Add request timeouts to specific operations in an SDK. Enable time
 slug: "/customize-sdks/timeouts/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
 
 # Timeouts
 
@@ -81,36 +81,36 @@ Users of the SDK can override the timeout configuration globally or at the reque
 
 To override the timeout configuration globally, initialize the SDK object with the appropriate options parameter. In all cases, if no override is provided, the timeout configuration provided in the OpenAPI document will be used.
 
-<Tabs items={['TypeScript', 'Python', 'Go']}>
-  <Tabs.Tab>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go']">
+  <div className="TabsTab">
 
 ```typescript
 const sdk = new SDK({timeoutMs: 100});
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```python
 s = SDK(timeout_ms=100)
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```go
 s := sdk.New(sdk.WithTimeout(100 * time.Millisecond))
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 ### Overriding timeout configuration at the request level
 
 Users can override the timeout config on a per-operation basis.
 
-<Tabs items={['TypeScript', 'Python', 'Go']}>
-<Tabs.Tab>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go']">
+<div className="TabsTab">
 
 ```typescript
 const sdk = new SDK({});
@@ -119,16 +119,16 @@ await sdk.findPetsByStatus(request, {
 });
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```python
 s = sdk()
 res = s.find_pets_by_status(request, timeout_ms = 100)
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```go
 s := sdk.New()
@@ -137,5 +137,5 @@ s.FindPetsByStatus(&operations.FindPetsByStatusRequest{},
 )
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>

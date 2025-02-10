@@ -11,8 +11,8 @@ tags:
 featured_image: "/media/speakeasy-vs-liblab.png"
 ---
 
-import { FileTree } from "nextra/components";
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+{/*import { FileTree } from "nextra/components";*/}
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
 
 This analysis compares Speakeasy and liblab in terms of SDK generation, OpenAPI integration, language support, features, platform support, enterprise support, and pricing. We'll also provide a technical walkthrough of generating SDKs using both services and compare the generated TypeScript SDKs.
 
@@ -122,7 +122,7 @@ Both services offer custom enterprise plans.
 
 To start our technical comparison, let's create an SDK using Speakeasy and liblab. We'll create an OpenAPI document for a fictional bookstore API, that covers a broad range of OpenAPI functionality. You can find the complete OpenAPI document in the [example repository](https://github.com/speakeasy-api/speakeasy-liblab-comparison), but let's take a look at what's included.
 
-<ScrollyCoding className="ch-scrollycoding-full-height" fullHeight>
+<div className="ScrollyCoding" data-classname="ch-scrollycoding-full-height" data-fullheight>
 
 ## !!steps
 
@@ -256,7 +256,7 @@ The remainder of the OpenAPI document defines the components used in the operati
 !from ./assets/openapi.yaml.txt 374:639
 ```
 
-</ScrollyCoding>
+</div>
 
 ### Installing Speakeasy CLI
 
@@ -357,7 +357,7 @@ Speakeasy generates separate folders for models and operations, both in the docu
 We also see separate files for each component and operation, indicating modularity and separation of concerns.
 
     <div className="[&>div>div]:block">
-      <FileTree>
+      {/* <FileTree>
         <FileTree.File name="README.md" />
         <FileTree.File name="RUNTIMES.md" />
         <FileTree.File name="USAGE.md" />
@@ -480,7 +480,7 @@ We also see separate files for each component and operation, indicating modulari
           </FileTree.Folder>
         </FileTree.Folder>
         <FileTree.File name="tsconfig.json" />
-      </FileTree>
+      </FileTree> */}
     </div>
 
   </div>
@@ -491,7 +491,7 @@ We also see separate files for each component and operation, indicating modulari
 liblab generates an SDK that at a glance looks less organized, considering the greater number of configuration files at the root of the project, the lack of a `docs` folder, and the way the `src` folder is structured by OpenAPI tags instead of models and operations.
 
     <div className="[&>div>div]:block">
-      <FileTree>
+      {/* <FileTree>
         <FileTree.Folder name="examples">
           <FileTree.File name="package.json" />
           <FileTree.File name="README.md" />
@@ -607,7 +607,7 @@ liblab generates an SDK that at a glance looks less organized, considering the g
         </FileTree.Folder>
         <FileTree.File name="tsconfig.eslint.json" />
         <FileTree.File name="tsconfig.json" />
-      </FileTree>
+      </FileTree> */}
     </div>
 
   </div>
@@ -1008,8 +1008,8 @@ function Posts() {
     return response.json();
   });
 
-  if (status === "loading") return <p>Loading posts...</p>;
-  if (status === "error") return <p>Error: {error?.message}</p>;
+  if (status === "loading") return <span className="p">Loading posts...</span>;
+  if (status === "error") return <span className="p">Error: {error?.message}</span>;
 
   return (
     <ul>

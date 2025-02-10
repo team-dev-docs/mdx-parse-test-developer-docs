@@ -11,8 +11,8 @@ authors:
 featured_image: "/media/changelog-2023-11-14.png"
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
 Welcome to another edition of the Speakeasy Changelog. In this issue, we'll give you a sneak peek into our support for [OpenAPI Overlays](https://github.com/OAI/Overlay-Specification) and how we're leveraging them to help customers customize their SDKs and other generated artifacts without changing the underlying specification.
 
@@ -92,7 +92,7 @@ Time to celebrate 🎉 You've just created a new OpenAPI document that you can u
 
 At Speakeasy, we believe that automated doesn't mean no input. Certain aspects of SDK design need to be in the hands of the API builders. That's why we've built a platform which is flexible enough to let developers craft the devex for their users. To that end, we've released customizable imports. You can now configure the structure of the `import` paths in your SDK, and how they are referenced by your users. As an example, for Typescript:
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ## !!steps
 
@@ -127,9 +127,9 @@ import { User } from '@speakeasy/bar/dist/models/components/user'
 import { GetDrinkRequest } from '@speakeasy/bar/dist/models/operations/user'
 ```
 
-</ScrollyCoding>
+</div>
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 ## !!steps
 
 As an API producer, you can now configure your SDK to generate models into a single directory and import them from there. For Typescript, this would result in:
@@ -160,7 +160,7 @@ With an import structure that is flat and supports a global path as follows:
 import { User, GetDrinkRequest, SDK } from '@speakeasy/bar'
 ```
 
-</ScrollyCoding>
+</div>
 
 More documentation on how to configure this in your SDK's `gen.yaml` file can be found [here](/docs/customize-sdks/imports).
 

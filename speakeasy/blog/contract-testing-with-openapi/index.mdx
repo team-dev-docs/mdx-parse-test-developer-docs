@@ -11,8 +11,8 @@ tags:
 featured_image: "/media/contract-testing-with-openapi.png"
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
 We've all heard that infernal phrase, "It works on my machine." Scaling any solution to work across many machines can be a challenge. The world of APIs with disparate consumers is no different. What if there was a well-defined contract between them?
 
@@ -132,7 +132,7 @@ Select the default options when prompted.
 
 We'll start by writing an OpenAPI specification for our API. In most cases, the provider will define the OpenAPI specification, as they are responsible for the implementation of the API.
 
-<ScrollyCoding className="ch-scrollycoding-full-height ch-scrollycoding-force-focus-scroll" fullHeight>
+<div className="ScrollyCoding" data-classname="ch-scrollycoding-full-height ch-scrollycoding-force-focus-scroll" data-fullheight>
 
 ## !!steps
 
@@ -257,7 +257,7 @@ The `Subscription` schema defines the structure of the response object. It inclu
 # !focus(53:68)
 ```
 
-</ScrollyCoding>
+</div>
 
 This example OpenAPI specification only defines the happy path for the `/plan/{id}` endpoint. In a real-world scenario, you would define additional paths, operations, and error responses to cover all possible scenarios.
 
@@ -472,10 +472,10 @@ A drawback of basing tests on OpenAPI documents is that the OpenAPI Specificatio
 
 ## Speakeasy test generation
 
-<Callout title="EARLY ACCESS" variant="info">
+<div className="Callout" data-title="EARLY ACCESS" data-variant="info">
   Speakeasy API test generation is in beta. Join the [early
   access](/product/api-testing) program to give it a try.
-</Callout>
+</div>
 
 At Speakeasy, we enable developers to automatically test their APIs and SDKs by creating comprehensive test suites. Shipping automated tests as part of your SDKs will enable your team to make sure that the interfaces your users prefer, your SDKs, are always compatible with your API. We ensure your APIs and SDKs stick to the contract so that you can focus on shipping features and evolving your API with confidence.
 

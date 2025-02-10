@@ -11,16 +11,16 @@ authors:
 featured_image: "/media/changelog-2024-08-07.png"
 ---
 
-import { CodeWithTabs } from "~/components/codehike/CodeTabs";
-import { Callout } from "~/components";
+{/* import { CodeWithTabs } from "~/components/codehike/CodeTabs"; */}
+{/* import { Callout } from "~/components"; */}
 import beezy_ide_video from "./assets/beezy-ide.mp4";
 import mintlify_setup from "./assets/mintlify.mp4";
 
-<Callout title="Get Access" variant="success">
+<div className="Callout" data-title="Get Access" data-variant="success">
   If you are interested in participating in early access, please fill out [this
   form](https://speakeasyapi.typeform.com/testing-early), or, if you're an
   existing customer, drop a note in your Speakeasy Slack connect channel.
-</Callout>
+</div>
 
 If at first you don't succeed test, test, test again.
 
@@ -28,7 +28,7 @@ We're excited to announce the early access release of our new Test Generation fe
 
 ## Test Generation
 
-<CodeWithTabs>
+<div className="CodeWithTabs">
 
 ```typescript !!tabs analysis.test.js
 "use strict";
@@ -139,7 +139,7 @@ func TestAnalysis_AnalyzeText(t *testing.T) {
 
 ```
 
-</CodeWithTabs>
+</div>
 
 ### What's Included
 
@@ -163,10 +163,10 @@ The generated tests will be created in a new `tests` directory in your SDK. For 
 
 ## 🐝 New Features and Bug Fixes 🐛
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
   Based on the most recent CLI version: [**Speakeasy
   v1.353.1**](https://github.com/speakeasy-api/openapi-generation/releases/tag/v1.353.1)
-</Callout>
+</div>
 
 ### TypeScript
 

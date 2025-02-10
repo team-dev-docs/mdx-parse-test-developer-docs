@@ -45,21 +45,21 @@ Simply put, when users are paying for your API, they expect (and deserve) a high
 In this article, we'll dive into the business and high level technical differences between using Speakeasy to generate SDKs and using the OpenAPI Generators. If you want a granular breakdown for a specific language, check out our comparison guides.
 
 <div style={{ marginTop: "12px" }}>
-  <IconGrid { ...OSSComparisonData } />
+  {/* <IconGrid { ...OSSComparisonData } /> */}
 </div>
 
 ## The cost of using `openapi-generator`
 
-<Testimonial
-  variant="dark"
-  avatar="/media/quote-headshots/roy-pereira.png"
-  quoted="Roy Pereira, Unified.to CEO & Co-Founder"
+<div className="Testimonial"
+  data-variant="dark"
+  data-avatar="/media/quote-headshots/roy-pereira.png"
+  data-quoted="Roy Pereira, Unified.to CEO & Co-Founder"
 >
   “OpenAPI gen doesn’t work very well — the code often doesn’t look and feel
   right, and certain aspects of OpenAPI just aren’t handled well. We would
   probably still have needed to spend a ton of engineer time working around its
   limitations and quirks, and we decided that the headache wasn’t worth it.”
-</Testimonial>
+</div>
 
 
 Open-source software is free, but that doesn't mean it doesn't have a cost.
@@ -78,27 +78,27 @@ Don't just take our (or even our customers') word for it, however. See what the 
 
 Here are just a few key quotes from the post:
 
-<Testimonial variant="dark">
+<div className="Testimonial" data-variant="dark">
   “To ensure we would be able to run the code-generation process within
   our Continuous Integration (CI) pipeline, we needed to use
   a Dockerised version of openapi-generator-cli (the coordination of which was a
   complex process).”
-</Testimonial>
+</div>
 
-<Testimonial variant="dark">
+<div className="Testimonial" data-variant="dark">
   “Another challenge we encountered was the quality of the community-driven
   language templates. They worked but templates didn’t appear to be well
   maintained over time, nor did every feature in our OpenAPI specification have
   a corresponding implementation in the language templates.”
-</Testimonial>
+</div>
 
-<Testimonial variant="dark">
+<div className="Testimonial" data-variant="dark">
   “Language templates **didn’t support the latest programming language
   version**, and the generated documentation wasn’t as good as we needed it to
   be.”
-</Testimonial>
+</div>
 
-<Testimonial variant="dark">
+<div className="Testimonial" data-variant="dark">
   “Our OpenAPI specification files would cause problems in the generator… Each
   of these issues would result in hard-to-debug compilation errors within the
   code-generation pipeline, and so we would have to figure out which of the
@@ -108,29 +108,29 @@ Here are just a few key quotes from the post:
   3. The [openapi-generator language
   parsers](https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator/src/main/java/org/openapitools/codegen/languages) (written
   in Java).”
-</Testimonial>
+</div>
 
-<Testimonial variant="dark">
+<div className="Testimonial" data-variant="dark">
   “We had to iterate on both ends of the integration, a bit like trying to fit a
   square peg into a round hole, then gradually changing the shape of both the
   peg and the hole until they fit.”
-</Testimonial>
+</div>
 
-<Testimonial variant="dark">
+<div className="Testimonial" data-variant="dark">
   “Auto-generating our API clients has been a long project… The code generation
   itself hasn’t been easy: we’ve had to balance the complexity of coordinating
   changes across multiple repositories while handling errors over multiple
   layers, and producing API clients that are not only idiomatic to the language
   they’re built in but also correct and accessible.”
-</Testimonial>
+</div>
 
 For an enterprise that wants to appeal to developers and showcase a compelling API experience, using Open Source successfully will require a significant investment in engineering resources, and significant time-to-market.
 
-<Callout title="TIP" variant="success">
+<div className="Callout" data-title="TIP" data-variant="success">
   Total cost of ownership for OSS tooling is likely to be 3+ FTEs at a minimum,
   depending on the API surface area and SDK languages required. This is an
   ongoing commitment.
-</Callout>
+</div>
 
 
 ## Generating handwritten SDKs with Speakeasy

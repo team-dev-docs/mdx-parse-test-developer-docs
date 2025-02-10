@@ -1,5 +1,5 @@
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
 # Arazzo: OpenAPI Workflows
 
@@ -19,7 +19,7 @@ Arazzo descriptions are useful for:
 
 An Arazzo description is a JSON or YAML document that follows the structure defined by the Arazzo Specification.
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 #### !!steps `arazzo`
 
@@ -75,7 +75,7 @@ An array of [workflow objects](#workflow-object) defining the workflows. The arr
 # !focus(16:156)
 ```
 
-</ScrollyCoding>
+</div>
 
 This table shows all fields at the root of the Arazzo Specification:
 
@@ -429,9 +429,9 @@ payload: $inputs.orderPayload
 contentType: application/xml
 payload: |
   <order>
-    <drinkId>{$inputs.drink_id}</drinkId>
-    <customerId>{$inputs.customer_id}</customerId>
-    <quantity>{$inputs.quantity}</quantity>
+    <span className="drinkId">{$inputs.drink_id}</span>
+    <span className="customerId">{$inputs.customer_id}</span>
+    <span className="quantity">{$inputs.quantity}</span>
   </order>
 ```
 

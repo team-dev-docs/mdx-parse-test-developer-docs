@@ -4,7 +4,7 @@ description: "How to customize enums in your OpenAPI document to generate strong
 slug: "/customize-sdks/enums/"
 ---
 
-import { Callout } from "~/components";
+{/* import { Callout } from "~/components"; */}
 
 # Customize enums
 
@@ -125,9 +125,9 @@ class EnumField(str, Enum):
 
 ## Open vs closed enums
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
 This feature is currently supported in Go, Python, TypeScript, and Java SDKs.
-</Callout>
+</div>
 
 By default, enums defined in OpenAPI are considered closed during code
 generation. This means that introducing a new member to an enum can become a

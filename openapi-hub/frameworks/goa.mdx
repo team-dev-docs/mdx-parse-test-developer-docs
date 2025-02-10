@@ -3,7 +3,7 @@ title: "How To Generate an OpenAPI Spec With Goa"
 description: "A step-by-step guide to generating an OpenAPI / Swagger spec with Goa and using it to generate an SDK with Speakeasy."
 ---
 
-import { Callout } from '~/components';
+{/*import { Callout } from '~/components'*/};
 
 # How to generate an OpenAPI/Swagger spec with Goa
 
@@ -105,7 +105,7 @@ docker run --name gobox --volume .:/go/src/app -it golang:1.21.2 bash; # start G
 
 You now have an `app` folder ready to code in, and you're in a terminal in a Go container called `gobox` in Docker.
 
-<Callout title="Restarting Docker" variant="info">
+<div className="Callout" data-title="Restarting Docker" data-variant="info">
 If you leave this tutorial and return later, you can start the container and attach to the terminal instead of rebuilding everything:
 
 ```bash
@@ -121,7 +121,7 @@ If you need to delete the container and start over, run:
 docker stop gobox;
 docker rm gobox;
 ```
-</Callout>
+</div>
 
 Run the following commands in the `gobox` terminal.
 
@@ -403,9 +403,9 @@ Remember to give yourself permissions to the files on your host machine in anoth
 sudo chown -R $(id -u):$(id -g) .
 ```
 
-<Callout title="SDK Languages" variant="info">
+<div className="Callout" data-title="SDK Languages" data-variant="info">
 While you're using only TypeScript in this tutorial, Speakeasy supports [C#, Go, Java, PHP, Python, Ruby, Swift, and TypeScript](/docs/create-client-sdks#language-support).
-</Callout>
+</div>
 
 #### Explore the Generated Files
 

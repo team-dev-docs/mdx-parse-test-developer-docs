@@ -12,17 +12,17 @@ tags:
 featured_image: "/media/openapi-tips-tags.png"
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
-<Callout title="Announcing: OpenAPI Reference" variant="success">
+<div className="Callout" data-title="Announcing: OpenAPI Reference" data-variant="success">
 Hi! These blog posts have been popular, so we've built an entire [OpenAPI Reference Guide](/openapi/) to answer any question you have.
 
 It includes detailed information on [**tags**](/openapi/tags).
 
 Happy Spec Writing!
 
-</Callout>
+</div>
 
 ## Introduction
 
@@ -60,7 +60,7 @@ To demonstrate using tags, let's make a simple schema for a jazz club API with j
 - `/stop` — stops music.
 - `/order` — orders a drink.
 
-<ScrollyCoding className="ch-scrollycoding-full-height" fullHeight>
+<div className="ScrollyCoding" data-classname="ch-scrollycoding-full-height" data-fullheight>
 
 ### !!steps API Information
 
@@ -195,7 +195,7 @@ paths:
           description: No Content response.
 ```
 
-</ScrollyCoding>
+</div>
 
 ## The Full Schema Example
 

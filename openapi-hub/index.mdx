@@ -3,36 +3,36 @@ title: OpenAPI Reference
 description: Documentation of the OpenAPI Specification
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout, Separator } from "~/components";
-import { GenerateSDK } from "~/features/docs/home/recipes/ProductGrid/GenerateSDK";
-import { IconGrid } from "~/features/shared/recipes/IconGrid/IconGrid";
-import { FrameworkGuidesData } from "~/data/shared/frameworkGuides";
-import {
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/*import { Callout, Separator } from "~/components"; */}
+{/*import { GenerateSDK } from "~/features/docs/home/recipes/ProductGrid/GenerateSDK";*/}
+{/* import { IconGrid } from "~/features/shared/recipes/IconGrid/IconGrid";*/}
+{/*import { FrameworkGuidesData } from "~/data/shared/frameworkGuides";*/}
+{/*import {
   CardsSection,
   Hero,
   QuickLinks,
-} from "~/features/openapi";
-import { Faq } from "~/features/pricing/recipes";
+} from "~/features/openapi";*/}
+{/*import { Faq } from "~/features/pricing/recipes";*/}
 
-<Callout title="Contribute to this page" variant="success-gradient" fullWidth>
+<div className="Callout" data-title="Contribute to this page" data-variant="success-gradient" data-fullwidth>
   This documentation is Open source. If you have any feedback, suggestions, or
   want to contribute, check out our [GitHub
   repo](https://github.com/speakeasy-api/openapi-reference-documentation).
-</Callout>
+</div>
 
-<Hero
-  title="OpenAPI Hub"
-  description="The all in one resource for understanding the OpenAPI Specification."
-/>
+<div className="Hero"
+  data-title="OpenAPI Hub">
+  The all in one resource for understanding the OpenAPI Specification.
+  </div>
 
-<IconGrid {...FrameworkGuidesData} buttonText="See all" buttonUrl="/openapi/frameworks" />
+<div className="IconGrid" data-buttonText="See all" data-buttonUrl="/openapi/frameworks">FrameworkGuidesData</div>
 
-<Separator className="opacity-10" />
+<div className="Separator opacity-10"></div>
 
 ### OpenAPI Overview
 
-<ScrollyCoding>
+<div>
 
 ## !!steps \`openapi`
 
@@ -149,14 +149,14 @@ Contains an optional list of reusable schemas that can be referenced from other 
 
 ---
 
-</ScrollyCoding>
+</div>
 
-<Separator className="opacity-10" />
+<div className="Separator opacity-10"></div>
 
-<CardsSection
-  title="The OpenAPI Ecosystem"
-  description="Understand the different specifications that make up the OpenAPI ecosystem"
-  items={[
+<div className="CardsSection"
+  data-title="The OpenAPI Ecosystem"
+  data-description="Understand the different specifications that make up the OpenAPI ecosystem"
+  data-items={[
     {
       icon: "code",
       title: "OpenAPI Overlays",
@@ -178,7 +178,7 @@ Contains an optional list of reusable schemas that can be referenced from other 
   ]}
 />
 
-<Faq
+{/* <Faq
   className="_pb-20"
   title="FAQ"
   items={[
@@ -198,4 +198,4 @@ Contains an optional list of reusable schemas that can be referenced from other 
         "That's a contentious topic, and there's no right answer. Typically startups with small technical teams generate their OpenAPI document from code. At larger companies where API design includes non-technical staff, handwriting the document is typically preferred. Find something that works for your team and don't listen to the noise.",
     },
   ]}
-/>
+/> */}

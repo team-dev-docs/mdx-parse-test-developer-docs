@@ -4,8 +4,8 @@ sidebar_label: OAuth Methods
 description: "Customize your security and authentication SDK settings for OAuth."
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { Callout } from "~/components"; */}
 
 # OAuth 2.0 authentication
 
@@ -75,9 +75,9 @@ generation:
     OAuth2ClientCredentialsEnabled: true
 ```
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -99,9 +99,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import speakeasy
@@ -122,9 +122,9 @@ if res.drinks is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -155,9 +155,9 @@ func main() {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -200,9 +200,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -231,9 +231,9 @@ catch (Exception ex)
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Resource Owner Password Credentials flow
 Also known informally as OAuth 2.0 Password flow.
@@ -292,8 +292,8 @@ When making a call using this flow, the SDK security is configured with these pa
 
 Below are usage examples in different languages:
 
-<Tabs items={['TypeScript','Java']}>
-<Tabs.Tab>
+<div className="Tabs" data-items="['TypeScript','Java']">
+<div className="TabsTab">
 ```typescript Typescript
 const sdk = new SDK({
     oauth2: {
@@ -306,8 +306,8 @@ const sdk = new SDK({
 
 const result = await sdk.listProducts();
 ```
-</Tabs.Tab>
-<Tabs.Tab>
+</div>
+<div className="TabsTab">
 ```java Java
 SDK sdk = SDK.builder() 
     .oauth2(Oauth2Input.of( 
@@ -320,13 +320,13 @@ SDK sdk = SDK.builder()
     .build();
 ListProductsResponse res = sdk.listProducts().call();
 ```
-</Tabs.Tab>
-</Tabs>
+</div>
+</div>
 
 It is also possbile to bypass token retrievals by passing an explicit token to the SDK object:
 
-<Tabs items={['TypeScript','Java']}>
-<Tabs.Tab>
+<div className="Tabs" data-items="['TypeScript','Java']">
+<div className="TabsTab">
 ```typescript Typescript
 const sdk = new SDK({
     oauth2: "THE_TOKEN"
@@ -334,16 +334,16 @@ const sdk = new SDK({
 
 const result = await sdk.listProducts();
 ```
-</Tabs.Tab>
-<Tabs.Tab>
+</div>
+<div className="TabsTab">
 ```java Java
 SDK sdk = SDK.builder() 
     .oauth2(Oauth2Input.of("THE_TOKEN"))
     .build();
 ListProductsResponse res = sdk.listProducts().call();
 ```
-</Tabs.Tab>
-</Tabs>
+</div>
+</div>
 
 ## Authorization code flow
 
@@ -404,9 +404,9 @@ This custom security schema allows us to supply the Id and Secret needed for the
 
 Next we add the hook to generate that header.
 
-<Tabs items={['Typescript']}>
+<div className="Tabs" data-items="['Typescript']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import type {BeforeRequestContext, BeforeRequestHook, Hooks} from "./types.js";
@@ -440,15 +440,15 @@ class OAuthTokenRequestHook implements BeforeRequestHook {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 Now that the hook is added, when you are using the SDK to acquire an OAuth token, you can pass in the values and the hook will generate the special header for you.
 
-<Tabs items={['Typescript']}>
+<div className="Tabs" data-items="['Typescript']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "SDK";
@@ -472,9 +472,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Custom refresh token flow
 
@@ -521,9 +521,9 @@ security:
 
 Add a file called `oauth` with the appropriate file extension for the programming language (for example, `oauth.ts` for TypeScript, `oauth.py` for Python, `oauth.go` for Go, and so on) to implement OAuth token exchange logic.
 
-<Tabs items={['TypeScript', 'Typescript-Axios (v1)', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Typescript-Axios (v1)', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import * as z from "zod";
@@ -632,9 +632,9 @@ export class InMemoryTokenStore implements TokenStore {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import axios from "axios";
@@ -658,9 +658,9 @@ export function withAuthorization(clientID: string, clientSecret: string) {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import requests
@@ -682,9 +682,9 @@ def with_authorization(client_id: str, client_secret: str) -> Security:
       raise Exception(f'Failed to obtain OAuth token: {str(e)}')
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package speakeasy
@@ -703,9 +703,9 @@ func withAuthorization(clientID string, clientSecret string) func(context.Contex
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 import dev.speakeasyapi.speakeasy.SecuritySource;
@@ -733,9 +733,9 @@ class OAuth implements SecuritySource {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 namespace Speakeasy.Callbacks
@@ -756,17 +756,17 @@ namespace Speakeasy.Callbacks
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ### Step 3: Pass the callback function in SDK instantiation
 
 Update the README to show how to pass the callback function when instantiating the SDK:
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -778,9 +778,9 @@ const sdk = new SDK({
 await s.drinks.listDrinks();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import sdk
@@ -789,9 +789,9 @@ s = sdk.SDK(security=with_authorization("<YOUR_CLIENT_ID>", "<YOUR_CLIENT_SECRET
 res = s.drinks.list_drinks()
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 import (
@@ -809,9 +809,9 @@ ctx := context.Background()
 s.Drinks.ListDrinks(ctx)
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 import dev.speakeasyapi.speakeasy.OAuth;
@@ -826,9 +826,9 @@ SDK s = SDK.builder()
 ListDrinksResponse res = s.Drinks.listDrinks().call();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -839,9 +839,9 @@ var sdk = new SDK(securitySource: OAuth.withAuthorization)
 var res = await sdk.Drinks.ListDrinksAsync();
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## OAuth 2.0 scopes
 

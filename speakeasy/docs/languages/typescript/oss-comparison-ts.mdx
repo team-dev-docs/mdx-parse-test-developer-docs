@@ -505,8 +505,8 @@ function BookShelf() { // loads books from an API
     return response.json();
   });
 
-  if (status === "loading") return <p>Loading books...</p>;
-  if (status === "error") return <p>Error: {error?.message}</p>;
+  if (status === "loading") return <span className="p">Loading books...</span>;
+  if (status === "error") return <span className="p">Error: {error?.message}</span>;
 
   return (
     <ul>

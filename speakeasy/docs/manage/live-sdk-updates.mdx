@@ -4,7 +4,7 @@ description: "Learn how to enable real-time updates for client SDKs with the Spe
 position: 3
 ---
 
-import { Callout } from '~/components'
+{/*import { Callout } from '~/components'*/}
 
 # Update in Real Time
 
@@ -13,9 +13,9 @@ This allows you to keep your SDKs up to date with your API without having to man
 By default, the generation action will run nightly to check for updates to your API spec and regenerate your SDKs if necessary.
 However, near-real-time updates are supported if certain criteria are met.
 
-<Callout title="Additional Info" variant="warning">
+<div className="Callout" data-title="Additional Info" data-variant="warning">
 Please note that real-time updates are not currently supported for privately hosted specs.
-</Callout>
+</div>
 
 ## Enable Real-Time Updates
 The Speakeasy workspace can automatically detect changes to your spec and trigger a generation run within a few minutes of the changes being made. To enable this, you must meet the following criteria:

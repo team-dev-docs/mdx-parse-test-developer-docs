@@ -12,17 +12,17 @@ tags:
 featured_image: "/media/openapi-tips-webhooks-callbacks.png"
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
-<Callout title="Announcing: OpenAPI Reference" variant="success">
+<div className="Callout" data-title="Announcing: OpenAPI Reference" data-variant="success">
 Hi! These blog posts have been popular, so we've built an entire [OpenAPI Reference Guide](/openapi/) to answer any question you have.
 
 It includes detailed information on [**webhooks**](/openapi/webhooks) **&** [**callbacks**](/openapi/paths/operations/callbacks).
 
 Happy Spec Writing!
 
-</Callout>
+</div>
 
 ## What Are Webhooks and Callbacks and When Are They Used in OpenAPI?
 
@@ -61,7 +61,7 @@ A valid API schema can comprise only webhooks. For your schema to be valid, it n
 
 Below is the same notification service described as a webhook.
 
-<ScrollyCoding fullHeight className="ch-scrollycoding-full-height">
+<div className="ScrollyCoding" data-fullheight data-classname="$2">
 
 ### !!steps Add a Webhook Description
 
@@ -146,13 +146,13 @@ paths:
 
 ---
 
-</ScrollyCoding>
+</div>
 
 ## Creating a Callback in OpenAPI
 
 Let's create a simple callback example. We use YAML rather than JSON for readability.
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ### !!steps Add a Subscription Path
 
@@ -258,7 +258,7 @@ paths:
 
 ---
 
-</ScrollyCoding>
+</div>
 
 ## Syntax Rules
 

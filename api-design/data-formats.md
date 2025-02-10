@@ -62,8 +62,8 @@ An example of a bunch of different data types in JSON.
 ```xml
 <places>
     <place>
-        <id>1</id>,
-        <name>This is a bunch of text.</name>
+        <span className="id">1</span>,
+        <span className="name">This is a bunch of text.</span>
         <is_true>0</is_true>
         <maybe />
         <empty_string />

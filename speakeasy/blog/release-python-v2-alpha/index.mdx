@@ -12,15 +12,15 @@ featured_image: "/media/release-python-v2.png"
 is_featured: true
 ---
 
-import { CodeWithTabs } from "~/components/codehike/CodeTabs";
-import { Callout } from "~/components";
+{/* import { CodeWithTabs } from "~/components/codehike/CodeTabs"; */}
+{/* import { Callout } from "~/components"; */}
 import beezy_ide_video from "./assets/beezy-ide.mp4";
 
-<Callout title="Beta Availability" variant="success">
+<div className="Callout" data-title="Beta Availability" data-variant="success">
   Now in beta! All new Python SDKs will use the new generator by default. If
   you'd like to try it upgrade an existing Python SDK in production, check out
   our [migration guide](/docs/python-migration).
-</Callout>
+</div>
 
 Today, we're announcing the release of our new Python Generator! The new generator takes full advantage of the best tooling available in the Python ecosystem to introduce true end-to-end type safety, support for asynchronous operations, and a streamlined developer experience.
 
@@ -55,7 +55,7 @@ The Pydantic-powered hints and error messages presented to users helps them ensu
 
 <div style={{ width: '100%', overflow: 'auto' }}>
     <div style={{ float: 'left', width: '50%', padding: '20px'}}>
-        <CodeWithTabs>
+        <div className="CodeWithTabs">
           ```python !!tabs sync.py
             import beezy_ai
             from beezy_ai import BeezyAI
@@ -81,10 +81,10 @@ The Pydantic-powered hints and error messages presented to users helps them ensu
                     # handle event
                     print(event)
           ```
-        </CodeWithTabs>
+        </div>
     </div>
     <div style={{ float: 'left', width: '50%', padding: '20px'}}>
-        <CodeWithTabs>
+        <div className="CodeWithTabs">
           ```python !!tabs async.py
           # !focus(1,6,10[7:37],23)
             import asyncio
@@ -111,7 +111,7 @@ The Pydantic-powered hints and error messages presented to users helps them ensu
                         print(event)
             asyncio.run(main())
           ```
-        </CodeWithTabs>
+        </div>
     </div>
 
 </div>

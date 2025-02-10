@@ -12,7 +12,7 @@ tags:
   - API Advice
 featured_image: "/media/definitive-guide-to-devex-portals.png"
 ---
-import { ReactPlayer } from "~/recipes/Player/ReactPlayer";
+{/* import { ReactPlayer } from "~/recipes/Player/ReactPlayer"; */}
 
 ## Why You Need A Portal If You Want to Serve Developers
 
@@ -55,8 +55,9 @@ Making the API accessible means making it as easy as possible for users to make 
 - **API Key Management** - Nobody wants to have to fill in a typeform and wait for customer support to review before they can get started with an API. If there’s no way for a developer to create keys on their own, most will never convert into users of your product. By the time someone has reviewed their access request, they will have moved on to a new priority, or found an alternative solution. If the API interfaces with sensitive data, and a review process is a legal requirement for production credentials, then enable users to provision sandbox keys without review (more on Sandboxes below).
   
 <div align="center">
-<ReactPlayer controls={false} loop={true} playing={true} url='https://storage.googleapis.com/speakeasy-design-assets/videos/key-management.mp4' volume={0} />
-<i>Key management in Speakeasy’s API Portal</i>
+<div className="ReactPlayer" data-controls="false" data-loop="true" data-playing="true" data-url="https://storage.googleapis.com/speakeasy-design-assets/videos/key-management.mp4" data-volume="0">
+    <span className="i">Key management in Speakeasy’s API Portal</span>
+</div>
 <br /><br />
 </div>
 
@@ -69,16 +70,18 @@ Even companies where APIs are the primary surface area often struggle to make th
 - **API Request Viewer** - When debugging, there’s no substitute for being able to step through things one at a time. A request viewer makes it possible for your users to view the full list of requests they’ve sent to your API – without creating additional work for your team to pull logs, send screenshots via email or Slack, or jump on a Zoom call. Without a self-service request viewer, broken integrations create poor API experience and leads to churned clients. A request viewer should provide users the ability to filter by time, response code, endpoint and more, and ideally allow users to edit and replay the request for quick debugging.
 
 <div align="center">
-<ReactPlayer controls={false} loop={true} playing={true} url='https://storage.googleapis.com/speakeasy-design-assets/videos/Rrequest-viewer.mp4' volume={0} />
-<i>Request Viewer in Speakeasy’s API Portal</i>
+<div className="ReactPlayer" data-controls="false" data-loop="true" data-playing="true" data-url="https://storage.googleapis.com/speakeasy-design-assets/videos/Rrequest-viewer.mp4" data-volume="0">
+    <span className="i">Request Viewer in Speakeasy’s API Portal</span>
+</div>
 <br /><br />
 </div>
 
 - ‍**API Usage Metrics** - A request viewer is only useful to developers if they know there’s an issue to investigate. That is why it’s important to surface key usage metrics in real time – so that users know the overall health of their integration. Usage metrics should place an emphasis on error reporting and significant changes in usage so that your users can take corrective action to any errors or unintended changes.
 
 <div align="center">
-<ReactPlayer controls={false} loop={true} playing={true} url='https://storage.googleapis.com/speakeasy-design-assets/videos/usage-dashboard.mp4' volume={0} />
-<i>Usage Dashboard in Speakeasy’s API Portal</i>
+<div className="ReactPlayer" data-controls="false" data-loop="true" data-playing="true" data-url="https://storage.googleapis.com/speakeasy-design-assets/videos/usage-dashboard.mp4" data-volume="0">
+    <span className="i">Usage Dashboard in Speakeasy’s API Portal</span>
+</div>
 <br /><br />
 </div>
 

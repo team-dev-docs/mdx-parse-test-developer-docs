@@ -3,11 +3,11 @@ title: "Monkey patching"
 description: "Hard-code custom features by overriding the generated SDK with your own code."
 slug: "/customize-sdks/monkey-patching/"
 ---
-import { Callout } from '~/components'
+{/*import { Callout } from '~/components'*/}
 
 # Monkey Patching
 
-<Callout title="CAUTION" variant="warning"> **Advanced Technique:** Monkey patching is an advanced feature and should be used with caution. It requires additional maintenance effort for the SDK and may introduce complexity. </Callout>
+<div className="Callout" data-title="CAUTION" data-variant="warning"> **Advanced Technique:** Monkey patching is an advanced feature and should be used with caution. It requires additional maintenance effort for the SDK and may introduce complexity. </div>
 
 Monkey patching allows custom code to override a module, library, or code generator. It can address bugs, add features, or implement workarounds not supported by the original source. In Speakeasy, this means modifying generated SDK code, documentation, or examples.
 

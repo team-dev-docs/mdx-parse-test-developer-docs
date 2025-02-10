@@ -12,17 +12,17 @@ tags:
 featured_image: "/media/openapi-tips-servers.png"
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
-<Callout title="Announcing: OpenAPI Reference" variant="success">
+<div className="Callout" data-title="Announcing: OpenAPI Reference" data-variant="success">
 Hi! These blog posts have been popular, so we've built an entire [OpenAPI Reference Guide](/openapi/) to answer any question you have.
 
 It includes detailed information on [**servers**](/openapi/servers).
 
 Happy Spec Writing!
 
-</Callout>
+</div>
 
 In this post, we'll take a detailed look at how the OpenAPI Specification (OAS) allows us to define servers in our OpenAPI documents (OADs), then at a few tips to help you provide the best developer experience for your users.
 
@@ -58,7 +58,7 @@ In response to the need for more flexibility, OAS 3.0 introduces the optional `s
 
 Each server in the `servers` array consists of an object with at least one field, `url`. Each server object can also contain an optional `description` field, as well as an optional array of `variables`.
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ## !!steps
 
@@ -160,7 +160,7 @@ This field is not used by the OpenAPI documentation generator, but it can be use
 !from ./assets/openapi-3.yaml
 ```
 
-</ScrollyCoding>
+</div>
 
 ## Steps to Adapt Swagger 2.0 URL Definitions to OpenAPI 3.x
 
@@ -326,7 +326,7 @@ Stripe's OpenAPI document could be further enhanced by providing a fallback glob
 
 Datadog's API, known for its scalability and flexibility, leverages variables in server definitions to allow users to select their preferred region. This feature is particularly useful for global services where latency and data residency are critical considerations.
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ## !!steps
 
@@ -444,7 +444,7 @@ Datadog also uses operation-level servers to direct log uploads to the appropria
 
 ```
 
-</ScrollyCoding>
+</div>
 
 ## Conclusion: The Impact of Well-Defined Servers in API Usability
 

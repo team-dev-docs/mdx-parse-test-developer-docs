@@ -4,8 +4,8 @@ description: "Learn how to configure server behavior in your Speakeasy client SD
 slug: "/customize-sdks/servers/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { Callout } from "~/components"; */}
 
 # Configure Your Servers
 
@@ -54,10 +54,10 @@ servers:
 
 These placeholders can then be replaced with specific values at runtime, allowing for customer-specific or environment-specific configurations without altering the SDK.
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
   Please note that the templating feature is only supported for global server
   URLs and is not yet supported for per-operation server URLs.
-</Callout>
+</div>
 
 ## Managing Multiple Servers With IDs
 
@@ -81,11 +81,11 @@ servers:
 
 Dynamic server selection allows developers to switch between multiple predefined servers at runtime, offering flexibility across different deployment environments or client configurations.
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
   The Speakeasy README file accompanying your generated SDK will include
   SDK-specific examples to guide you through the process of dynamically
   selecting servers.
-</Callout>
+</div>
 
 ### Methods
 
@@ -93,8 +93,8 @@ Dynamic server selection allows developers to switch between multiple predefined
 
 Specify a server from the predefined list based on its index.
 
-<Tabs items={['Go', 'Python', 'TS', 'C#']}>
-  <Tabs.Tab>
+<div className="Tabs" data-items="['Go', 'Python', 'TS', 'C#']">
+  <div className="TabsTab">
 
 ```go
 s := sdk.New(
@@ -102,8 +102,8 @@ s := sdk.New(
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```python
 s = sdk.SDK(
@@ -111,8 +111,8 @@ s = sdk.SDK(
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```typescript
 const sdk = new SDK({
@@ -120,22 +120,22 @@ const sdk = new SDK({
 });
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```csharp
 const sdk = new SDK(serverIndex: 1);
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 #### Global URL Override
 
 Set a global server URL at SDK initialization, overriding the base URL.
 
-<Tabs items={['Go', 'Python', 'TS', 'C#']}>
-  <Tabs.Tab>
+<div className="Tabs" data-items="['Go', 'Python', 'TS', 'C#']">
+  <div className="TabsTab">
 
 ```go
 s := sdk.New(
@@ -147,8 +147,8 @@ s := sdk.New(
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```python
 s = sdk.SDK(
@@ -161,8 +161,8 @@ s = sdk.SDK(
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```typescript
 const sdk = new SDK({
@@ -174,8 +174,8 @@ const sdk = new SDK({
 });
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```csharp
 const sdk = new SDK(
@@ -187,15 +187,15 @@ const sdk = new SDK(
 );
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 #### Per-Client or Per-Operation Override
 
 Override the server URL for specific instances or API calls.
 
-<Tabs items={['Go', 'Python', 'TS', 'C#']}>
-  <Tabs.Tab>
+<div className="Tabs" data-items="['Go', 'Python', 'TS', 'C#']">
+  <div className="TabsTab">
 
 ```go
 res, err := s.Tag1.ListTest1(
@@ -208,8 +208,8 @@ res, err := s.Tag1.ListTest1(
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```python
 res = s.tag1.list_test1(
@@ -221,8 +221,8 @@ res = s.tag1.list_test1(
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```typescript
 const result = await sdk.tag1.listTest1(operationSecurity, page, headerParam1, queryParam1, {
@@ -230,8 +230,8 @@ const result = await sdk.tag1.listTest1(operationSecurity, page, headerParam1, q
 });
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 
 ```csharp
 var res = await sdk.Tag1.ListTest1Async(
@@ -243,11 +243,11 @@ var res = await sdk.Tag1.ListTest1Async(
 );
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
-<Callout title="CAUTION" variant="warning">
+<div className="Callout" data-title="CAUTION" data-variant="warning">
   If you choose to configure the SDK URL at runtime and relative paths were used
   in the OpenAPI document, make sure that you account for the `baseURL` when
   initializing the SDK server configuration.
-</Callout>
+</div>

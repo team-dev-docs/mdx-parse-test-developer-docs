@@ -4,7 +4,7 @@ description: "Learn how to generate webhook types in your Speakeasy client SDKs 
 slug: "/customize-sdks/webhooks/"
 ---
 
-import { Callout } from '~/components'
+{/*import { Callout } from '~/components'*/}
 
 # Add webhooks to your SDKs
 
@@ -18,9 +18,9 @@ import { Callout } from '~/components'
 
 ## Getting started
 
-<Callout title="INFO" variant="info">
+<div className="Callout" data-title="INFO" data-variant="info">
   Webhooks are a paid add-on, [reach out to us to discuss pricing](https://www.speakeasy.com/book-demo).
-</Callout>
+</div>
 
 1. You must have a [Speakeasy Business or Enterprise plan](/pricing).
 2. Run the following command to activate webhooks in your SDK generation configuration:
@@ -31,9 +31,9 @@ speakeasy billing activate -f webhooks
 
 ## Example
 
-<Callout title="GitHub example source code" variant="info">
+<div className="Callout" data-title="GitHub example source code" data-variant="info">
   You can see the full source code for this example in the [webhooks example repo](https://github.com/speakeasy-api/examples/tree/main/webhooks-ts).
-</Callout>
+</div>
 
 ### OpenAPI
 
@@ -126,9 +126,9 @@ components:
 
 ### For webhook consumers
 
-<Callout title="">
+<div className="Callout" data-title="">
 The `validateWebhook()` function is currently only implemented in the TypeScript SDK, with support for additional languages planned for future releases. While other languages will generate webhook types, this discriminator method is TypeScript-only.
-</Callout>
+</div>
 
 ```typescript
 import { Petstore } from "petstore";

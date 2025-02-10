@@ -4,8 +4,8 @@ sidebar_label: Customize Authentication
 description: "Customize your security and authentication SDK settings for OAuth."
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { Callout } from "~/components"; */}
 
 # Simple security schemes
 
@@ -33,9 +33,9 @@ security:
   - auth: []
 ```
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -57,9 +57,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import speakeasy
@@ -79,9 +79,9 @@ if res.drinks is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -112,9 +112,9 @@ func main() {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -157,9 +157,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -188,9 +188,9 @@ catch (Exception ex)
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## API key authentication
 
@@ -222,9 +222,9 @@ security:
   - api_key: []
 ```
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -243,9 +243,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import speakeasy
@@ -261,9 +261,9 @@ if res.drinks is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -292,9 +292,9 @@ func main() {
 
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -334,9 +334,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -361,9 +361,9 @@ catch (Exception ex)
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Bearer token authentication
 
@@ -390,9 +390,9 @@ security:
   - auth: []
 ```
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -411,9 +411,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import speakeasy
@@ -429,9 +429,9 @@ if res.drinks is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -459,9 +459,9 @@ func main() {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -501,9 +501,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -528,6 +528,6 @@ catch (Exception ex)
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>

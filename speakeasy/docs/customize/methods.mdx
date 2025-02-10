@@ -4,7 +4,7 @@ description: "Learn how to customize method signatures, rename methods, and excl
 slug: "/customize-sdks/methods/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
 
 # Customize methods
 
@@ -93,8 +93,8 @@ To ensure the generator always creates a request object for an SDK, set `maxMeth
 
 Here are examples of an SDK with `maxMethodParams` set to `4` and `0`:
 
-<Tabs items={['TypeScript','Python','Go', 'Java', 'C#']}>
-  <Tabs.Tab>
+<div className="Tabs" data-items="['TypeScript','Python','Go', 'Java', 'C#']">
+  <div className="TabsTab">
 ```typescript
 // Example of SDK with maxMethodParams set to 4
 import { Speakeasybar } from "speakeasy";
@@ -135,8 +135,8 @@ const sdk = new Speakeasybar();
 run();
 
 ````
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 ```python
 # Example of SDK with maxMethodParams set to 4
 import sdk
@@ -169,8 +169,8 @@ if res.drinks is not None:
     pass
 ````
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 ```go
 // Example of SDK with maxMethodParams set to 4
 package main
@@ -230,8 +230,8 @@ s := speakeasy.New()
 }
 
 ````
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 ```java
 // Example of SDK with maxMethodParams set to 4
 package hello.world;
@@ -316,8 +316,8 @@ public class Application {
 }
 ````
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div className="TabsTab">
 ```csharp
 // Example of SDK with maxMethodParams set to 4
 using Openapi;
@@ -351,8 +351,8 @@ var res = await sdk.Drinks.ListDrinksAsync(req);
 // handle response
 
 ````
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 You can also set `maxMethodParams` using the `x-speakeasy-max-method-params` extension in your OpenAPI document, either globally at the root of the document or at the operation level.
 

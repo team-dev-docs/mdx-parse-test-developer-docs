@@ -4,7 +4,7 @@ sidebar_label: Customize Authentication
 description: "Customize your security and authentication SDK settings for OAuth."
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
 
 # Security callbacks
 
@@ -32,9 +32,9 @@ components:
 
 The callback function passed when initializing the SDK acts as a _security source_ and is called whenever a request is made, allowing tokens to be refreshed if needed.
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "<packageName>";
@@ -49,9 +49,9 @@ const sdk = new SDK({
 });
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import requests
@@ -66,9 +66,9 @@ def callback() -> Security:
 s = sdk.SDK(security=with_authorization(callback))
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 import (
@@ -86,9 +86,9 @@ s := sdk.New(
 )
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 import dev.speakeasyapi.speakeasy.SDK;
@@ -117,9 +117,9 @@ SDK s = SDK.builder()
     .build();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -137,6 +137,6 @@ Func<Security> tokenSource = () =>
 var sdk = new SDK(securitySource: tokenSource);
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>

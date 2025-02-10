@@ -4,9 +4,9 @@ description: "How to customize the import paths and model locations of generated
 slug: "/customize-sdks/imports/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
 # Customize imports
 
@@ -14,12 +14,12 @@ Speakeasy allows you to customize the paths we generate models to and your users
 
 By default, Speakeasy uses an OpenAPI-based naming scheme for the namespaces models are bucketed into, for example:
 
-<Callout title="INFO" variant="info">
+<div className="Callout" data-title="INFO" data-variant="info">
   Currently only supported for C#, Go, Python, TypeScript, and Unity SDKs. More
   languages will be added soon.
-</Callout>
+</div>
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 #### !!steps `Components`
 
@@ -66,17 +66,17 @@ Models that are used in error status codes are placed in the `models/errors` dir
 # !focus(13:16)
 ```
 
-</ScrollyCoding>
+</div>
 
-<Callout title="WARN" variant="info">
+<div className="Callout" data-title="WARN" data-variant="info">
   The default names for the model directories are consistent across most
   target languages, but C# makes the exception that the `models/Operations` directory is
   called `models/Requests` by default.
-</Callout>
+</div>
 
 ## Customize import paths
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ### !!steps `imports`
 
@@ -130,15 +130,15 @@ The `paths` section contains a map of bucket names to paths relative to the root
 # !focus(8:13)
 ```
 
-</ScrollyCoding>
+</div>
 
 You can customize these paths to any path that exists relative to the root of the SDK.
 
-<Callout title="CAUTION" variant="warning">
+<div className="Callout" data-title="CAUTION" data-variant="warning">
   If you are providing custom path names, make sure there is no conflict with
   any of the existing directories in the SDK. Conflicts will result in
   compilation issues.
-</Callout>
+</div>
 
 Different buckets can also be configured to use the same path, for example:
 
@@ -177,11 +177,11 @@ import { GetDrinkRequest } from '@speakeasy/bar/dist/models/operations/user'
 
 You will configure global imports slightly differently for different languages:
 
-<br></br>
+<span className="br"></span>
 
-<Tabs items={['Typescript', 'Python', 'Go', "C#", "Unity"]}>
+<div className="Tabs" data-items="['Typescript', 'Python', 'Go', "C#", "Unity"]">
 
-<Tabs.Tab>
+<div className="TabsTab">
 For TypeScript to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -238,9 +238,9 @@ Import models like so:
 import { User, GetDrinkRequest, SDK } from '@speakeasy/bar'
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 For Python to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -305,9 +305,9 @@ import speakeasybar
 from speakeasybar.models import operations, components
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 For Go to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -358,9 +358,9 @@ import (
 )
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 For C# to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -420,9 +420,9 @@ As all the models will be under the root namespace of the SDK, import models lik
 using SpeakeasyBar;
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 For Unity to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -482,13 +482,13 @@ As all the models will be under the root namespace of the SDK, import models lik
 using SpeakeasyBar;
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
-<Callout title="CAUTION" variant="warning">
+<div className="Callout" data-title="CAUTION" data-variant="warning">
 Global imports will cause namespace pollution for the import and file clutter in the directory models are generated to.
 
 Large APIs containing many models (especially many inline models) will inevitably lead to name conflicts. Rename types verbosely to ensure each class is unique within the namespace.
 
-</Callout>
+</div>

@@ -4,8 +4,8 @@ sidebar_label: Customize Authentication
 description: "Customize your security and authentication SDK settings for OAuth."
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { Callout } from "~/components"; */}
 
 # Customize Security and Authentication
 
@@ -38,9 +38,9 @@ security: # Here
 
 In the resulting SDK, the user can define the security configuration in the SDK's instantiation. It will then be automatically applied to all subsequent method calls without needing to be passed in as an argument:
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -59,9 +59,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import sdk
@@ -78,9 +78,9 @@ if res.drinks is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -108,9 +108,9 @@ func main() {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -150,9 +150,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -177,17 +177,17 @@ catch (Exception ex)
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ### Per-Operation Security
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
 
 **Security Hoisting:** In cases where global security is **not** defined, Speakeasy automatically hoists the most commonly occurring operation-level security to be considered global. This will simplify SDK usage.
 
-</Callout>
+</div>
 
 Operation-specific security configuration overrides the default authentication settings for an endpoint. This is commonly used for operations that do not require authentication or are part of an authentication flow, such as obtaining a short-lived access token.
 
@@ -216,9 +216,9 @@ security:
 
 In the SDK, the user can pass in a specific security configuration as an argument to the method call:
 
-<Tabs items={['TypeScript', 'Python', 'Go', 'Java', 'C#']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go', 'Java', 'C#']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 import { SDK } from "speakeasy";
@@ -237,9 +237,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 import sdk
@@ -253,9 +253,9 @@ if res.drinks is not None:
     pass
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 package main
@@ -285,9 +285,9 @@ func main() {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```java
 package hello.world;
@@ -329,9 +329,9 @@ public class Application {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```csharp
 using Speakeasy;
@@ -356,9 +356,9 @@ catch (Exception ex)
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Environment Variables
 
@@ -374,10 +374,10 @@ const SDK = new SDK({
 });
 ```
 
-<Callout title="NOTE" variant="info">
+<div className="Callout" data-title="NOTE" data-variant="info">
 
 Note: In some cases, adding `envVarPrefix` may alter the structure of security options. Required global security will become optional to allow setting it via environment variables.
 
-</Callout>
+</div>
 
 For details on enabling this feature during generation, see the language-specific `gen.yaml` [configuration reference](/docs/speakeasy-reference/generation/gen-yaml).

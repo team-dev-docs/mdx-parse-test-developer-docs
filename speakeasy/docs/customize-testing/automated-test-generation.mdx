@@ -3,7 +3,7 @@ title: "Automated test generation"
 description: "Learn how to automatically generate contract testing for your API and SDKs."
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
 
 # Automated Test Generation
 
@@ -25,7 +25,7 @@ The following are requirements for generating tests:
 
 Enable test generation in your SDK by modifying the SDK generation configuration (typically `.speakeasy/gen.yaml`).
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ### !!steps `generation`
 
@@ -54,7 +54,7 @@ Then going forward it will only generate tests for any operations not already fo
 
 ---
 
-</ScrollyCoding>
+</div>
 
 After enabling test generation, if you wish to disable generation of tests for a specific operation, you can explicitly set `x-speakeasy-test: false`:
 
@@ -93,7 +93,7 @@ Run testing, via any of these options, depends on your desired use case:
 
 For `speakeasy run` support, modify the Speakeasy workflow configuration (`.speakeasy/workflow.yaml`).
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ### !!steps `targets`
 
@@ -125,7 +125,7 @@ targets:
 
 ---
 
-</ScrollyCoding>
+</div>
 
 ### Data Handling
 
@@ -137,7 +137,7 @@ By default, a single test will be created based on any `example` properties foun
 
 In this example, a single test is created for the `updatePet` operation with `id`, `name`, and `photoUrls` data:
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ### !!steps `paths[/pet].put.operationId`
 
@@ -253,7 +253,7 @@ The required `Pet` object `photoUrls` property does not include an `example` pro
 
 ---
 
-</ScrollyCoding>
+</div>
 
 This definition creates a test with `Pet` object request body and response data:
 
@@ -270,7 +270,7 @@ Define multiple tests for an operation using the `examples` property, which in t
 
 In this example, multiple tests (`fido` and `rover`) are created for the `addPet` operation:
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 ### !!steps `paths[/pet].post.operationId`
 
@@ -372,7 +372,7 @@ An `addPet` operation `rover` test is created with example request body and resp
 
 ---
 
-</ScrollyCoding>
+</div>
 
 #### Ignoring Data
 

@@ -11,7 +11,7 @@ tags:
 featured_image: "/media/vitest-vs-jest.png"
 ---
 
-import { Callout } from '~/components'
+{/*import { Callout } from '~/components'*/}
 
 Effective testing frameworks are essential in building reliable JavaScript applications, helping you minimize bugs and catch them early to keep your customers happy. Choosing the right testing framework saves hours of configuration hassles and improves developer experience.
 
@@ -377,9 +377,9 @@ When we rebuilt our TypeScript SDK generation – which doesn't use Vite – we 
 
 We are now in the process of expanding our use of Vitest to our customers' Speakeasy-generated SDKs with an [automated API testing feature](/product/api-testing) that generates API tests that will help you make more robust and performant APIs, faster and cheaper. Our own internal SDKs have Vitest tests, which we used to add this feature. 
 
-<Callout title="EARLY ACCESS" variant="info">
+<div className="Callout" data-title="EARLY ACCESS" data-variant="info">
   Speakeasy API test generation is in beta. Join the [early access program](/product/api-testing) to give it a try.
-</Callout>
+</div>
 
 Test generation is currently available in Typescript, Python, and Go. Customers can enable test generation in a generated Speakeasy SDK using their OpenAPI doc or using a `tests.yaml` file. We have plans to further improve testing including:
 

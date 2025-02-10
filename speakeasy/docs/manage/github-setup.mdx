@@ -4,8 +4,8 @@ description: "Learn how to set up your GitHub repo to automatically generate and
 position: 1
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+{/* import { Callout } from "~/components"; */}
 
 # SDK Generation workflow
 
@@ -62,10 +62,10 @@ speakeasy configure github
 
 After running the command, `.speakeasy/workflow.yaml` and `.github/workflows/sdk_generation.yaml` will be created. These files define the SDK generation workflow and the associated GitHub Action.
 
-<Screenshot variant="cli">
+<div className="Screenshot" variant="cli">
   ![Screenshot of the terminal after successfully running Speakeasy configure
   Github.](../assets/configure-github/configure.png)
-</Screenshot>
+</div>
 
 If further customization is needed, [manual configuration](/docs/workflow-reference/generation-reference) of the workflow files is available.
 
@@ -82,13 +82,13 @@ Commit and push the generated workflow files to the repository. To test your Git
 
 Navigate to **Actions** in the GitHub repository to trigger the SDK generation workflow manually or wait for it to run automatically. A green checkmark indicates successful workflow completion. If the publishing step has not been configured, it will be skipped.
 
-<Screenshot
-  darkened
-  url="https://github.com/speakeasy-sdks/example/actions/runs/9900330987"
+<div className="Screenshot"
+  data-darkened
+  data-url="https://github.com/speakeasy-sdks/example/actions/runs/9900330987"
 >
   ![A screenshot of a successful generate
   flow.](../assets/configure-github/successful-workflow.png)
-</Screenshot>
+</div>
 
 For details on package publishing, refer to the [Publishing SDKs guide](/docs/publish-sdk).
 
@@ -98,27 +98,27 @@ If the error `403 GitHub Actions is not permitted to create or approve pull requ
 
 Navigate to **Settings > Actions > Workflow permissions** and adjust the permissions accordingly.
 
-<Screenshot
-  darkened
-  url="https://github.com/speakeasy-sdks/example/settings/actions"
+<div className="Screenshot"
+  data-darkened
+  data-url="https://github.com/speakeasy-sdks/example/settings/actions"
 >
   ![Github Actions workflow
   permissions.](../assets/configure-github/workflow-permissions.png)
-</Screenshot>
+</div>
 
 ## Configure remote URLs for schemas
 
-<Callout title="Warning" variant="warning">
+<div className="Callout" data-title="Warning" data-variant="warning">
   Remote URLs for OpenAPI schemas must remain stable. Dynamically constructed
   URLs in workflow files are not supported.
-</Callout>
+</div>
 
 If the OpenAPI schema is hosted in another repository or at a remote URL, set the `source` as the remote URL in `.speakeasy/workflow.yaml`. Use the following command to add the remote URL:
 
-<Screenshot variant="cli">
+<div className="Screenshot" variant="cli">
   ![Configure Remote URL for
   schema.](../assets/configure-github/remote-url-schema.png)
-</Screenshot>
+</div>
 
 To authenticate the remote URL, provide a token or key stored as an environment variable (e.g., `$OPENAPI_DOC_AUTH_TOKEN`).
 

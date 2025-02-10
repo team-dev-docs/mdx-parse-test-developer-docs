@@ -3,7 +3,7 @@ title: "Custom contract and end-to-end tests"
 description: "Learn how to generate contract and end-to-end tests for your API and SDKs using the Arazzo workflow specification."
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
+{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
 
 # Custom Contract and End-to-End Tests with Arazzo
 
@@ -149,9 +149,9 @@ The above workflow defined 4 steps that each feed into the next, representing th
 
 It will generate the test shown below:
 
-<Tabs items={['TypeScript', 'Python', 'Go']}>
+<div className="Tabs" data-items="['TypeScript', 'Python', 'Go']">
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```typescript
 // src/__tests__/sdk.test.ts
@@ -248,9 +248,9 @@ test("Sdk User Lifecycle", async () => {
 });
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```python
 # tests/test_sdk.py
@@ -347,9 +347,9 @@ def test_sdk_user_lifecycle():
         sdk.delete_user(id=create_res.id)
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div className="TabsTab">
 
 ```go
 // tests/sdk_test.go
@@ -453,9 +453,9 @@ func TestSDK_UserLifecycle(t *testing.T) {
 }
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Input and Outputs
 

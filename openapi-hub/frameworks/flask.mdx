@@ -3,8 +3,8 @@ title: Generate an OpenAPI/Swagger document with Flask
 description: "Generating an OpenAPI document with Flask and using it to create SDKs with Speakeasy."
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
 # How to generate an OpenAPI document with Flask
 
@@ -29,9 +29,9 @@ To follow along, you will need:
 
 ## Example Flask REST API repository
 
-<Callout title="Example repository" variant="info">
+<div className="Callout" data-title="Example repository" data-variant="info">
 The source code for the completed example is available in the [**Speakeasy Flask example repository**](https://github.com/speakeasy-api/openapi-flask-example).
-</Callout>
+</div>
 
 The repository already contains all the code covered throughout the guide. You can clone it and follow along with the tutorial, or use it as a reference to add to your own Flask project.
 
@@ -39,7 +39,7 @@ To better understand the process of generating an OpenAPI document with Flask, l
 
 ### Models and routes
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ## !!steps
 
@@ -93,7 +93,7 @@ The `resources.py` file contains API endpoints set up to handle all the CRUD ope
 !from ./assets/flask/resources.py.txt
 ```
 
-</ScrollyCoding>
+</div>
 
 
 This code defines a simple Flask REST API with CRUD operations for a `Book` model. The `BookList` class provides a way to retrieve all book data and create new books. The `BookDetail` class handles the retrieval of specific books, updating book data, and deleting books.
@@ -117,7 +117,7 @@ pip install flask-smorest
 ```
 
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ## !!steps
 
@@ -161,7 +161,7 @@ These additional configuration settings add a route to serve the OpenAPI documen
 ```
 
 
-</ScrollyCoding>
+</div>
 
 
 ### Run server
@@ -191,7 +191,7 @@ This generates a new file, `openapi.yaml`, in the root of the project.
 
 
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ## !!steps
 
@@ -257,7 +257,7 @@ Open the `openapi.yaml`file to check the same `Book` parameters are reflected in
 ```
 
 
-</ScrollyCoding>
+</div>
 
 
 
@@ -269,7 +269,7 @@ In the [customized](https://github.com/speakeasy-api/openapi-flask-example/tree/
 
 
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ## !!steps
 
@@ -400,7 +400,7 @@ This enables retries when using the document to create an SDK with Speakeasy:
 !from ./assets/flask/openapi.yaml.txt
 ```
 
-</ScrollyCoding>
+</div>
 
 
 
@@ -429,7 +429,7 @@ After creating your SDK with Speakeasy, you will find a new directory containing
 These examples assume a Python SDK named `books-python` was generated from the example Flask project above. Edit any paths to reflect your environment if you want to follow in your own project.
 
 
-<ScrollyCoding fullHeight>
+<div className="ScrollyCoding" data-fullheight>
 
 ## !!steps
 
@@ -473,7 +473,7 @@ Finally, note the result of the global retries strategy that we set up in the `a
 ```
 
 
-</ScrollyCoding>
+</div>
 
 
 ## Summary

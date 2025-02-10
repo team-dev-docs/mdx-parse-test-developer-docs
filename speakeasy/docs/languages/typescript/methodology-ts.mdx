@@ -3,8 +3,8 @@ title: "Create TypeScript SDKs from OpenAPI / Swagger"
 description: "Learn how Speakeasy generates Typescript SDKs from your OpenAPI / Swagger spec."
 ---
 
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
+{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
+{/* import { Callout } from "~/components"; */}
 
 # Create TypeScript SDKs from OpenAPI / Swagger
 
@@ -80,13 +80,13 @@ Runtime environments that are explicitly supported are:
 
 [deno-file-streaming]: https://github.com/denoland/deno/issues/11018
 
-<Callout title="Note" variant="info">
+<div className="Callout" data-title="Note" data-variant="info">
   For teams interested in working directly with the SDK&apos;s source files, our SDK
   leverages TypeScript `v5` features. To directly consume these source files,
   your environment should support TypeScript version 5 or higher. This
   requirement applies to scenarios where direct access to the source is
   necessary.
-</Callout>
+</div>
 
 ## TypeScript HTTP Client
 
@@ -130,16 +130,16 @@ const result = await sdk.doTheThing({
 
 The TypeScript SDK generates a type for each request, response, and shared model in your OpenAPI schema. Each model is backed by a [Zod](https://zod.dev/) schema that validates the objects at runtime.
 
-<Callout title="Note" variant="info">
+<div className="Callout" data-title="Note" data-variant="info">
   It&apos;s important to note that data validation is run on user input when calling
   an SDK method _and on the subsequent response data from the server_. If
   servers are not returning data that matches the OpenAPI spec, then validation
   errors are thrown at runtime.
-</Callout>
+</div>
 
 Below is a complete example of a shared model created by the TypeScript generator:
 
-<ScrollyCoding>
+<div className="ScrollyCoding">
 
 #### !!steps Public Type
 
@@ -265,9 +265,9 @@ All generated models have this overall structure. By pinning the types with runt
 
 ```
 
-</ScrollyCoding>
+</div>
 
-<Callout title="Note" variant="info">
+<div className="Callout" data-title="Note" data-variant="info">
 It&apos;s important to note that Zod is a peer dependency.
 
 The reason for listing Zod as a peer dependency is to use the user&apos;s installation of Zod if they have it. Every popular package manager, except for Yarn, says, &quot;If the user doesn&apos;t have a peer dependency installed, I&apos;m gonna go ahead and install it and make it available&quot;.
@@ -305,7 +305,7 @@ The code at `branch 1` will not evaluate to `true` because the runtime loaded th
 
 Speakeasy SDKs wrap `ZodError`s with a custom error type declared in each SDK. In practice, the Zod error is hidden from users and gets them to only work with the error type exported from the SDK. In the future, we start listing Zod as a direct dependency and are unaware of other Zod installations the user might have.
 
-</Callout>
+</div>
 
 ### Union Types
 
