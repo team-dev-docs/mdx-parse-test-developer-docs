@@ -12,8 +12,8 @@ featured_image: "/media/speakeasy-vs-apimatic.png"
 ---
 
 {/*import { FileTree } from "nextra/components";*/}
-{/* import { ScrollyCoding } from "~/components/codehike/Scrollycoding"; */}
-{/* import { Callout } from "~/components"; */}
+ 
+ 
 
 At Speakeasy, we create [idiomatic SDKs](../docs/sdk-design/intro.md) in the most popular languages. Our generators follow principles that ensure we create SDKs that offer the best developer experience so that you can focus on building your API, and your developer-users can focus on delighting their users.
 
@@ -380,68 +380,6 @@ To see what was generated, run the tree command from the new SDK directory:
 tree openapi_sdk_typescript
 ```
 
-{/* <FileTree> 
-  <FileTree.File name="LICENSE" />
-  <FileTree.File name="README.md" />
-  <FileTree.Folder name="doc">
-    <FileTree.File name="api-error.md" />
-    <FileTree.File name="api-response.md" />
-    <FileTree.Folder name="auth">
-      <FileTree.File name="custom-header-signature.md" />
-      <FileTree.File name="oauth-2-client-credentials-grant.md" />
-    </FileTree.Folder>
-    <FileTree.File name="client.md" />
-    <FileTree.Folder name="controllers">
-      <FileTree.File name="books.md" />
-      <FileTree.File name="orders.md" />
-    </FileTree.Folder>
-    <FileTree.Folder name="models">
-      <FileTree.File name="author-with-id.md" />
-      <FileTree.File name="author-with-name.md" />
-      <FileTree.File name="author.md" />
-      <FileTree.File name="book.md" />
-      <FileTree.File name="category-enum.md" />
-      <FileTree.File name="fantasy-book.md" />
-      <FileTree.File name="new-order.md" />
-      <FileTree.File name="o-auth-provider-error-enum.md" />
-      <FileTree.File name="o-auth-provider-error.md" />
-      <FileTree.File name="o-auth-scope-client-credentials-enum.md" />
-      <FileTree.File name="o-auth-token.md" />
-      <FileTree.File name="order-stream-message.md" />
-      <FileTree.File name="order.md" />
-      <FileTree.File name="programming-book.md" />
-      <FileTree.File name="sci-fi-book.md" />
-      <FileTree.File name="status-enum.md" />
-      <FileTree.File name="user.md" />
-    </FileTree.Folder>
-  </FileTree.Folder>
-  <FileTree.File name="jest.config.js" />
-  <FileTree.File name="package.json" />
-  <FileTree.Folder name="src">
-    <FileTree.File name="authProvider.ts" />
-    <FileTree.File name="authentication.ts" />
-    <FileTree.File name="client.ts" />
-    <FileTree.File name="clientAdapter.ts" />
-    <FileTree.File name="clientCredentialsManager.ts" />
-    <FileTree.File name="clientInterface.ts" />
-    <FileTree.File name="configuration.ts" />
-    <FileTree.File name="core.ts" />
-    <FileTree.File name="defaultConfiguration.ts" />
-    <FileTree.File name="index.ts" />
-    <FileTree.File name="schema.ts" />
-  </FileTree.Folder>
-  <FileTree.Folder name="test">
-    <FileTree.File name="booksController.test.ts" />
-    <FileTree.File name="ordersController.test.ts" />
-    <FileTree.File name="testClient.ts" />
-    <FileTree.File name="testHelper.ts" />
-  </FileTree.Folder>
-  <FileTree.File name="tsconfig.base.json" />
-  <FileTree.File name="tsconfig.cjs.json" />
-  <FileTree.File name="tsconfig.esm.json" />
-  <FileTree.File name="tsconfig.json" />
-</FileTree>*/}
-
 Poking around the source, we found that the generated SDK did not contain any model code or types related to our bookstore example.
 
 ### Corrupted SDK Generation
@@ -525,110 +463,6 @@ Click on **Generate** and select TypeScript. This generates a TypeScript SDK, wh
 Here's what's inside:
 
 
-{/* <FileTree>
-  <FileTree.File name="LICENSE" />
-  <FileTree.File name="README.md" />
-  <FileTree.Folder name="doc">
-    <FileTree.File name="api-error.md" />
-    <FileTree.File name="api-response.md" />
-    <FileTree.Folder name="auth">
-      <FileTree.File name="custom-header-signature.md" />
-      <FileTree.File name="oauth-2-client-credentials-grant.md" />
-    </FileTree.Folder>
-    <FileTree.File name="client.md" />
-    <FileTree.Folder name="controllers">
-      <FileTree.File name="books.md" />
-      <FileTree.File name="orders.md" />
-    </FileTree.Folder>
-    <FileTree.Folder name="models">
-      <FileTree.File name="author-with-id.md" />
-      <FileTree.File name="author-with-name.md" />
-      <FileTree.File name="author.md" />
-      <FileTree.File name="book.md" />
-      <FileTree.File name="category-enum.md" />
-      <FileTree.Folder name="containers">
-        <FileTree.File name="add-book-body.md" />
-        <FileTree.File name="add-book-response.md" />
-        <FileTree.File name="author-2.md" />
-        <FileTree.File name="get-all-books-response.md" />
-        <FileTree.File name="get-book-by-id-response.md" />
-        <FileTree.File name="order-products.md" />
-      </FileTree.Folder>
-      <FileTree.File name="fantasy-book.md" />
-      <FileTree.File name="new-order.md" />
-      <FileTree.File name="o-auth-provider-error-enum.md" />
-      <FileTree.File name="o-auth-provider-error.md" />
-      <FileTree.File name="o-auth-scope-client-credentials-enum.md" />
-      <FileTree.File name="o-auth-token.md" />
-      <FileTree.File name="order-stream-message.md" />
-      <FileTree.File name="order.md" />
-      <FileTree.File name="programming-book.md" />
-      <FileTree.File name="sci-fi-book.md" />
-      <FileTree.File name="status-enum.md" />
-      <FileTree.File name="user.md" />
-    </FileTree.Folder>
-  </FileTree.Folder>
-  <FileTree.File name="jest.config.js" />
-  <FileTree.File name="package.json" />
-  <FileTree.Folder name="src">
-    <FileTree.File name="authProvider.ts" />
-    <FileTree.File name="authentication.ts" />
-    <FileTree.File name="client.ts" />
-    <FileTree.File name="clientAdapter.ts" />
-    <FileTree.File name="clientCredentialsManager.ts" />
-    <FileTree.File name="clientInterface.ts" />
-    <FileTree.File name="configuration.ts" />
-    <FileTree.Folder name="controllers">
-      <FileTree.File name="baseController.ts" />
-      <FileTree.File name="booksController.ts" />
-      <FileTree.File name="oAuthAuthorizationController.ts" />
-      <FileTree.File name="ordersController.ts" />
-    </FileTree.Folder>
-    <FileTree.File name="core.ts" />
-    <FileTree.File name="defaultConfiguration.ts" />
-    <FileTree.Folder name="errors">
-      <FileTree.File name="oAuthProviderError.ts" />
-    </FileTree.Folder>
-    <FileTree.File name="index.ts" />
-    <FileTree.Folder name="models">
-      <FileTree.File name="author.ts" />
-      <FileTree.File name="authorWithID.ts" />
-      <FileTree.File name="authorWithName.ts" />
-      <FileTree.File name="book.ts" />
-      <FileTree.File name="categoryEnum.ts" />
-      <FileTree.Folder name="containers">
-        <FileTree.File name="addBookBody.ts" />
-        <FileTree.File name="addBookResponse.ts" />
-        <FileTree.File name="author2.ts" />
-        <FileTree.File name="getAllBooksResponse.ts" />
-        <FileTree.File name="getBookByIdResponse.ts" />
-        <FileTree.File name="orderProducts.ts" />
-      </FileTree.Folder>
-      <FileTree.File name="fantasyBook.ts" />
-      <FileTree.File name="newOrder.ts" />
-      <FileTree.File name="oAuthProviderErrorEnum.ts" />
-      <FileTree.File name="oAuthScopeClientCredentialsEnum.ts" />
-      <FileTree.File name="oAuthToken.ts" />
-      <FileTree.File name="order.ts" />
-      <FileTree.File name="orderStreamMessage.ts" />
-      <FileTree.File name="programmingBook.ts" />
-      <FileTree.File name="sciFiBook.ts" />
-      <FileTree.File name="statusEnum.ts" />
-      <FileTree.File name="user.ts" />
-    </FileTree.Folder>
-    <FileTree.File name="schema.ts" />
-  </FileTree.Folder>
-  <FileTree.Folder name="test">
-    <FileTree.File name="booksController.test.ts" />
-    <FileTree.File name="ordersController.test.ts" />
-    <FileTree.File name="testClient.ts" />
-    <FileTree.File name="testHelper.ts" />
-  </FileTree.Folder>
-  <FileTree.File name="tsconfig.base.json" />
-  <FileTree.File name="tsconfig.cjs.json" />
-  <FileTree.File name="tsconfig.esm.json" />
-  <FileTree.File name="tsconfig.json" />
-</FileTree> */}
 
 This looks more complete, and none of the files are corrupted, so we'll move on to trying the Speakeasy generator.
 
