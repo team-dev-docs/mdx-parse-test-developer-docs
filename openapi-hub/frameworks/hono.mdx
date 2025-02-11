@@ -499,6 +499,8 @@ The request and response content schemas of the OpenAPI spec are inline:
 
 Let's make these schemas reusable by adding them to the OpenAPI [components object](https://swagger.io/specification/#components-object).
 
+When building complex schemas, use `.merge()` instead of `.and()` to combine schemas. Using `.and()` typically results in a union type in the OpenAPI schema, while `.merge()` creates a flatter, more maintainable schema structure.
+
 Use the [`.openapi()` method on the Zod object](https://github.com/asteasolutions/zod-to-openapi#the-openapi-method) to register your Zod schemas as referenced components in the `src/schemas.ts` file:
 
 ```typescript schemas.ts mark=7
