@@ -50,7 +50,7 @@ Type safety might be the most important aspect of SDK creation. By making your A
 
 The more that you can include in your type definition, the more feedback developers will have when they are building with your SDK. The below example shows how Speakeasy uses Zod Schemas to define the input and output types for a product object in TypeScript. This allows developers to validate the input and output of the API at runtime, and provides a clear contract for how the API should be used:
 
-```ts title="product.ts"
+```ts product.ts
 export namespace ProductInput$ {
     export type Inbound = {
         name: string;
