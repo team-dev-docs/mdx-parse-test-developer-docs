@@ -128,10 +128,10 @@ x-speakeasy-retries:
 
 This is a meaty topic, and it’s hard to discuss in generalities (it’s different for every language), so let’s walk through an example of the type of design choices that a developer might expect of a Go SDK:
 
-- **Minimal dependencies** and relying on the Go standard library as much as possible.
-- **Struct tags and reflection based (de)serializers** to define how the types we generate are correctly serialized based on the OpenAPI document.
-- **Pointers for optional objects** including fields/parameters/response and request bodies to ensure that the user can differentiate between a field not being set and a field being set to a zero value.
-- **A Utils package** that improves readability by bundling the methods for configuring the SDK and serializing/deserializing the types we generate into a shared package, avoiding the need to duplicate in each method.
+- **Minimal dependencies**and relying on the Go standard library as much as possible.
+- **Struct tags and reflection based (de)serializers**to define how the types we generate are correctly serialized based on the OpenAPI document.
+- **Pointers for optional objects**including fields/parameters/response and request bodies to ensure that the user can differentiate between a field not being set and a field being set to a zero value.
+- **A Utils package**that improves readability by bundling the methods for configuring the SDK and serializing/deserializing the types we generate into a shared package, avoiding the need to duplicate in each method.
 
 ```go
 package shared

@@ -32,7 +32,7 @@ featured_image: "/media/api-experts-clarence-chio.png"
 
 API development is a distributed responsibility across the different product teams. Product teams build customer-facing features which take the form of dashboards in the web interface, API endpoints, or both. So generally, every product team maintains their own sets of API endpoints defined by the scope of the product vertical that they're working on.
 
-But the people that make the decisions defining best practices and the consistency of how our APIs are designed is typically the tech leads working on our data ingestion team.  As for who maintains the consistency of how APIs are documented and presented to our customers, that is our technical writing team.
+But the people that make the decisions defining best practices and the consistency of how our APIs are designed is typically the tech leads working on our data ingestion team. As for who maintains the consistency of how APIs are documented and presented to our customers, that is our technical writing team.
 
 **_How come the data ingestion team owns API architecture is that just a quirk of Unit21 engineering? Is there any resulting friction for API development in other parts of the engineering organization?_**
 
@@ -56,19 +56,19 @@ So now the number of things that will be affected if, for example, we added a ne
 
 **_What are some of the goals that you have for Unit21’s API teams?_**
 
-There's a couple of things that we really want to get better at. And by this, I don’t mean a gradual improvement on our current trajectory, but a transformational change. Because the way we have been doing certain things hasn't been working as well as I’d like.  The first is the consistency of documentation.
+There's a couple of things that we really want to get better at. And by this, I don’t mean a gradual improvement on our current trajectory, but a transformational change. Because the way we have been doing certain things hasn't been working as well as I’d like. The first is the consistency of documentation.
 
 When we first started building our API's out, we looked at all the different types of spec frameworks, whether it was Swagger or OpenAPI, and we realized that the level of complexity that would be required if we wanted to automate API doc generation support would be too much ongoing effort to be worthwhile. It was a very clear answer. But as we continue to increase the scope of what we need to document and keep consistent, we realized that now the answer is not so clear.
 
 Right now this issue is being covered over by our technical writing team working very, very closely with developers. And the only reason this work is because our tech writer is super overqualified. She's really a rock star that could be a developer if she wanted to. And we need her to be that good because we don't have a central standardized API definition interface; everything is still defined as flask routes in a Python application. She troubleshoots and checks for consistency at the time of documentation because that’s where you can never hide any kind of inconsistency.
 
-But this isn’t the long term solution, we want to free up our tech writers for differentiated work and fix this problem at the root.  We’re still looking into how to do this. We’re not completely sold on Swagger or OpenAPI, but if there are other types of interfaces for us to standardize our API definition process through, then potentially, we could find a good balance between achieving consistency in how our APIs are defined & documented and the efforts required from our engineering team.  But yeah, the biggest goal is for more documentation consistency.
+But this isn’t the long term solution, we want to free up our tech writers for differentiated work and fix this problem at the root. We’re still looking into how to do this. We’re not completely sold on Swagger or OpenAPI, but if there are other types of interfaces for us to standardize our API definition process through, then potentially, we could find a good balance between achieving consistency in how our APIs are defined & documented and the efforts required from our engineering team. But yeah, the biggest goal is for more documentation consistency.
 
 ## API architecture Decisions
 
 **_When did you begin offering APIs to your clients, and how did you know it was the right time?_**
 
-When we first started, we did not offer public APIs. We first started, when we realized that a lot of our customers were evolving use cases that needed a different mode of response from our systems. Originally, we would only be able to tell them that this transaction is potentially fraudulent at the time of their CSV, or JSON file being uploaded into our web UI, and by then the transaction would have been processed already. In many use cases this was okay, but then increasingly, many of our customers wanted to use us for real time use cases.  
+When we first started, we did not offer public APIs. We first started, when we realized that a lot of our customers were evolving use cases that needed a different mode of response from our systems. Originally, we would only be able to tell them that this transaction is potentially fraudulent at the time of their CSV, or JSON file being uploaded into our web UI, and by then the transaction would have been processed already. In many use cases this was okay, but then increasingly, many of our customers wanted to use us for real time use cases.
 
 We developed our first set of APIs so that we could give the customer near real time feedback on their transactions, so that they could then act on the bad event and block the user, or block the transaction, etc. That was the biggest use case that pushed us towards the public API road. Of course, there's also a bunch of other problems with processing batch files. Files are brittle, files can change, validation is always a friction point. And the cost of IO for large files is a big performance consideration.
 
@@ -80,7 +80,7 @@ We don't. We actually maintain a separate set of APIs for our private interfaces
 
 **_That’s a non-standard architecture-choice, would you recommend this approach to others?_**
 
-I think it really depends on the kind of application that you're building. If I were building something where people were equally likely to interact through the web as through the API, then I think I would definitely recommend not choosing this divergence.  
+I think it really depends on the kind of application that you're building. If I were building something where people were equally likely to interact through the web as through the API, then I think I would definitely recommend not choosing this divergence.
 
 Ultimately, what I would recommend heavily depends on security requirements. At Unit21 we very deliberately separate the interfaces, the routes, the paths between what is data ingestion versus what is data exfiltration. That gives us a much better logical separation of what kinds of API routes we want to put into a private versus public subnet, and what exists and just fundamentally does not exist as a route in a more theoretically exposed environment. So ultimately, it's quite circumstantial.
 
@@ -94,7 +94,7 @@ I've been in companies before where GraphQL was the design scheme for the public
 
 **_Also, you’ve recently released webhooks in beta, what was the impetus for offering webhooks, and has the customer response been positive?_**
 
-That's right. Actually, we’ve had webhooks around for a while, but they hadn't always been consistent with our API endpoints. We recently revamped the whole thing to make everything consistent, and that’s why it’s termed as being ‘beta’. Consistency was important to achieve because, at the end of the day, it's the same customer teams that are dealing with webhooks as with the push/pull APIs. We wanted to make sure the developer experience was consistent.  And since we made the shift to consistency, the reaction has been great, customers were very happy with the change.
+That's right. Actually, we’ve had webhooks around for a while, but they hadn't always been consistent with our API endpoints. We recently revamped the whole thing to make everything consistent, and that’s why it’s termed as being ‘beta’. Consistency was important to achieve because, at the end of the day, it's the same customer teams that are dealing with webhooks as with the push/pull APIs. We wanted to make sure the developer experience was consistent. And since we made the shift to consistency, the reaction has been great, customers were very happy with the change.
 
 ## Developer Experience
 
@@ -102,12 +102,12 @@ That's right. Actually, we’ve had webhooks around for a while, but they hadn't
 
 Oof this is a broad question, but a good one. All of us have struggled with API Docs before; struggled with trying to relate the concept of what you're trying to do with what the API allows you to do. Of course, there are some really good examples of how documentation can be a great assist between what is intuitive and unintuitive. But I think that a really good developer experience is when the set of APIs maps closely to the intention of the majority of the users using the API, so that you don't have to rely on documentation to achieve most of what you're trying to do.
 
-There are some APIs like this that I've worked with before that have tremendously intuitive interfaces.  In those cases, you really only need to look at documentation for exceptions or to check that what you're doing is seen. And I think those APIs are clearly the result of developers with a good understanding of not only the problem you're trying to solve, but also the type of developers who will be using the API.
+There are some APIs like this that I've worked with before that have tremendously intuitive interfaces. In those cases, you really only need to look at documentation for exceptions or to check that what you're doing is seen. And I think those APIs are clearly the result of developers with a good understanding of not only the problem you're trying to solve, but also the type of developers who will be using the API.
 
 ## Closing
 
 **_A closing question we like to ask everyone: any new technologies or tools that you’re particularly excited by? Doesn’t have to be API related._**
 
-Yeah, I think there's a bunch of really interesting developments within the datastream space.  This is very near and dear to what we're doing at Unit21. A lot of the value of our company is undergirded by the quantity and quality of the data we can ingest from customers.
+Yeah, I think there's a bunch of really interesting developments within the datastream space. This is very near and dear to what we're doing at Unit21. A lot of the value of our company is undergirded by the quantity and quality of the data we can ingest from customers.
 
 We're currently going through a data architecture, implementing the next generation of what data storage and access looks like in our systems, and there's a set of interesting concepts around what is a datastream versus what is a database. And I think we first started seeing this become a common concept with K sequel, in confluent, Kafka tables etc. But now with concepts like rocks set with, snowflake and databricks all releasing products that allow you to think of data flowing into your system as both a stream and a data set. I think this duality allows for much more flexibility. It’s a very powerful concept, because you no longer have to think of data as flowing into one place as either, but it could be both supporting multiple different types of use cases without sacrificing too much of performance or storage.

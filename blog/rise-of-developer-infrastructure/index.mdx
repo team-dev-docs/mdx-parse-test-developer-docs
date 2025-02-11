@@ -33,10 +33,10 @@ when it’s not working, you’ve got yourself a major problem
 
 Over the last 10 years, developers at smaller companies have struggled to balance developing innovative apps while also managing the complexity of the cloud. Meanwhile, companies like Uber, Airbnb, Stripe, Netflix et al. have been able to invest heavily to build up in-house platform teams, which supports the continued productivity of their application developers. Some of the developer infrastructure those teams created were shared publicly. Two well knowns that I’ve personally adopted in high scale settings are:
 
-- [**Kubernetes**](https://kubernetes.io/) - The now ubiquitous container deployment and orchestration system was born from Google’s famous internal [**Borg**](https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/) system which provided abstractions for resource allocation. For most (stateless) use cases devs were able to “submit” a container and let K8’s handle how it got running on VMs. Needless to say there is now a massive ecosystem in continuous evolution around K8s.  
+- [**Kubernetes**](https://kubernetes.io/) - The now ubiquitous container deployment and orchestration system was born from Google’s famous internal [**Borg**](https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/) system which provided abstractions for resource allocation. For most (stateless) use cases devs were able to “submit” a container and let K8’s handle how it got running on VMs. Needless to say there is now a massive ecosystem in continuous evolution around K8s. 
 - [**Spinnaker**](https://spinnaker.io/) - There were plenty of ways to build and deploy containers independently but they all required you to manage your own workflow. This meant brittle scripts, triggers, sometimes complete bespoke stacks maintained by internal teams. Spinnaker solved this with an orchestration first approach - a developer could string together many different steps which could live across team and system boundaries. Since then we’ve seen an [**explosion in this space**](https://landscape.cd.foundation/).
 
-Each of these was enthusiastically adopted by the developer community. At the time of their release, they each represented massive improvements over the status quo.  
+Each of these was enthusiastically adopted by the developer community. At the time of their release, they each represented massive improvements over the status quo. 
 
 Yet, this wasn’t the end of the story. There were some issues. First off, it wasn’t sustainable for devs to continue to rely on larger companies sporadically open sourcing their tools. Increasingly ambitious business growth targets meant that devs needed consistent innovation of tooling to enable them to build more, faster. And more importantly, the tools had been developed by large organizations with huge dedicated platform functions; they weren’t optimized for application developers operating at a smaller scale without robust dev ops support. Simply stated, though the tools were powerful, they lacked a great dev experience. App devs were still having to go down the dev ops rabbit hole, spending far too much time trying to figure how to secure, deploy, and maintain their applications.
 
@@ -68,7 +68,7 @@ The Dev Ex Pyramid
 **Dev Infrastructure**:
 
 - **Usable** - An individual dev or team should be able to find the tool, set it up, and start using it without barriers or issues in 30 minutes.
-- **Composable** - The tool should be modular enough for developers to slot it into their (probably complex) environments. Support for multiple frameworks and integrations is key to adoption.  
+- **Composable** - The tool should be modular enough for developers to slot it into their (probably complex) environments. Support for multiple frameworks and integrations is key to adoption. 
 - **Extensible** - Although most developers will only ever scratch the surface of a tool’s functionality, every tool will have its power users. Power users should be able to add functionality to the tool, for advanced use cases.
 
 **Cloud Infrastructure (**These are table stakes!)
