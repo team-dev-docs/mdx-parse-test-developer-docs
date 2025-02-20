@@ -3,10 +3,13 @@ title: SDK Creation Overview
 description: "Learn how to create production-ready SDKs from your OpenAPI / Swagger spec using Speakeasy."
 ---
 
- 
+import { Callout } from "~/components";
+import { SupportedLanguagesData } from "~/data/shared/supportedLanguages"; 
+import { IconGrid } from "~/features/shared/recipes";
 
 # SDK Creation Overview
 
+<IconGrid { ...SupportedLanguagesData } />
 
 ## Prerequisites
 
@@ -38,13 +41,13 @@ For manual installation, download the latest release from the [releases page](ht
 | JSON Schema         |    ✅     |
 | Postman Collections |    🔜     |
 
-<div className="Callout" data-title="TIP" data-variant="success">
+<Callout title="TIP" variant="success">
   If your spec is in an unsupported format, use one of the following tools to convert it:
 
 - [Swagger 2.0 -> OpenAPI 3.0](https://editor.swagger.io/): go to **Edit > Convert to OpenAPI 3.0**
 - [Postman -> OpenAPI 3.0](https://kevinswiber.github.io/postman2openapi/)
 
-</div>
+</Callout>
 
 ## Interactive SDK Generation With CLI Quickstart
 
@@ -58,35 +61,31 @@ speakeasy quickstart
 
 This command initiates an interactive session for SDK generation. The process requires creating a workspace on the [dashboard](https://app.speakeasy.com/).
 
-<div className="Screenshot" data-variant="cli" data-docs="true">
-
+<Screenshot variant="cli" docs={true}>
   ![Screenshot of the terminal after running speakeasy
   quickstart.](./assets/create-sdks/quickstart-1.png)
-</div>
+</Screenshot>
 
 The next step prompts for SDK language selection:
 
-<div className="Screenshot" data-variant="cli" data-docs="true">
-
+<Screenshot variant="cli" docs={true}>
   ![Screenshot of the terminal prompting user to select
   language.](./assets/create-sdks/quickstart-2.png)
-</div>
+</Screenshot>
 
 Complete the prompted parameter configuration:
 
-<div className="Screenshot" data-variant="cli" data-docs="true">
-
+<Screenshot variant="cli" docs={true}>
   ![Screenshot of the terminal with optional
   parameters.](./assets/create-sdks/quickstart-3.png)
-</div>
+</Screenshot>
 
 Speakeasy validates the specifications and generates the SDK after receiving all inputs. The process executes [`speakeasy run`](/docs/speakeasy-reference/cli/run) to validate, generate, compile, and set up the SDK. A confirmation message displays the generated SDK details upon successful completion:
 
-<div className="Screenshot" data-variant="cli" data-docs="true">
-
+<Screenshot variant="cli" docs={true}>
   ![Screenshot of the terminal showing
   success.](./assets/create-sdks/quickstart-4.png)
-</div>
+</Screenshot>
 
 Re-run the `speakeasy run` command after making changes to the OpenAPI document or SDK configuration.
 

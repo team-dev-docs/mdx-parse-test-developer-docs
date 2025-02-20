@@ -4,7 +4,7 @@ description: "Automatically retry failed requests in your Speakeasy SDKs. Enable
 slug: "/customize-sdks/retries/"
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Tabs } from "@speakeasy/nextra-theme";
 
 # Retries
 
@@ -126,15 +126,15 @@ To override the retry strategy globally, initialize the SDK object with the appr
 
 In this example, we use the `RetryConfig` object to disable retries globally:
 
-<div className="Tabs" data-items="['TS', 'Python', 'Go', 'Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TS', 'Python', 'Go', 'Java', 'C#']}>
+  <Tabs.Tab>
 
 ```typescript
 const sdk = new SDK({retryConfig: {strategy: "none"}});
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```python
 s = SDK(retry_config=RetryConfig(
@@ -144,15 +144,15 @@ s = SDK(retry_config=RetryConfig(
 ))
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```go
 s := sdk.New(sdk.WithRetryConfig(utils.RetryConfig{Strategy: "none"}))
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```java
 SDK s = SDK.builder()
@@ -160,8 +160,8 @@ SDK s = SDK.builder()
     .build();
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 var sdk = new SDK(
@@ -170,15 +170,15 @@ var sdk = new SDK(
 ));
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ### Request-Level Override
 
 Any endpoints that support retries allow retry configuration to be overridden. In Go, override request-level retry configuration with `operations.WithRetries`. In Python and TypeScript, the optional `retries` is accepted.
 
-<div className="Tabs" data-items="['TS', 'Python', 'Go', 'Java', 'C#']">
-<div className="TabsTab">
+<Tabs items={['TS', 'Python', 'Go', 'Java', 'C#']}>
+<Tabs.Tab>
 
 ```typescript
 const sdk = new SDK({});
@@ -194,8 +194,8 @@ await sdk.findPetsByStatus(request, {
 });
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```python
 s = sdk()
@@ -209,8 +209,8 @@ res = s.find_pets_by_status(request, RetryConfig(strategy='backoff',
 ))
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```go
 s := sdk.New()
@@ -228,8 +228,8 @@ s.FindPetsByStatus(&operations.FindPetsByStatusRequest{},
 )
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```java
 import <namepace>.SDK;
@@ -249,8 +249,8 @@ FindPetsByStatusResponse res = sdk.findPetsByStatus()
     .call();
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 var sdk = new SDK();
@@ -268,8 +268,8 @@ var res = await sdk.FindPetsByStatusAsync(retryConfig: new RetryConfig(
 
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ## Idempotency
 

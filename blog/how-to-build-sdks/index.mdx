@@ -1,96 +1,175 @@
 ---
-title: "How to build SDKs for your API"
-description: "We'll summarize the different options you have for building SDKs that make integrating with your API friction-free and awesome"
+title: "How to Build SDKs for Your API: Handwritten, OpenAPI Generator, or Speakeasy?"
+description: "Compare three ways to build robust SDKs and solve the challenges of developer experience, maintenance, and scaling API integrations."
 image: "/media/how-to-build-sdks.png"
-date: 2023-07-12
+date: 2025-02-10
 authors:
-  - name: Simon Yu
-  - image_url: "/media/author-headshots/simon.jpeg"
+  - name: Emre Tezisci
+  - image_url: "/media/author-headshots/emre.jpeg"
 tags:
   - API Advice
 featured_image: "/media/how-to-build-sdks.png"
 ---
+import { Callout } from "~/components";
 
-## Why you need an SDK
+## Why SDKs Matter for Developer Adoption
 
-SDKs (also known as client libraries or client SDKs) are a key component for offering great APIs.
+An SDK can be a game-changer for accelerating developer adoption and streamlining integration. Without one, developers are left to decipher API documentation that might lack essential information or be disorganized, and then build each API call by hand. This means handling everything from authentication and request construction to response parsing, error handling, retries, pagination, and beyond—a process that significantly complicates and delays integration.
 
-Without an SDK, API consumers need to read API docs and construct every API call by hand: from building the necessary authentication mechanisms, correctly configuring request headers, and extracting the right data from response models, to handling errors, rate limits, retries and pagination.
+In contrast, a well-designed SDK lets developers get started in minutes by importing a single library. Features like in-IDE auto-completion and type safety prevent integration bugs before they happen. Advanced tasks like rate limiting or pagination become seamless. The result is a smooth, even delightful developer experience that fosters trust in your API.
 
-This approach has been described as “resembling trial and error” — which tells you everything you need to know about how developer-(un)friendly it is.
+Established API-first companies—Stripe, Plaid, Twilio—prove the point. Their client SDKs provide an A+ developer experience, helping them dominate in their respective markets.
 
-With an SDK however, consumers can get started in minutes by simply importing the library/SDK. Assuming the SDK has been built in the right way, calling an SDK method — with in-IDE auto-completion, error handling, type safety and much more built-in — is a much smoother, even delightful, integration experience.
+## Developer Experience Without vs. With an SDK
 
-But don’t just take our word for it — look at the most popular API-first companies, like Stripe, Plaid, Twilio etc. They all offer client SDKs that give consumers that coveted A+ experience.
+The value of an SDK becomes crystal clear when you compare the integration process with and without one. Let's contrast the developer experience:
 
-To dive deeper into why you need an SDK, check out our guide on this topic: https://www.speakeasyapi.dev/post/apis-vs-sdks-difference.
+```typescript Manual API Integration
+// Without SDK - Complex manual implementation
+async function getUser(userId: string): Promise<User> {
+    try {
+        const response = await fetch(
+            `https://api.example.com/v1/users/${userId}`,
+            {
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
 
-## Awesome, how can I make these mythical SDKs?
+        if (!response.ok) {
+            if (response.status === 429) {
+                // Implement rate limiting logic
+                await sleep(calculateBackoff(response.headers));
+                return getUser(userId);
+            }
+            throw new Error(`API error: ${response.status}`);
+        }
 
-We think every API should have an SDK that allows developers to integrate in minutes. And we’re sure everyone would agree.
+        const data = await response.json();
+        // Manual type validation
+        if (!isValidUser(data)) { // Check for required fields, data types, etc.
+            throw new Error('Invalid user data received');
+        }
+        return data;
+    } catch (error) {
+        // Complex error handling
+        if (shouldRetry(error)) { // e.g., check for network errors
+            await delay(calculateBackoff()); // Exponential backoff strategy
+            return getUser(userId);
+        }
+        throw error;
+    }
+}
 
-However, creating SDKs is easier said than done, as Boromir will attest.
+// Implementing pagination
+async function listUsers(): Promise<User[]> {
+    const allUsers = [];
+    let page = 1;
 
-![Boromir explains that one does not simply create SDKs](./assets/one-does-not-simply-create-sdks.png)
+    while (true) {
+        const response = await fetch(
+            `https://api.example.com/v1/users?page=${page}`,
+            { headers: { Authorization: `Bearer ${apiKey}` } }
+        );
 
+        const data = await response.json();
+        allUsers.push(...data.users);
 
-## Three different methods for creating SDKs
-Broadly speaking, you have three options for creating SDKs.
+        if (!data.hasNextPage) break;
+        page++;
+    }
 
-1. DIY: hire engineers to create and maintain SDKs for you
-2. Open-source (OpenAPI Generator): the [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) is the best-known open-source SDK generator
-3. Use Speakeasy
+    return allUsers;
+}
+```
 
-Let’s dive into each of these further, and figure out where each is most appropriate.
+With a well-designed SDK, however, developers can get started in minutes by simply importing the library:
 
-### The DIY, hand-rolled approach to creating SDKs
-The DIY approach gives you maximum, fine-grained control over how your SDKs look and feel.
+```typescript SDK Integration
+// With SDK - Clean, type-safe interface
+const client = new APIClient({
+    apiKey: process.env.API_KEY
+});
 
-However, you will obviously need to staff an engineering team. That team must have proficiency in any languages you want to support: having a poorly-constructed, non-idiomatic SDK may be worse than having no SDK at all.
+// Simple request with built-in error handling
+const user = await client.users.get(userId);
 
-Ensure you consider the ongoing maintenance cost: if a team member leaves, are you prepared for the overhead of hiring a replacement? As new languages are requested or the pace of API changes increases, will you keep growing the team?
+// Automatic pagination handling
+for await (const user of client.users.list()) {
+    console.log(user.name);
+}
+```
 
-Remember that SDKs are a critical product surface — and need to be invested in just like any product. That means testing and fixing bugs, handling versioning and change management, and roadmap prioritization. Don’t forget that the SDKs themselves should be well-documented!
+The difference is dramatic. An SDK transforms complex, error-prone implementation details into simple, intuitive method calls. It handles the heavy lifting of authentication, error handling, rate limiting, and pagination behind the scenes, allowing developers to focus on building their applications rather than wrestling with API integration details.
 
-Put in place a robust release management process. Whenever there is an upcoming API change, the SDK team should know so they can update all the SDKs too.
+To dive deeper into why SDKs are crucial for API adoption and developer experience, [check out our comprehensive guide on APIs vs SDKs.](/post/apis-vs-sdks-difference)
 
-**Summary:** The DIY, hand-rolled approach is best if customers are truly demanding something very custom in your SDKs, and if you can afford to hire the resources to create and maintain them. Be wary of the drag on engineering productivity and focus that SDK initiatives can create though — many a well-meaning eng team has released SDKs in a number of languages, struggled to keep them up to date, and ultimately had to deprecate or just accept that certain SDKs will never be up-to-date.
+## Comparing SDK Development Options
 
-![Real-world example of an SDK that's been placed in "maintenance mode"](./assets/SDK-in-maintenance-mode.png)
+When it comes to building SDKs for your API, you have three main routes. Each comes with specific costs, maintenance burdens, and control levels:
 
-![One SDK is being held above water, the others are struggling](./assets/sdks-hard-to-maintain.png)
+| Handwritten                                                                                                                                                | Open Source                                                                                                                                                                                                                                                         | Speakeasy                                                                                                                                                                                                                                 |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ Full DevEx control<br/>✅ Unlimited custom code<br/>✅ Aligned with internal coding style<br/>❌ High cost (~\$90K per SDK)<br/>❌ Upfront cost per language<br/>❌ Requires diverse in-house language expertise<br/>❌ Slow API feature updates<br/>❌ No automated documentation<br/> | ✅ No upfront cost<br/>❌ Feature gaps for common API features (OAuth 2.0, pagination, retries)<br/>❌ Non‐idiomatic code hurts DevEx<br/>❌ No CI/CD integration<br/>❌ High operational costs<br/>❌ Requires OpenAPI spec<br/>❌ Slow maintenance (4,000+ open GitHub issues)<br/>❌ Major customization limitations | ✅ Up‐to‐date, idiomatic code aligned with best practices<br/>✅ Strong DevEx control<br/>✅ Custom code support<br/>✅ Automated publishing<br/>✅ Docs integration<br/>✅ Full ownership of code<br/>❌ Paid solution<br/>❌ Requires OpenAPI spec<br/>❌ Small customization limitations<br/> |
 
+### Hand-Written SDKs
 
-### Using OpenAPI Generator to create SDKs
+Building SDKs by hand offers maximum control over the developer experience and allows for perfect alignment with internal coding styles. However, this approach comes with significant trade-offs. The initial development cost is high (around $90,000 per SDK), and ongoing maintenance requires a dedicated team with expertise in multiple programming languages. Beyond the direct costs, several common pitfalls can undermine the success of hand-written SDKs:
 
-The OpenAPI Generator is a popular open-source tool for generating SDKs from an OpenAPI spec. The OpenAPI Generator is licensed under Apache 2.0 — users are therefore able to modify and distribute the code with very few restrictions. Commercial use is allowed, and derivative works can be licensed as the creator wishes.
+1.  **Neglected Maintenance:** APIs evolve. If your SDK doesn’t evolve alongside it, you’ll introduce breaking changes, outdated docs, and dissatisfied users.
+2.  **Inconsistent Language Support:** If you release multiple SDKs but treat one as a “primary” language, users in other languages may feel neglected.
+3.  **Improper Error Handling:** Failing to handle retries, rate limits, or authentication seamlessly can turn a developer’s first impression sour.
+4.  **Over-Engineering or Under-Engineering:** Trying to build a “perfect” SDK can lead to months of development. Conversely, a bare-bones approach can frustrate users with missing features.
+5.  **Incomplete Documentation:** Even the best SDK is useless if developers can’t find clear examples and usage instructions.
 
-The OpenAPI Generator has lower upfront costs to get started than building an SDK from scratch. Since it’s open-source, developers can theoretically modify the generation code to output SDKs as the user wants. And developers can also build tooling around the generator, to embed it as part of a CI/CD process that automatically builds SDKs upon OpenAPI spec changes for example.
+---
 
-However, one familiar caveat for open-source software is the support model. As you would expect, there is no commercial support nor visibility / SLAs on fixes. As of the time of writing, there were over 3,600 open issues on the OpenAPI Generator project in GitHub for example.
+### Using OpenAPI Generator
 
-Note also that the quality of the generated code can vary significantly. Since these generators are maintained by volunteers, one language’s SDKs might be idiomatic — and another might miss the mark entirely.
+OpenAPI Generator is a robust, open-source tool that automates the creation of SDKs from your OpenAPI specifications. Distributed under the Apache 2.0 license, it offers the flexibility to modify and integrate the generated code into commercial projects across multiple languages. Its straightforward setup and integration with CI/CD pipelines make it an attractive option for teams focused on rapid prototyping or projects with narrowly defined requirements.
 
-While the apparent eng cost from using an OpenAPI Generator seems low, many companies we’ve spoken to still end up devoting significant engineering time and attention to supporting the OpenAPI generator — whether building tooling, creating patches and workarounds for bugs, or improving code output. It will therefore become an internal engineering project, and like any such project, it will therefore need engineering resources
+That said, while the tool boasts a low upfront cost, it comes with a set of challenges that can become significant in production environments. For instance, as of January 2024, the repository was burdened with over 4,500 open GitHub issues—a stark indicator of the ongoing community maintenance challenges and the absence of formal support or SLAs. This reliance on community-driven fixes can result in unpredictable resolution times for critical bugs or regressions, making it a less-than-ideal choice for enterprise applications.
 
-**Summary:** The OpenAPI generator does a lot of work for you, at the cost of some flexibility and customization. It will become another service you’ll need to maintain however — fixing bugs and adjusting the SDK output, integrating it into your workflow, dealing with user issues, etc. The engineering burden of supporting OpenAPI generator  should not be under-estimated.
+Moreover, the quality and idiomatic correctness of the generated code can vary widely between target languages. Developers may find themselves investing considerable time customizing templates, patching bugs, and integrating advanced features like OAuth flows, rate limiting, or webhooks to meet internal standards and production-grade requirements. This hidden engineering overhead can quickly erode the initial cost savings offered by the tool.
 
-### Using Speakeasy to create SDKs
-We’d like to put in a word here for our own generator. We think it’s a compelling option (which is why we built it).
+While OpenAPI Generator remains a viable solution for projects with very specific needs or constraints—particularly where time-to-market is paramount—its challenges in maintenance, support, and consistency often prompt larger organizations to consider more comprehensive, enterprise-grade alternatives.
 
-Why?
+For a deeper dive into these challenges and a detailed comparison with Speakeasy’s managed approach, [read our analysis.](/post/speakeasy-vs-openapi-generator)
 
-- Idiomatic code: we built our own internal generator from the ground-up with a focus on generating amazing SDKs — because we strongly believe that that’s what your API consumers expect. A Typescript developer wants to feel that they’re using a Typescript SDK, and a Python developer wants to feel that they’re using a Python SDK
-- Type safe and feature-rich: our SDKs come “batteries included” to handle authentication, retries, and pagination. Type safety minimizes integration errors at compile time, providing API consumers with immediate feedback.
-- Fully managed workflow: Speakeasy takes care of the entire SDK workflow to save you significant time. We validate your OpenAPI spec, use AI to suggest fixes, create SDKs, and publish to package managers.
-- Get started today: SDKs can be created and published in just a few minutes
-- Always up to date: We automatically generate SDKs every time your spec changes — no extra work required.
-- Fully supported: We handles bugs and feature requests so your engineering team doesn’t have to
-- Customizable code output: control SDK code output via Speakeasy extensions in your spec
-- Standards-compatible: Speakeasy works with OpenAPI and JSON schema -- and has been battle-tested on over 4,000 APIs
-- Generated SDKs are yours to keep: we don’t own the SDKs -- you do.
+---
 
-**Overall:** We think our fully-managed SDKs and Terraform provider generation products are the best choice for most engineering teams. Your APIs get amazing SDKs in a wide variety of popular languages. The SDKs are supported by our engineering team — meaning less work for you. They’re always up-to-date and battle-tested by awesome companies like Kong, Shippo, Airbyte and more.
+### Speakeasy
 
+Speakeasy generates enterprise-grade SDKs directly from your OpenAPI spec, eliminating the need for a proprietary DSL or additional config files.
 
-Bring your OpenAPI spec and try it out for yourself now! Just click the button below to generate your first SDKs -- for free.
+**Key Benefits**:
+
+*   **Fully Managed & Always Up-to-Date:** Automated validation, code generation, publishing, and regeneration upon API spec changes.
+*   **OpenAPI-Native & No Lock-In:** Uses your existing OpenAPI spec as the single source of truth.
+*   **Idiomatic & Enterprise-Ready:** Generates code that feels native to each language, with built-in authentication, retries, pagination, and error handling.
+*   **Automated Testing & Documentation:** Ensures SDK compatibility and provides comprehensive API references.
+*   **Dedicated Support:** A professional team to handle fixes, new features, and improvements.
+
+<Callout type="quote">
+  "Finding Speakeasy has been transformational in terms of our team's velocity. We've been able to progress our roadmap faster than we thought possible. We were able to get SDKs for 3 languages in production in a couple of weeks!"
+
+  — Codat Engineering Team
+</Callout>
+
+---
+
+## Making the Right Choice
+
+Your decision hinges on **resources, timeline,** and **feature demands**:
+
+*   **Hand-Written SDKs:** Maximum control, but at the highest cost and longest development time.
+*   **OpenAPI Generator:** A seemingly free option, but often requires significant hidden engineering effort for maintenance and customization.
+*   **Speakeasy:** The fastest and most cost-effective way to get enterprise-grade, fully-managed SDKs, directly from your OpenAPI spec.
+
+Building SDKs is a significant investment in your API's success, but the right approach can dramatically impact both your costs and adoption rates. Speakeasy offers a compelling alternative to traditional methods, providing enterprise-grade SDKs without the usual time and cost burden.
+
+Because Speakeasy is OpenAPI-native, you maintain complete control of your API definition. Generate your first SDK in minutes using your existing OpenAPI spec, or work with our team to optimize it for the best possible results. 
+
+[Click here](https://app.speakeasy.com/) to generate your first SDKs — for free.

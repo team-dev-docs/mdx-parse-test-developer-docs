@@ -1,14 +1,11 @@
 export default {
-  "automated-test-generation": {
-    title: "Automated Test Generation",
+  "bootstrapping-test-generation": {
+    title: "Bootstrapping SDK Tests",
   },
-  "custom-tests": {
-    title: "Configure custom contract and end-to-end tests",
+  "customizing-sdk-tests": {
+    title: "Customizing SDK Tests",
   },
   "github-actions": {
     title: "Setup in Github Actions",
-  },
-  "advanced-test-configuration": {
-    title: "Advanced Test Configuration",
   },
 };

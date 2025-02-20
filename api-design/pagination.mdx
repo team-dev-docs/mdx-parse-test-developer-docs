@@ -2,6 +2,8 @@
 description: "API Pagination is a common pattern for managing large data sets in APIs. This guide covers the basics of API pagination and best practices."
 ---
 
+import { Callout } from '~/components'
+
 # Paginating API responses
 
 Pagination is a crucial concept that needs to be understood and designed into a
@@ -333,6 +335,6 @@ with a realistic dataset instead of testing with a handful of records as assumin
 Adding or drastically changing pagination later could be a whole mess of
 backwards compatibility breaks.
 
-<div className="Callout" data-title="NOTE" data-variant="info">
-  <span className="p">Pagination can be tricky to work with for API clients, but Speakeasy SDKs can help out. Learn about <a href="/docs/runtime/pagination">adding pagination</a> to your Speakeasy SDK.</span>
-</div>
+<Callout title="NOTE" variant="info">
+  <p>Pagination can be tricky to work with for API clients, but Speakeasy SDKs can help out. Learn about <a href="/docs/runtime/pagination">adding pagination</a> to your Speakeasy SDK.</p>
+</Callout>

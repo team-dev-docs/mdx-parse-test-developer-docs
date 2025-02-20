@@ -11,8 +11,8 @@ tags:
 featured_image: "/media/standalone-functions.png"
 ---
 
-
- 
+import { CodeWithTabs } from "~/components/codehike/CodeTabs";
+import { Callout } from "~/components";
 
 Today we're introducing a feature for every Speakeasy-generated TypeScript SDK,
 called Standalone Functions. This feature makes it possible for your users to
@@ -68,13 +68,13 @@ from within the modules.
 Additionally, standalone functions return a `Result<Value, KnownErrors>` type
 which brings about better error handling ergonomics.
 
-<div className="Callout" data-title="Note" data-variant="info">
+<Callout title="Note" variant="info">
   Standalone functions _do not_ replace the existing class-based interface. All
   Speakeasy TypeScript SDKs now provide both functions and classes. We think
   they are both equally valid ways for developers to work with SDKs. The
   decision on which style to use can be based on the project you're building and
   what constraints are in place.
-</div>
+</Callout>
 
 ## Impact
 
@@ -94,12 +94,12 @@ or Brotli. The uncompressed size is a good proxy for metrics like JavaScript
 parsing time in the browser. Regardless, it's a great idea to compress code
 before serving it to browsers or using a CDN that handles this for you.
 
-<div className="Callout" data-title="Note" data-variant="info">
+<Callout title="Note" variant="info">
   Our TypeScript SDKs use Zod to build great support for complex validation and
   (de)serialization logic. If you are already using Zod in your application then
   consider excluding its size (~50KB) when thinking about the numbers above. The
   impact is even more compelling in this case.
-</div>
+</Callout>
 
 ## The long version
 
@@ -127,7 +127,7 @@ If we dig under the surface, we would likely find a typical SDK is arranged like
 so:
 
 <div style={{ height: 440 }}>
-  <div className="CodeWithTabs">
+  <CodeWithTabs>
 
 ```typescript !!tabs src/index.ts
 import { Chat } from "./chat.js";
@@ -182,7 +182,7 @@ class ChatHistory extends APIClient {
 }
 ```
 
-  </div>
+  </CodeWithTabs>
 </div>
 
 However, if you're building a web app/site, there is a downside to this approach

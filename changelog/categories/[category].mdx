@@ -4,5 +4,13 @@
   
 ---
 
+import {
+  Category,
+  getStaticPaths as getCategoryStaticPaths,
+  getStaticProps as getCategoryStaticProps,
+} from "~/features/changelog/category";
 
-Changelog Categories
+<Category />
+
+export const getStaticPaths = getCategoryStaticPaths;
+export const getStaticProps = getCategoryStaticProps;

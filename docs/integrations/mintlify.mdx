@@ -5,8 +5,8 @@ title: Integrate Speakeasy With Mintlify
 description: "Learn how to integrate Speakeasy code generation into Mintlify docs."
 ---
 
- 
-{/*import GetPublicUrlSnippet from "./_get-public-url-snippet.mdx";*/}
+import { Callout } from "~/components";
+import GetPublicUrlSnippet from "./_get-public-url-snippet.mdx";
 
 # Integrate Speakeasy With Mintlify
 
@@ -19,16 +19,16 @@ Mintlify API reference documentation. SDK usage snippets are shown in the
 [interactive playground](https://mintlify.com/docs/api-playground/overview) of
 Mintlify-powered documentation sites.
 
-<div className="Screenshot" data-url="docs.myapi.com" data-docs={true}>
+<Screenshot url="docs.myapi.com" docs={true}>
   ![Speakeasy code snippets with
   Mintlify.](../assets/code-samples/mintlify-with-speakeasy-openapi.png)
-</div>
+</Screenshot>
 
 ## Setting up the Integration
 
 ### Prerequisites
 
-<div className="Callout" data-title="IMPORTANT" data-variant="warning">
+<Callout title="IMPORTANT" variant="warning">
   Before continuing with this guide, ensure that the following prerequisites
   have been met:
   <br />
@@ -49,11 +49,11 @@ Mintlify-powered documentation sites.
     </li>
   </ul>
   Once those requirements have been met, proceed with the following steps.
-</div>
+</Callout>
 
 ### Locate & Copy the Combined Spec URL
 
-
+<GetPublicUrlSnippet />
 
 ### Update Mintlify config, aka `mint.json`
 

@@ -11,8 +11,8 @@ authors:
 featured_image: "/media/changelog-2024-08-28.png"
 ---
 
-
- 
+import { CodeWithTabs } from "~/components/codehike/CodeTabs";
+import { Callout } from "~/components";
 
 What's better than an ergonomic, type-safe TypeScript SDK? A **lean**, ergonomic, type-safe TypeScript SDK that's optimized for the browser! We've made some major improvements to our TypeScript generation so that you can better serve your users who are building web applications.
 
@@ -26,7 +26,7 @@ To address this, we've introduced a new feature for TypeScript SDKs called **Sta
 
 Here's an example of standalone functions in action via [Dub's SDK](https://github.com/dubinc/dub-ts):
 
-<div className="CodeWithTabs">
+<CodeWithTabs>
 
 ```typescript !!tabs function_based.ts
 import { DubCore } from "dub/core.js";
@@ -61,7 +61,7 @@ async function run() {
 run();
 ```
 
-</div>
+</CodeWithTabs>
 
 The performance benefits are enormous. In a benchmark test using a single function from the Dub SDK, bundle-size reduced from **324.4 kb -> 82.1 kb**. That's a **75% reduction** in bundle size!
 
@@ -81,10 +81,10 @@ Ready to streamline your workflow? Give it a try!
 
 ## 🐝 New features and bug fixes 🐛
 
-<div className="Callout" data-title="NOTE" data-variant="info">
+<Callout title="NOTE" variant="info">
   Based on the most recent CLI version: [**Speakeasy
   v1.388.0**](https://github.com/speakeasy-api/speakeasy/releases/tag/v1.388.0)
-</div>
+</Callout>
 
 ### Generation platform
 

@@ -2,7 +2,7 @@
 title: "In depth: Speakeasy vs Fern"
 description: "Want to know how Speakeasy and Fern compare? The summary is that Speakeasy supports more language targets for SDK generation, and has a deeper platform for managing API creation. Read on for the details."
 image: "/media/speakeasy-vs-fern.png"
-date: 2025-01-21
+date: 2025-02-01
 authors:
   - name: Nolan Sullivan
   - image_url: "/media/author-headshots/nolan.jpeg"
@@ -11,11 +11,11 @@ tags:
 featured_image: "/media/speakeasy-vs-fern.png"
 ---
 
- 
+import { Callout } from "~/components";
 
-<div className="Callout" data-title="NOTE" data-variant="info">
+<Callout title="NOTE" variant="info">
   This comparison of Speakeasy and Fern is based on a snapshot of two developing companies as of January 2025. If you think we need to update this post, please let us know!
-</div>
+</Callout>
 
 [Speakeasy](https://www.speakeasy.com/) and [Fern](https://buildwithfern.com/) both offer free and paid services that API developers use to create SDKs (client libraries) and automate SDKs' publication to package managers, but how do they differ? Here's the short answer:
 
@@ -979,8 +979,8 @@ function Posts() {
     return response.json();
   });
 
-  if (status === "loading") return <span className="p">Loading posts...</span>;
-  if (status === "error") return <span className="p">Error: {error?.message}</span>;
+  if (status === "loading") return <p>Loading posts...</p>;
+  if (status === "error") return <p>Error: {error?.message}</p>;
 
   return (
     <ul>
@@ -1154,9 +1154,9 @@ You can read more about how Speakeasy handles webhooks in our [webhooks release 
 
 ### OAuth client credentials handling 
 
-<div className="Callout" data-title="NOTE" data-variant="info">
+<Callout title="NOTE" variant="info">
   OAuth 2.0 client handling is only available on Fern's paid plans. Speakeasy supports OAuth 2.0 client credentials on all plans.
-</div>
+</Callout>
 
 Both Speakeasy and Fern generate SDKs that handle OAuth 2.0 with client credentials, offering similar functionality in managing the token lifecycle and authentication processes.
 

@@ -3,238 +3,127 @@ title: "Testing in GitHub Actions"
 description: "Learn how to customize testing for your API and SDKs in GitHub Actions."
 ---
 
- 
- 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Callout } from '~/components';
 
 # Testing in GitHub Actions
 
-Automatically run Speakeasy contract testing during pull requests or other events to a GitHub repository via GitHub Actions. Typically, this will be the repository containing the SDK and where SDK generation pull requests occur, however there are no limitations for more advanced setups.
+Automatically run Speakeasy tests on SDK pull requests or other events in a GitHub repository via GitHub Actions.
 
-There are two methodologies for running Speakeasy testing in GitHub Actions depending on your use case:
+<Screenshot
+  darkened
+  url="github.com"
+>
+  ![A screenshot of a successful test check](../assets/configure-github/testing-run.png)
+</Screenshot>
 
-- Within the existing Speakeasy generation GitHub Actions workflow: Easiest setup, however testing failures will prevent updates.
-- As a separate GitHub Actions workflow: More advanced setup, however testing failures will not prevent updates unless configured as a required pull request check in GitHub.
 
-## Prerequisities
+## Setting up a Github Actions Check
 
-<div className="Callout" data-title="TIP" data-variant="success">
+This requires you to have previously completed the [Github Setup](/docs/manage/github-setup).
+Assuming that has been completed navigate to your SDK repository and run the following command:
 
-  If not previously completed as part of the SDK generation setup, the [`speakeasy configure github`](/docs/speakeasy-reference/cli/configure/github) command automates and outputs useful information for the Speakeasy setup with GitHub.
-
-</div>
-
-The following are requirements for running Speakeasy testing in GitHub Actions:
-
-- GitHub repository with Actions enabled
-- GitHub Actions secret with Speakeasy API Key
-
-## Within Generation GitHub Actions Workflow
-
-Enable the existing Speakeasy generation GitHub Actions workflow (typically `.github/workflows/sdk_generation.yaml`) to run testing as part of generation by modifying the Speakeasy workflow configuration.
-
-### Caveats
-
-The following are known caveats for running Speakeasy testing as a part of the existing generation workflow in GitHub Actions:
-
-- Enabling the workflow configuration will also affect local `speakeasy run` CLI commands. Use the `--skip-testing` flag to explicitly skip testing with that command.
-
-### Enable Testing in Workflow Configuration
-
-Modify the Speakeasy configuration file (`.speakeasy/workflow.yaml`) to enable testing to run as a part of the existing generation workflow in GitHub Actions.
-
-<div className="ScrollyCoding">
-
-### !!steps `targets`
-
-Enable running tests during Speakeasy workflows by adding to one or more of the target configurations in the  `targets` section of the configuration.
-
-```yaml ! workflow.yaml
-# !focus(1)
-targets:
-  example-target:
-    # ... other existing configuration ...
-    testing:
-      enabled: true
+```bash
+# It's okay to run this command multiple times if you have already configured tests locally
+speakeasy configure tests
 ```
 
----
 
-### !!steps `testing`
-
-Enable testing for the target.
-
-```yaml ! workflow.yaml
-# !focus(4:5)
-targets:
-  example-target:
-    # ... other existing configuration ...
-    testing:
-      enabled: true
-```
-
----
-
-</div>
-
-## Separate Testing GitHub Actions Workflow
-
-Refer to the [Workflow Syntax for GitHub Actions](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions) documentation for additional information about the configurations shown and further customization options.
-
-### Caveats
-
-The following are known caveats for running Speakeasy testing as a separate workflow in GitHub Actions:
-
-- It is not recommended to create a separate testing GitHub Actions workflow if the SDK generation action workflow (typically `.github/workflows/sdk_generation.yaml`) is configured with `mode: direct` or `mode: test`.
-- It is not recommended to add testing to the existing GitHub Actions workflow for the SDK generation action workflow (typically `.github/workflows/sdk_generation.yaml`). For example, it is not possible to add `run: speakeasy test` in the same job.
-- GitHub prevents any automatic workflow token (`secrets.GITHUB_TOKEN`) from automatically triggering other GitHub Actions workflows. By default, the SDK generation action workflow (typically `.github/workflows/sdk_generation.yaml`) is configured using an automatic workflow token, which means that any other GitHub Actions workflow such as this Speakeasy testing workflow will not automatically run for SDK generation pull requests. To workaround this limitation, choose either:
-  - Pass an externally created GitHub token, such as a personal access token, to the SDK generation workflow. This will enable other workflows to run automatically without intervention.
-  - Manually close and reopen SDK generation pull requests. Since the pull request actions are being done by a user, pull request workflows will run normally.
-
-### Single Language Testing
-
-Create a `.github/workflows/speakeasy-testing.yml` file with the relevant language contents:
-
-<div className="Tabs" data-items="['TypeScript','Python','Go']">
-  <div className="TabsTab">
-
-    ```yaml
-    name: Speakeasy Testing
-    on:
-      pull_request:
-      push:
-        branches:
-          - main
-    permissions:
-      contents: read
-    jobs:
-      TypeScript:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - uses: actions/setup-node@v4
-            with:
-              node-version-file: "package.json"
-          - run: curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
-          - run: speakeasy test
-            env:
-              SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
-    ```
-
-  </div>
-
-  <div className="TabsTab">
-
-    ```yaml
-    name: Speakeasy Testing
-    on:
-      pull_request:
-      push:
-        branches:
-          - main
-    permissions:
-      contents: read
-    jobs:
-      Python:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - uses: actions/setup-python@v5
-            with:
-              python-version: "3.8"
-          - run: pipx install "poetry~=1.8"
-          - run: poetry install
-          - run: curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
-          - run: speakeasy test
-            env:
-              SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
-    ```
-
-  </div>
-
-  <div className="TabsTab">
-
-    ```yaml
-    name: Speakeasy Testing
-    on:
-      pull_request:
-      push:
-        branches:
-          - main
-    permissions:
-      contents: read
-    jobs:
-      Go:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - uses: actions/setup-go@v5
-            with:
-              go-version-file: "go.mod"
-          - run: curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
-          - run: speakeasy test
-            env:
-              SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
-    ```
-
-  </div>
-</div>
-
-### Multiple Language Testing
-
-If your Speakeasy workflow includes multiple languages, choose a preferred style:
-
-- **Single testing job**: Returns a single status check for all languages. Add installation steps (e.g. `uses: actions/setup-go`) from each single language testing configuration prior to the `speakeasy test` command step. By default the `speakeasy test` command will run all workflow targets.
-- **Multiple testing jobs**: Returns status checks for each language and runs concurrently. Add the full job configuration from each single language testing configuration. Use different `speakeasy test --target` command flag values in each job to run individual workflow target tests. Refer to the Speakeasy workflow configuration (typically `.speakeasy/workflow.yaml`) for target names.
-
-In this example, a Speakeasy workflow configuration has two targets named `go-sdk` and `typescript-sdk`:
+This will produce a Github Actions workflow like the following that allows you to run SDK tests as a Github check on your Pull Requests.
 
 ```yaml
-targets:
-  go-sdk:
-    target: go
-    # ... other configuration ...
-  typescript-sdk:
-    target: typescript
-    # ... other configuration ...
-```
+name: Test SDKs
+permissions:
+  checks: write
+  contents: write
+  pull-requests: write
+  statuses: write
 
-From that example Speakeasy workflow configuration, multiple testing jobs are created for the targets:
-
-```yaml
-name: Speakeasy Testing
 on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Specific target to test
+        type: string
   pull_request:
-  push:
+    paths:
+      - '**'
     branches:
       - main
-permissions:
-  contents: read
 jobs:
-  Go:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version-file: "go.mod"
-      - run: curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
-      - run: speakeasy test --target 'go-sdk'
-        env:
-          SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
-  TypeScript:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: "package.json"
-      - run: curl -fsSL https://go.speakeasy.com/cli-install.sh | sh
-      - run: speakeasy test --target 'typescript-sdk'
-        env:
-          SPEAKEASY_API_KEY: ${{ secrets.SPEAKEASY_API_KEY }}
+  test:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-test.yaml@v15
+    with:
+      target: ${{ github.event.inputs.target }}
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
 ```
 
-## Next Steps
 
-- [Advanced test configuration](/docs/customize-testing/advanced-test-configuration) for your tests.
+## Ensuring Tests Run on Automated PR Creation
+
+<Callout title="Warning" variant="warning">
+
+  Pull requests created by the action using the default GITHUB_TOKEN cannot trigger other workflows. 
+  When you have on: pull_request or on: push workflows acting as checks on pull requests, they will not run by default.
+
+</Callout>
+
+To ensure that your testing checks run by default when an SDK PR is created you must implement one of the following options.
+
+### Installing the Speakeasy Github App
+
+If you install the Speakeasy Github App and give the App access to your SDK repository, the app will be able to trigger testing runs after a PR is created.
+To install the app visit this [link](https://github.com/apps/speakeasy-github) or following instructions in the CLI or dashboard.
+
+### Setting up your own Github PAT
+
+If you choose not to install the Github App, another option is to create your own Github Personal Access Token (PAT) that will be used to create PRs in your SDK repository.
+This is a workaround [recommended](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow#triggering-a-workflow-from-a-workflow) by Github.
+
+1. Create your [fine-grained](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) PAT with `Pull requests Read/Write` permissions. Make sure it at least has access to your SDK repository. We also recommend setting this to no expiration.
+
+<Screenshot
+  darkened
+  url="github.com"
+>
+  ![Setting up your PAT](../assets/configure-github/pr-pat-part1.png)
+</Screenshot>
+
+<Screenshot
+  darkened
+  url="github.com"
+>
+  ![Providing access to a specific repo](../assets/configure-github/pr-pat-part2.png)
+</Screenshot>
+
+<Screenshot
+  darkened
+  url="github.com"
+>
+  ![Pull request permissions](../assets/configure-github/pr-pat-part3.png)
+</Screenshot>
+
+2. In all of your SDK repositories navigate to `Settings > Secrets and variables > Actions` and save your PAT as a Repository secret under the name `PR_CREATION_PAT`.
+
+<Screenshot
+  darkened
+  url="github.com"
+>
+  ![Providing access to a specific repo](../assets/configure-github/pr-creation-token.png)
+</Screenshot>
+
+3. In all of your for sdk_generation.yaml workflows add the `pr-creation-token` as a provided secret at the bottom.
+
+```yaml
+# !focus(4)
+secrets:
+  github_access_token: ${{ secrets.GITHUB_TOKEN }}
+  speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+  pr_creation_pat: ${{ secrets.PR_CREATION_PAT }}
+```
+
+## Running in Direct mode
+
+If your generation action is running in `direct` mode where SDK updates get immediately pushed to main, testing will run as part of the generation action.
+If tests fail, the generation action will fail and not push your SDK changes to main.

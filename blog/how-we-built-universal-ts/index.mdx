@@ -12,16 +12,16 @@ featured_image: "/media/how-we-built-universal-ts.png"
 is_featured: true
 ---
 
+import { Callout } from '~/components';
 
-
-<div className="Callout" data-title="Get Started" data-variant="success">
+<Callout title="Get Started" variant="success">
 Try out our new TypeScript generation for yourself. Download our CLI to get started:
 
 ```bash
 brew install speakeasy-api/homebrew-tap/speakeasy
 ```
 
-</div>
+</Callout>
 
 In this blog post, we'll share the story behind why we decided to build v2 of our typescript generation. And talk through some of the critical design choices we made along the way. Whether you're a seasoned TypeScript developer or just starting out, we hope you'll find something valuable in this article.
 
@@ -44,7 +44,7 @@ We satisfied all of these requirements, but weren't ourselves satisfied with the
 
 1. Our approach to de/serialization had us in a straight jacket. We had decided to use classes with decorators. This approach had several limitations and made it difficult to maintain and extend our codebase. Specifically, it impeded our ability to build support for Union types. We needed a more flexible solution that would allow us to better support the evolving needs of our users without sacrificing runtime type safety.
 
-```typescript OldPet.ts
+```typescript title="OldPet.ts"
 export class Pet extends SpeakeasyBase {
     @SpeakeasyMetadata({ data: "form, name=category;json=true" })
     @Expose({ name: "category" })
@@ -99,7 +99,7 @@ In our second attempt, we turned to Zod: "A TypeScript-first schema validation l
 
 Our TypeScript generator creates Zod schemas for all the request and response objects in a users OpenAPI spec:
 
-```typescript product.ts
+```typescript title="product.ts"
 export namespace ProductInput$ {
     export type Inbound = {
         name: string;
@@ -139,7 +139,7 @@ export namespace ProductInput$ {
 
 We then use these schemas to validate the request and response payloads at runtime:
 
-```typescript zodExample.ts
+```typescript title="zodExample.ts"
 import { SDK } from "@speakeasy/super-sdk";
 
 async function run() {
@@ -203,7 +203,7 @@ Finally, there's another type of streaming that we've built support for: server-
 
 We've built a straightforward implementation that doesn't require any proprietary extensions in your OpenAPI spec. Just mark the response as a `text/event-stream` and we'll automatically generate a type for it. We'll also generate a `stream` option on the request object that will return an async iterable that you can use to consume the stream:
 
-```typescript sse.ts
+```typescript title="sse.ts"
 import { SDK } from "@speakeasy/super-sdk";
 
 async function run() {

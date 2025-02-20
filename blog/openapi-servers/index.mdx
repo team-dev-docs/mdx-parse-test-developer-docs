@@ -12,17 +12,17 @@ tags:
 featured_image: "/media/openapi-tips-servers.png"
 ---
 
- 
- 
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+import { Callout } from "~/components";
 
-<div className="Callout" data-title="Announcing: OpenAPI Reference" data-variant="success">
+<Callout title="Announcing: OpenAPI Reference" variant="success">
 Hi! These blog posts have been popular, so we've built an entire [OpenAPI Reference Guide](/openapi/) to answer any question you have.
 
 It includes detailed information on [**servers**](/openapi/servers).
 
 Happy Spec Writing!
 
-</div>
+</Callout>
 
 In this post, we'll take a detailed look at how the OpenAPI Specification (OAS) allows us to define servers in our OpenAPI documents (OADs), then at a few tips to help you provide the best developer experience for your users.
 
@@ -58,7 +58,7 @@ In response to the need for more flexibility, OAS 3.0 introduces the optional `s
 
 Each server in the `servers` array consists of an object with at least one field, `url`. Each server object can also contain an optional `description` field, as well as an optional array of `variables`.
 
-<div className="ScrollyCoding" data-fullheight>
+<ScrollyCoding fullHeight>
 
 ## !!steps
 
@@ -160,7 +160,7 @@ This field is not used by the OpenAPI documentation generator, but it can be use
 !from ./assets/openapi-3.yaml
 ```
 
-</div>
+</ScrollyCoding>
 
 ## Steps to Adapt Swagger 2.0 URL Definitions to OpenAPI 3.x
 
@@ -326,7 +326,7 @@ Stripe's OpenAPI document could be further enhanced by providing a fallback glob
 
 Datadog's API, known for its scalability and flexibility, leverages variables in server definitions to allow users to select their preferred region. This feature is particularly useful for global services where latency and data residency are critical considerations.
 
-<div className="ScrollyCoding">
+<ScrollyCoding>
 
 ## !!steps
 
@@ -444,7 +444,7 @@ Datadog also uses operation-level servers to direct log uploads to the appropria
 
 ```
 
-</div>
+</ScrollyCoding>
 
 ## Conclusion: The Impact of Well-Defined Servers in API Usability
 

@@ -1,0 +1,201 @@
+---
+title: OpenAPI Reference
+description: Documentation of the OpenAPI Specification
+---
+
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+import { Callout, Separator } from "~/components";
+import { GenerateSDK } from "~/features/docs/home/recipes/ProductGrid/GenerateSDK";
+import { IconGrid } from "~/features/shared/recipes/IconGrid/IconGrid";
+import { FrameworkGuidesData } from "~/data/shared/frameworkGuides";
+import {
+  CardsSection,
+  Hero,
+  QuickLinks,
+} from "~/features/openapi";
+import { Faq } from "~/features/pricing/recipes";
+
+<Callout title="Contribute to this page" variant="success-gradient" fullWidth>
+  This documentation is Open source. If you have any feedback, suggestions, or
+  want to contribute, check out our [GitHub
+  repo](https://github.com/speakeasy-api/openapi-reference-documentation).
+</Callout>
+
+<Hero
+  title="OpenAPI Hub"
+  description="The all in one resource for understanding the OpenAPI Specification."
+/>
+
+<IconGrid {...FrameworkGuidesData} buttonText="See all" buttonUrl="/openapi/frameworks" />
+
+<Separator className="opacity-10" />
+
+### OpenAPI Overview
+
+<ScrollyCoding>
+
+## !!steps \`openapi`
+
+The version of the OpenAPI Specification that the document conforms to, should be one of the [supported versions](https://github.com/OAI/OpenAPI-Specification/tree/main/versions).
+
+**Note**: Speakeasy tooling currently only supports OpenAPI Specification versions 3.0.x and 3.1.x.
+
+```yaml ! openapi.yaml
+# !focus(1)
+openapi: 3.1.0
+info:
+  title: The Speakeasy Bar
+  version: 1.0.0
+servers:
+  - url: https://speakeasy.bar
+    description: The production server
+security:
+  - apiKey: []
+tags:
+  - name: drinks
+    description: Operations related to drinks
+paths:
+  /drinks:
+    get:
+      tags:
+        - drinks
+      operationId: listDrinks
+      summary: Get a list of drinks
+      responses:
+        "200":
+          description: A list of drinks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Drink"
+components:
+  schemas:
+    Drink:
+      type: object
+      title: Drink
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: Authorization
+      in: header
+```
+
+---
+
+## !!steps \`info`
+
+Contains information about the document including fields like `title`, `version`, and `description` that help to identify the purpose and owner of the document.
+
+```yaml ! openapi.yaml
+# !focus(2:4)
+```
+
+---
+
+## !!steps \`servers`
+
+Contains an optional list of servers the API is available on. If not provided, the default URL is assumed to be `/`, a path relative to where the OpenAPI document is hosted.
+
+```yaml ! openapi.yaml
+# !focus(5:7)
+```
+
+---
+
+## !!steps \`security`
+
+Contains an optional list of security requirements that apply to all operations in the API. If not provided, the default security requirements are assumed to be `[]`, an empty array.
+
+```yaml ! openapi.yaml
+# !focus(8:9)
+```
+
+---
+
+## !!steps \`tags`
+
+Contains an optional list of tags that are generally used to group or categorize a set of [Operations](/openapi/paths/operations).
+
+```yaml ! openapi.yaml
+# !focus(10:12,16:17)
+```
+
+---
+
+## !!steps \`paths`
+
+Contains the paths and operations available within the API.
+
+```yaml ! openapi.yaml
+# !focus(13:28)
+```
+
+---
+
+## !!steps \`components`
+
+Contains an optional list of reusable schemas that can be referenced from other parts of the document. This improves the readability and maintainability of the document by allowing common schemas to be defined once and reused in multiple places.
+
+```yaml ! openapi.yaml
+# !focus(29:42)
+```
+
+---
+
+</ScrollyCoding>
+
+<Separator className="opacity-10" />
+
+<CardsSection
+  title="The OpenAPI Ecosystem"
+  description="Understand the different specifications that make up the OpenAPI ecosystem"
+  items={[
+    {
+      icon: "code",
+      title: "OpenAPI Overlays",
+      description: "Describe customization to your OpenAPI",
+      link: { href: "/openapi/overlays", text: "Read docs" },
+    },
+    {
+      icon: "terminal",
+      title: "OpenAPI 3.1",
+      description: "Describe your API interface",
+      link: { href: "/openapi/info", text: "Read docs" },
+    },
+    {
+      icon: "diagram",
+      title: "Arazzo Workflows",
+      description: "Describe your API workflows",
+      link: { href: "/openapi/arazzo", text: "Read docs" },
+    },
+  ]}
+/>
+
+<Faq
+  className="_pb-20"
+  title="FAQ"
+  items={[
+    {
+      question: "What's the difference between OpenAPI & Swagger?",
+      answer:
+        "Swagger refers to a set of commonly used tools for working with the OpenAPI Specification, whereas OpenAPI is the specification itself. People commonly say Swagger when they mean OpenAPI.",
+    },
+    {
+      question: "How different are OpenAPI 3.0 and 3.1?",
+      answer:
+        "The biggest difference is that OpenAPI 3.1 introduces support for JSON Schema draft 2020-12. The other big change was the inclusion of webhooks. Otherwise they are very similar. This guide is based on 3.1. You should use 3.1 if you're starting a new project.",
+    },
+    {
+      question: "Should I handwrite or generate OpenAPI?",
+      answer:
+        "That's a contentious topic, and there's no right answer. Typically startups with small technical teams generate their OpenAPI document from code. At larger companies where API design includes non-technical staff, handwriting the document is typically preferred. Find something that works for your team and don't listen to the noise.",
+    },
+  ]}
+/>

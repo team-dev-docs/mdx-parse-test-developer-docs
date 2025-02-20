@@ -3,7 +3,7 @@ title: "OpenAPI overview and best practices"
 description: "OpenAPI / Swagger basics and best practices for constructing an OpenAPI document."
 ---
 
- 
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
 
 # OpenAPI overview and best practices
 
@@ -19,7 +19,7 @@ OpenAPI has a lot of baked-in flexibility and can describe any HTTP API, includi
 
 With so much flexibility, it isn't always obvious how to construct an OpenAPI document that's suitable for code generation. Speakeasy recommends a set of best practices to follow when writing OpenAPI documents. The following sections outline key points to consider as you create your OpenAPI description.
 
-<div className="ScrollyCoding">
+<ScrollyCoding>
 ## !!steps servers
 
 Add multiple `servers` to define different environments or versions. This is especially useful for separating production and testing environments.
@@ -181,7 +181,7 @@ Use the `description` field to provide clear and concise information about the p
 
 ---
 
-</div>
+</ScrollyCoding>
 
 ## Extending OpenAPI
 
@@ -191,7 +191,7 @@ Extensions typically follow a naming format of `x-<vendor>-<function>`, where `<
 
 A [range of Speakeasy extensions](/docs/customize-sdks/) are available to help you prepare an OpenAPI document for code generation. Some of the most commonly used extensions are described below.
 
-<div className="ScrollyCoding">
+<ScrollyCoding>
 
 ## !!steps x-speakeasy-name-override
 
@@ -286,4 +286,4 @@ Another useful documentation extension is `x-speakeasy-example`, which allows yo
 # !focus(45)
 ```
 
-</div>
+</ScrollyCoding>

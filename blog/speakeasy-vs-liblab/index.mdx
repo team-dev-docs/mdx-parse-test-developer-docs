@@ -11,8 +11,8 @@ tags:
 featured_image: "/media/speakeasy-vs-liblab.png"
 ---
 
-{/*import { FileTree } from "nextra/components";*/}
- 
+import { FileTree } from "nextra/components";
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
 
 This analysis compares Speakeasy and liblab in terms of SDK generation, OpenAPI integration, language support, features, platform support, enterprise support, and pricing. We'll also provide a technical walkthrough of generating SDKs using both services and compare the generated TypeScript SDKs.
 
@@ -122,7 +122,7 @@ Both services offer custom enterprise plans.
 
 To start our technical comparison, let's create an SDK using Speakeasy and liblab. We'll create an OpenAPI document for a fictional bookstore API, that covers a broad range of OpenAPI functionality. You can find the complete OpenAPI document in the [example repository](https://github.com/speakeasy-api/speakeasy-liblab-comparison), but let's take a look at what's included.
 
-<div className="ScrollyCoding" data-classname="ch-scrollycoding-full-height" data-fullheight>
+<ScrollyCoding className="ch-scrollycoding-full-height" fullHeight>
 
 ## !!steps
 
@@ -256,7 +256,7 @@ The remainder of the OpenAPI document defines the components used in the operati
 !from ./assets/openapi.yaml.txt 374:639
 ```
 
-</div>
+</ScrollyCoding>
 
 ### Installing Speakeasy CLI
 
@@ -357,7 +357,130 @@ Speakeasy generates separate folders for models and operations, both in the docu
 We also see separate files for each component and operation, indicating modularity and separation of concerns.
 
     <div className="[&>div>div]:block">
-    
+      <FileTree>
+        <FileTree.File name="README.md" />
+        <FileTree.File name="RUNTIMES.md" />
+        <FileTree.File name="USAGE.md" />
+        <FileTree.Folder name="docs">
+          <FileTree.Folder name="models">
+            <FileTree.Folder name="components">
+              <FileTree.File name="author.md" />
+              <FileTree.File name="authorwithid.md" />
+              <FileTree.File name="authorwithname.md" />
+              <FileTree.File name="fantasybook.md" />
+              <FileTree.File name="httpmetadata.md" />
+              <FileTree.File name="neworder.md" />
+              <FileTree.File name="order.md" />
+              <FileTree.File name="orderstreammessage.md" />
+              <FileTree.File name="products.md" />
+              <FileTree.File name="programmingbook.md" />
+              <FileTree.File name="scifibook.md" />
+              <FileTree.File name="security.md" />
+              <FileTree.File name="status.md" />
+              <FileTree.File name="user.md" />
+            </FileTree.Folder>
+            <FileTree.Folder name="operations">
+              <FileTree.File name="addbookrequestbody.md" />
+              <FileTree.File name="addbookresponse.md" />
+              <FileTree.File name="addbookresponsebody.md" />
+              <FileTree.File name="cover.md" />
+              <FileTree.File name="createorderresponse.md" />
+              <FileTree.File name="getallbooksresponse.md" />
+              <FileTree.File name="getallordersresponse.md" />
+              <FileTree.File name="getbookbyidrequest.md" />
+              <FileTree.File name="getbookbyidresponse.md" />
+              <FileTree.File name="getbookbyidresponsebody.md" />
+              <FileTree.File name="getorderbyidrequest.md" />
+              <FileTree.File name="getorderbyidresponse.md" />
+              <FileTree.File name="getorderstreamresponse.md" />
+              <FileTree.File name="responsebody.md" />
+              <FileTree.File name="updatebookcoverbyidrequest.md" />
+              <FileTree.File name="updatebookcoverbyidrequestbody.md" />
+              <FileTree.File name="updatebookcoverbyidresponse.md" />
+            </FileTree.Folder>
+          </FileTree.Folder>
+          <FileTree.Folder name="sdks">
+            <FileTree.Folder name="books">
+              <FileTree.File name="README.md" />
+            </FileTree.Folder>
+            <FileTree.Folder name="orders">
+              <FileTree.File name="README.md" />
+            </FileTree.Folder>
+            <FileTree.Folder name="sdk">
+              <FileTree.File name="README.md" />
+            </FileTree.Folder>
+          </FileTree.Folder>
+        </FileTree.Folder>
+        <FileTree.File name="jsr.json" />
+        <FileTree.File name="package.json" />
+        <FileTree.Folder name="src">
+          <FileTree.Folder name="hooks">
+            <FileTree.File name="hooks.ts" />
+            <FileTree.File name="index.ts" />
+            <FileTree.File name="registration.ts" />
+            <FileTree.File name="types.ts" />
+          </FileTree.Folder>
+          <FileTree.File name="index.ts" />
+          <FileTree.Folder name="lib">
+            <FileTree.File name="base64.ts" />
+            <FileTree.File name="config.ts" />
+            <FileTree.File name="encodings.ts" />
+            <FileTree.File name="event-streams.ts" />
+            <FileTree.File name="http.ts" />
+            <FileTree.File name="primitives.ts" />
+            <FileTree.File name="retries.ts" />
+            <FileTree.File name="schemas.ts" />
+            <FileTree.File name="sdks.ts" />
+            <FileTree.File name="security.ts" />
+            <FileTree.File name="url.ts" />
+          </FileTree.Folder>
+          <FileTree.Folder name="models">
+            <FileTree.Folder name="components">
+              <FileTree.File name="author.ts" />
+              <FileTree.File name="fantasybook.ts" />
+              <FileTree.File name="httpmetadata.ts" />
+              <FileTree.File name="index.ts" />
+              <FileTree.File name="neworder.ts" />
+              <FileTree.File name="order.ts" />
+              <FileTree.File name="orderstreammessage.ts" />
+              <FileTree.File name="programmingbook.ts" />
+              <FileTree.File name="scifibook.ts" />
+              <FileTree.File name="security.ts" />
+              <FileTree.File name="user.ts" />
+            </FileTree.Folder>
+            <FileTree.Folder name="errors">
+              <FileTree.File name="index.ts" />
+              <FileTree.File name="sdkerror.ts" />
+              <FileTree.File name="sdkvalidationerror.ts" />
+            </FileTree.Folder>
+            <FileTree.Folder name="operations">
+              <FileTree.File name="addbook.ts" />
+              <FileTree.File name="createorder.ts" />
+              <FileTree.File name="getallbooks.ts" />
+              <FileTree.File name="getallorders.ts" />
+              <FileTree.File name="getbookbyid.ts" />
+              <FileTree.File name="getorderbyid.ts" />
+              <FileTree.File name="getorderstream.ts" />
+              <FileTree.File name="index.ts" />
+              <FileTree.File name="updatebookcoverbyid.ts" />
+            </FileTree.Folder>
+          </FileTree.Folder>
+          <FileTree.Folder name="sdk">
+            <FileTree.File name="books.ts" />
+            <FileTree.File name="index.ts" />
+            <FileTree.File name="orders.ts" />
+            <FileTree.File name="sdk.ts" />
+          </FileTree.Folder>
+          <FileTree.Folder name="types">
+            <FileTree.File name="blobs.ts" />
+            <FileTree.File name="enums.ts" />
+            <FileTree.File name="index.ts" />
+            <FileTree.File name="operations.ts" />
+            <FileTree.File name="rfcdate.ts" />
+          </FileTree.Folder>
+        </FileTree.Folder>
+        <FileTree.File name="tsconfig.json" />
+      </FileTree>
     </div>
 
   </div>
@@ -368,7 +491,123 @@ We also see separate files for each component and operation, indicating modulari
 liblab generates an SDK that at a glance looks less organized, considering the greater number of configuration files at the root of the project, the lack of a `docs` folder, and the way the `src` folder is structured by OpenAPI tags instead of models and operations.
 
     <div className="[&>div>div]:block">
-   
+      <FileTree>
+        <FileTree.Folder name="examples">
+          <FileTree.File name="package.json" />
+          <FileTree.File name="README.md" />
+          <FileTree.Folder name="src">
+            <FileTree.File name="index.ts" />
+          </FileTree.Folder>
+          <FileTree.File name="tsconfig.json" />
+        </FileTree.Folder>
+        <FileTree.File name="install.sh" />
+        <FileTree.File name="jest.config.json" />
+        <FileTree.File name="LICENSE" />
+        <FileTree.File name="package.json" />
+        <FileTree.File name="README.md" />
+        <FileTree.Folder name="src">
+          <FileTree.File name="BaseService.ts" />
+          <FileTree.Folder name="hooks">
+            <FileTree.File name="Hook.ts" />
+          </FileTree.Folder>
+          <FileTree.Folder name="http">
+            <FileTree.File name="Environment.ts" />
+            <FileTree.Folder name="errors">
+              <FileTree.File name="BadGateway.ts" />
+              <FileTree.File name="BadRequest.ts" />
+              <FileTree.File name="base.ts" />
+              <FileTree.File name="Conflict.ts" />
+              <FileTree.File name="ExpectationFailed.ts" />
+              <FileTree.File name="FailedDependency.ts" />
+              <FileTree.File name="Forbidden.ts" />
+              <FileTree.File name="GatewayTimeout.ts" />
+              <FileTree.File name="Gone.ts" />
+              <FileTree.File name="HttpVersionNotSupported.ts" />
+              <FileTree.File name="index.ts" />
+              <FileTree.File name="InternalServerError.ts" />
+              <FileTree.File name="LengthRequired.ts" />
+              <FileTree.File name="Locked.ts" />
+              <FileTree.File name="LoopDetected.ts" />
+              <FileTree.File name="MethodNotAllowed.ts" />
+              <FileTree.File name="MisdirectedRequest.ts" />
+              <FileTree.File name="NetworkAuthenticationRequired.ts" />
+              <FileTree.File name="NotAcceptable.ts" />
+              <FileTree.File name="NotExtended.ts" />
+              <FileTree.File name="NotFound.ts" />
+              <FileTree.File name="NotImplemented.ts" />
+              <FileTree.File name="PayloadTooLarge.ts" />
+              <FileTree.File name="PaymentRequired.ts" />
+              <FileTree.File name="PreconditionFailed.ts" />
+              <FileTree.File name="PreconditionRequired.ts" />
+              <FileTree.File name="ProxyAuthenticationRequired.ts" />
+              <FileTree.File name="RangeNotSatisfiable.ts" />
+              <FileTree.File name="RequestHeaderFieldsTooLarge.ts" />
+              <FileTree.File name="RequestTimeout.ts" />
+              <FileTree.File name="ServiceUnavailable.ts" />
+              <FileTree.File name="TooEarly.ts" />
+              <FileTree.File name="TooManyRequests.ts" />
+              <FileTree.File name="Unauthorized.ts" />
+              <FileTree.File name="UnavailableForLegalReasons.ts" />
+              <FileTree.File name="UnprocessableEntity.ts" />
+              <FileTree.File name="UnsufficientStorage.ts" />
+              <FileTree.File name="UnsupportedMediaType.ts" />
+              <FileTree.File name="UpgradeRequired.ts" />
+              <FileTree.File name="UriTooLong.ts" />
+              <FileTree.File name="VariantAlsoNegotiates.ts" />
+            </FileTree.Folder>
+            <FileTree.File name="HTTPClient.ts" />
+            <FileTree.File name="httpExceptions.ts" />
+            <FileTree.File name="HTTPLibrary.ts" />
+            <FileTree.File name="QuerySerializer.ts" />
+          </FileTree.Folder>
+          <FileTree.File name="index.ts" />
+          <FileTree.File name="models.ts" />
+          <FileTree.Folder name="services">
+            <FileTree.Folder name="books">
+              <FileTree.File name="Books.ts" />
+              <FileTree.File name="index.ts" />
+              <FileTree.Folder name="models">
+                <FileTree.File name="AddBookRequest.ts" />
+                <FileTree.File name="AddBookResponse.ts" />
+                <FileTree.File name="GetAllBooksResponse.ts" />
+                <FileTree.File name="GetBookByIdResponse.ts" />
+                <FileTree.File name="UpdateBookCoverByIdRequest.ts" />
+              </FileTree.Folder>
+            </FileTree.Folder>
+            <FileTree.Folder name="common">
+              <FileTree.File name="Author.ts" />
+              <FileTree.File name="FantasyBook.ts" />
+              <FileTree.File name="ProgrammingBook.ts" />
+              <FileTree.File name="SciFiBook.ts" />
+            </FileTree.Folder>
+            <FileTree.Folder name="orders">
+              <FileTree.File name="index.ts" />
+              <FileTree.Folder name="models">
+                <FileTree.File name="CreateOrderRequest.ts" />
+                <FileTree.File name="GetAllOrdersResponse.ts" />
+                <FileTree.File name="OrderStreamMessage.ts" />
+                <FileTree.File name="Order.ts" />
+                <FileTree.File name="User.ts" />
+              </FileTree.Folder>
+              <FileTree.File name="Orders.ts" />
+            </FileTree.Folder>
+            <FileTree.File name="README.md" />
+          </FileTree.Folder>
+        </FileTree.Folder>
+        <FileTree.Folder name="test">
+          <FileTree.Folder name="models" />
+          <FileTree.Folder name="services">
+            <FileTree.Folder name="books">
+              <FileTree.File name="Books.test.ts" />
+            </FileTree.Folder>
+            <FileTree.Folder name="orders">
+              <FileTree.File name="Orders.test.ts" />
+            </FileTree.Folder>
+          </FileTree.Folder>
+        </FileTree.Folder>
+        <FileTree.File name="tsconfig.eslint.json" />
+        <FileTree.File name="tsconfig.json" />
+      </FileTree>
     </div>
 
   </div>
@@ -769,8 +1008,8 @@ function Posts() {
     return response.json();
   });
 
-  if (status === "loading") return <span className="p">Loading posts...</span>;
-  if (status === "error") return <span className="p">Error: {error?.message}</span>;
+  if (status === "loading") return <p>Loading posts...</p>;
+  if (status === "error") return <p>Error: {error?.message}</p>;
 
   return (
     <ul>

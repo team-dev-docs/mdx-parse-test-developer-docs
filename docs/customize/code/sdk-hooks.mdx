@@ -3,14 +3,14 @@ title: Custom code with SDK hooks
 description: "Learn how to use SDK hooks to customize code generation."
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
- 
+import { Tabs } from "@speakeasy/nextra-theme";
+import { Callout } from "~/components";
 
 # Custom Code With SDK Hooks
 
-<div className="Callout" data-title="Availability" data-variant="info">
+<Callout title="Availability" variant="info">
   SDK Hooks are available for [Business and Enterprise users](/pricing) only.
-</div>
+</Callout>
 
 SDK Hooks enable custom logic to be added to SDK functions and request lifecycles across supported SDKs. These hooks allow for transformations, tracing, logging, validation, and error handling during different stages of the SDK's lifecycle.
 
@@ -57,8 +57,8 @@ In the registration file, find the method `initHooks/init_hooks/initialize/InitH
 
 Instantiate the hook here and register it for the appropriate event.
 
-<div className="Tabs" data-items="['Go', 'Python', 'TypeScript', 'Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['Go', 'Python', 'TypeScript', 'Java', 'C#']}>
+  <Tabs.Tab>
 
 ```go
 package hooks
@@ -69,8 +69,8 @@ func initHooks(h *Hooks) {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```python
 from .customhooks import ExampleHook
@@ -81,8 +81,8 @@ def init_hooks(hooks: Hooks):
     hooks.register_before_request_hook(ExampleHook())
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```typescript
 import { Hooks } from "./types";
@@ -93,8 +93,8 @@ export function initHooks(hooks: Hooks) {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```java
 package com.package.hooks;
@@ -109,8 +109,8 @@ public final class SDKHooks {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 namespace <namespace>
@@ -126,17 +126,17 @@ namespace <namespace>
 }
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
-<div className="Callout" data-title="Note" data-variant="info">
+<Callout title="Note" variant="info">
 The registration file is generated once and will not be overwritten. After the initial generation, you have full control and ownership of it.
-</div>
+</Callout>
 
 Here are example hook implementations for each of the lifecycle events across different languages:
 
-<div className="Tabs" data-items="['Go', 'Python', 'TypeScript', 'Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['Go', 'Python', 'TypeScript', 'Java', 'C#']}>
+  <Tabs.Tab>
 
 ```go
 package hooks
@@ -175,8 +175,8 @@ func (i *ExampleHook) AfterError(hookCtx AfterErrorContext, res *http.Response, 
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```python
 from typing import Optional, Tuple, Union
@@ -232,8 +232,8 @@ class ExampleHook(SDKInitHook, BeforeRequestHook, AfterSuccessHook, AfterErrorHo
         return response, error
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```typescript
 import { HTTPClient } from "../lib/http";
@@ -279,8 +279,8 @@ export class ExampleHook
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```java
 package dev.speakeasyapi.speakeasy.hooks;
@@ -340,8 +340,8 @@ final class ExampleHook implements BeforeRequest, AfterError, AfterSuccess, SdkI
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 namespace Speakeasy.Hooks
@@ -387,16 +387,16 @@ namespace Speakeasy.Hooks
 }
 ```
 
-  </div>
+  </Tabs.Tab>
 
-</div>
+</Tabs>
 
 ## Adding Dependencies
 
 To add dependencies needed for SDK hooks, configure the `additionalDependencies` section in the `gen.yaml` file. <br/><br/>
 
-<div className="Tabs" data-items="['Go', 'Python', 'TypeScript', 'Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['Go', 'Python', 'TypeScript', 'Java', 'C#']}>
+  <Tabs.Tab>
 
 ```yaml
 configVersion: 2.0.0
@@ -406,8 +406,8 @@ additionalDependencies:
   "github.com/google/uuid": v1.6.0
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
  
 ```yaml
 configVersion: 2.0.0
@@ -421,8 +421,8 @@ python:
       - "pydantic>=1.8.0"
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```yaml
 typescript:
@@ -435,8 +435,8 @@ additionalDependencies:
   peerDependencies: {}
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
  
 ```yaml
 java:
@@ -446,8 +446,8 @@ additionalDependencies:
   - api:org.apache.commons:commons-compress:1.26.1
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```yaml
 csharp:
@@ -459,5 +459,5 @@ csharp:
       excludeAssets: none
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>

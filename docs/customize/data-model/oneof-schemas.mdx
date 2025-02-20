@@ -4,7 +4,7 @@ description: "Support for OpenAPI `oneOf` types with idiomatic unions."
 slug: "/customize-sdks/oneof-schemas/"
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Tabs } from "@speakeasy/nextra-theme";
 
 # The `oneOf` keyword
 
@@ -23,12 +23,12 @@ oneOf:
 
 How Speakeasy generates supporting objects for your SDK depends on the language of the SDK.
 
-<div className="Tabs" data-items="['TypeScript', 'Go', 'Python', 'C#', 'Java']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript', 'Go', 'Python', 'C#', 'Java']}>
+  <Tabs.Tab>
  Speakeasy leverages native TypeScript support for unions to represent `oneOf` schemas. A union type is generated to represent the different possible types defined in the `oneOf` schema.
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 Go does not provide a native `union` data type, so Speakeasy will create a supporting `struct` with a corresponding _pseudo enum_ that is used for discrimination. The supporting object will be named differently depending on whether it is used as part of a request or included as a response.
 
@@ -85,13 +85,13 @@ func CreateFetchPetRequestBodyPet(pet shared.Pet) FetchPetRequestBody {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 Speakeasy uses Python&apos;s built-in `typing.Union` objects and will not create special objects for any `oneOf` keywords in your OpenAPI document.
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 public class FetchPetRequestBodyType
@@ -145,8 +145,8 @@ public class FetchPetRequestBody
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 For a `oneOf` type, Speakeasy generates a Java class that wraps the different value types and provides static factory methods (`of*`) for creation.
 
@@ -181,9 +181,9 @@ public class FetchPetRequestBody {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <span className="li">{@code java.lang.String}</span>
-     * <span className="li">{@code long}</span>
-     * <span className="li">{@code pet.store.simple.models.shared.Pet}</span>
+     * <li>{@code java.lang.String}</li>
+     * <li>{@code long}</li>
+     * <li>{@code pet.store.simple.models.shared.Pet}</li>
      * </ul>
      *
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -238,8 +238,8 @@ public class FetchPetRequestBody {
 }
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ## Requests
 
@@ -268,8 +268,8 @@ Assume you have an operation that allows the user to fetch a pet by submitting t
               $ref: "#/components/schemas/Pet"
 ```
 
-<div className="Tabs" data-items="['TypeScript', 'Go', 'Python', 'C#', 'Java']">
-<div className="TabsTab">
+<Tabs items={['TypeScript', 'Go', 'Python', 'C#', 'Java']}>
+<Tabs.Tab>
 
 ```typescript
 const sdk = new SDK();
@@ -278,8 +278,8 @@ sdk.pets.fetchPet(123);    // number
 sdk.pets.fetchPet({ id: "p-123" }); // Pet object
 ```
 
-</div>
-  <div className="TabsTab">
+</Tabs.Tab>
+  <Tabs.Tab>
 
 You can use the object returned from the supporting `Create` function as a parameter in the operation&apos;s request:
 
@@ -292,8 +292,8 @@ res, err := s.Pets.FetchPet(context.Background(), req)
 
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 Speakeasy uses native Python unions internally, so using `oneOf` types in your Python SDK is intuitive: Directly use the type you want to submit as the request object (in this case, a `str`, `int`, or `Pet` object).
 
@@ -303,8 +303,8 @@ s = SDK()
 res = s.pets.fetch_pet(request=1)
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 The C# SDKs use a custom object-oriented approach to supporting union types. Speakeasy generates a supporting `class` with a corresponding **pseudo enum**, which is used for discrimination. The supporting object is named differently depending on whether it is used as part of a request or included as a response.
 
@@ -321,16 +321,16 @@ var res = s.Pets.FetchPet(req)
 
 An SDK user should not construct a `FetchPetRequestBody` object. Instead, they should call one of the supporting `Create` methods that set the content value and discriminator.
 
-  </div>
-<div className="TabsTab">
+  </Tabs.Tab>
+<Tabs.Tab>
 
 ```java
 SDK sdk = SDK.builder().build();
 // fetch pet by integer id
 FetchPetResponse res = sdk.fetchPet(FetchPetRequestBody.of(123));
 ```
-</div>
-</div>
+</Tabs.Tab>
+</Tabs>
 
 ## Responses
 
@@ -356,13 +356,13 @@ For example, this schema:
 
 Will result in these response types:
 
-<div className="Tabs" data-items="['TypeScript', 'Go', 'Python', 'C#', 'Java']">
-<div className="TabsTab">
+<Tabs items={['TypeScript', 'Go', 'Python', 'C#', 'Java']}>
+<Tabs.Tab>
 ```typescript
 type PetIdRes = string | number;
 ```
-    </div>
-  <div className="TabsTab">
+    </Tabs.Tab>
+  <Tabs.Tab>
 
 ```go
 type petIdResType string
@@ -383,8 +383,8 @@ type FetchPetResponse struct {
 
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```python
 
@@ -394,8 +394,8 @@ class FetchPetResponse:
     res: Optional[Union[str, int]] = dataclasses.field(default=None)
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 
@@ -423,8 +423,8 @@ public class FetchPetResponse {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 To access the fetched pet from the response object, call the `res()` method below. Notice that it returns an `Optional`. However, this is a holdover from previous generator versions. Recent generators ensure that a response is always present when calling `res()`, but `Optional` is still used to maintain backward compatibility.
 
@@ -442,8 +442,8 @@ public Optional<Pet> res() {
 }
 
 ````
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ### Splitting `oneOf` schema types
 

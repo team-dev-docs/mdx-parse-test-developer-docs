@@ -11,11 +11,11 @@ tags:
 featured_image: "/media/how-to-build-php-sdks.png"
 ---
 
-{/*import YouTube from 'react-youtube';*/}
+import YouTube from 'react-youtube';
 
 <div className="mt-10 flex justify-center items-center" >
-  <div className='YouTube'
-    data-videoId="O4xyEVSyS_s"
+  <YouTube
+    videoId="O4xyEVSyS_s"
   />
 </div>
 
@@ -452,7 +452,7 @@ We’ve already seen PSR-17, but how about [PSR-18](https://www.php-fig.org/psr/
 
 How can we implement it though? It can be pretty confusing to try and implement PSRs on their own, the documentation is aimed at library authors who are typically used to reading specification documents. Let’s look at a quote from the specification so you can understand what I mean.
 
-> Note that as a result, since[PSR-7 objects are immutable](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-7-http-message-meta.md#why-value-objects), the Calling Library MUST NOT assume that the object passed to`ClientInterface::sendRequest()`will be the same PHP object that is actually sent. For example, the Request object that is returned by an exception MAY be a different object than the one passed to`sendRequest()`, so comparison by reference (===) is not possible.
+> Note that as a result, since [PSR-7 objects are immutable](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-7-http-message-meta.md#why-value-objects), the Calling Library MUST NOT assume that the object passed to `ClientInterface::sendRequest()` will be the same PHP object that is actually sent. For example, the Request object that is returned by an exception MAY be a different object than the one passed to `sendRequest()`, so comparison by reference (===) is not possible.
 >
 
 Now if you read it, it makes sense! But if you are trying to build against it, along with other PSRs - things can get complicated quickly as the rules pile up in-front of you. This is why we use a library such as [PHP HTTP](https://docs.php-http.org/en/latest/), which allows us to auto-discover everything that we need.

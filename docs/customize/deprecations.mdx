@@ -4,7 +4,7 @@ description: "Learn how to use deprecations to sunset parts of your API."
 slug: "/customize-sdks/deprecations/"
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Tabs } from "@speakeasy/nextra-theme";
 
 # Deprecations
 
@@ -43,8 +43,8 @@ paths:
         - beverages
 ```
 
-<div className="Tabs" data-items="['TypeScript','Python','Go','Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript','Python','Go','Java', 'C#']}>
+  <Tabs.Tab>
 
     ```typescript
     /**
@@ -61,8 +61,8 @@ paths:
     ): Promise<operations.ListDrinksResponse> {}
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
     ```python
     def list_drinks(self, request: operations.ListDrinksRequest) -> operations.ListDrinksResponse:
@@ -73,8 +73,8 @@ paths:
         """
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
     ```go
     // ListDrinks - Get a list of drinks.
@@ -84,8 +84,8 @@ paths:
     func (s *Drinks) ListDrinks(ctx context.Context, request operations.ListDrinksRequest) (*operations.ListDrinksResponse, error) {}
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
     ```java
     /**
@@ -101,14 +101,14 @@ paths:
             org.openapis.openapi.models.operations.ListDrinksRequest request) throws Exception {}
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
     ```csharp
     [Obsolete("This method will be removed in a future release, please migrate away from it as soon as possible. Use ListBeverages instead")]
     public async Task<ListDrinksResponse> ListDrinksAsync() {}
     ```
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ## Deprecate Parameters
 
@@ -153,8 +153,8 @@ paths:
             example: 100
 ```
 
-<div className="Tabs" data-items="['TypeScript','Python','Go','Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript','Python','Go','Java', 'C#']}>
+  <Tabs.Tab>
 ```typescript
 export type ListDrinksRequest = {
     /**
@@ -173,8 +173,8 @@ export type ListDrinksRequest = {
     limit?: number | undefined;
 };
 ```   
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
     ```python
 
@@ -191,8 +191,8 @@ r"""Filter by name.
     r"""Limit the number of results."""
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
     ```go
 type ListDrinksRequest struct {
 	// Filter by ingredient.
@@ -205,8 +205,8 @@ type ListDrinksRequest struct {
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 }
     ```
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
     ```java
 public class ListDrinksRequest {
 
@@ -233,8 +233,8 @@ public class ListDrinksRequest {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
     ```csharp
 public class ListDrinksRequest
 {
@@ -261,8 +261,8 @@ public class ListDrinksRequest
 }
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ## Deprecate Properties
 
@@ -292,8 +292,8 @@ components:
         - productCode
 ```
 
-<div className="Tabs" data-items="['TypeScript','Python','Go','Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript','Python','Go','Java', 'C#']}>
+  <Tabs.Tab>
     ```typescript
     export type Drink = {
         name: string;
@@ -305,8 +305,8 @@ components:
         sku?: string | undefined;
     };
     ```
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
     ```python
     @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -319,8 +319,8 @@ components:
         r"""Deprecated field: We no longer support the SKU property."""
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
     ```go
     type Drink struct {
         Name        string `json:"name"`
@@ -330,8 +330,8 @@ components:
         Sku *string `json:"sku,omitempty"`
     }
     ```
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
     ```java
     public class Drink {
 
@@ -354,8 +354,8 @@ components:
     }
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 ```csharp
     public class Drink
     {
@@ -374,6 +374,6 @@ components:
     }
 
 ```
-</div>
-</div>
+</Tabs.Tab>
+</Tabs>
 ```

@@ -4,7 +4,7 @@ description: "APIs can support multiple content types for responses. Learn how t
 slug: "/customize-sdks/override-accept-headers/"
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Tabs } from "@speakeasy/nextra-theme";
 
 # Override Accept Headers
 
@@ -59,8 +59,8 @@ res, err := s.Users.GetAll(ctx, operations.WithAcceptHeaderOverride(operations.A
 
 In Python and TypeScript, each operation with multiple specified accept headers will have an enum created that provides the acceptable options. The name of the enum will be the tag name, followed by the operation name, followed by `AcceptEnum`. For the example above, that would be `UsersGetAllAcceptEnum`.
 
-<div className="Tabs" data-items="['Typescript', 'Python']">
-  <div className="TabsTab">
+<Tabs items={['Typescript', 'Python']}>
+  <Tabs.Tab>
 
     ```typescript
     import { UsersGetAllAcceptEnum } from "../src/sdk/users";
@@ -70,8 +70,8 @@ In Python and TypeScript, each operation with multiple specified accept headers 
     const res = await s.users.getAll(undefined, undefined, UsersGetAllAcceptEnum.applicationJSON);
     ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
     ```python
     from sdk.users import ResponseBodyOptionalGetAcceptEnum
@@ -83,8 +83,8 @@ In Python and TypeScript, each operation with multiple specified accept headers 
     )
     ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ## Unspecified Accept Headers
 

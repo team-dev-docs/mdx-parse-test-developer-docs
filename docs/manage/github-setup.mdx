@@ -4,8 +4,8 @@ description: "Learn how to set up your GitHub repo to automatically generate and
 position: 1
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
- 
+import { Tabs } from "@speakeasy/nextra-theme";
+import { Callout } from "~/components";
 
 # SDK Generation workflow
 
@@ -62,10 +62,10 @@ speakeasy configure github
 
 After running the command, `.speakeasy/workflow.yaml` and `.github/workflows/sdk_generation.yaml` will be created. These files define the SDK generation workflow and the associated GitHub Action.
 
-<div className="Screenshot" variant="cli">
+<Screenshot variant="cli">
   ![Screenshot of the terminal after successfully running Speakeasy configure
   Github.](../assets/configure-github/configure.png)
-</div>
+</Screenshot>
 
 If further customization is needed, [manual configuration](/docs/workflow-reference/generation-reference) of the workflow files is available.
 
@@ -82,13 +82,13 @@ Commit and push the generated workflow files to the repository. To test your Git
 
 Navigate to **Actions** in the GitHub repository to trigger the SDK generation workflow manually or wait for it to run automatically. A green checkmark indicates successful workflow completion. If the publishing step has not been configured, it will be skipped.
 
-<div className="Screenshot"
-  data-darkened
-  data-url="https://github.com/speakeasy-sdks/example/actions/runs/9900330987"
+<Screenshot
+  darkened
+  url="https://github.com/speakeasy-sdks/example/actions/runs/9900330987"
 >
   ![A screenshot of a successful generate
   flow.](../assets/configure-github/successful-workflow.png)
-</div>
+</Screenshot>
 
 For details on package publishing, refer to the [Publishing SDKs guide](/docs/publish-sdk).
 
@@ -98,27 +98,27 @@ If the error `403 GitHub Actions is not permitted to create or approve pull requ
 
 Navigate to **Settings > Actions > Workflow permissions** and adjust the permissions accordingly.
 
-<div className="Screenshot"
-  data-darkened
-  data-url="https://github.com/speakeasy-sdks/example/settings/actions"
+<Screenshot
+  darkened
+  url="https://github.com/speakeasy-sdks/example/settings/actions"
 >
   ![Github Actions workflow
   permissions.](../assets/configure-github/workflow-permissions.png)
-</div>
+</Screenshot>
 
 ## Configure remote URLs for schemas
 
-<div className="Callout" data-title="Warning" data-variant="warning">
+<Callout title="Warning" variant="warning">
   Remote URLs for OpenAPI schemas must remain stable. Dynamically constructed
   URLs in workflow files are not supported.
-</div>
+</Callout>
 
 If the OpenAPI schema is hosted in another repository or at a remote URL, set the `source` as the remote URL in `.speakeasy/workflow.yaml`. Use the following command to add the remote URL:
 
-<div className="Screenshot" variant="cli">
+<Screenshot variant="cli">
   ![Configure Remote URL for
   schema.](../assets/configure-github/remote-url-schema.png)
-</div>
+</Screenshot>
 
 To authenticate the remote URL, provide a token or key stored as an environment variable (e.g., `$OPENAPI_DOC_AUTH_TOKEN`).
 
@@ -129,3 +129,37 @@ OPENAPI_DOC_AUTH_TOKEN="Bearer <YOUR_TOKEN_VALUE>"
 ```
 
 Add a [GitHub Secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) with the same name and value as the token or key (including the "Bearer " prefix for private repositories).
+
+## Enabling signed commits
+
+To have signed commits from the SDK Generation workflow, add `signed_commits: true` into the workflow file. This configuration ensures that GitHub Actions creates verified commits during workflow execution.
+
+
+```yml
+name: SDK Generation
+permissions:
+  checks: write
+  contents: write
+  pull-requests: write
+  statuses: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Force SDK generation, even if no changes are detected.
+        type: boolean
+        default: false
+
+jobs:
+  generate:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
+    with:
+      speakeasy_version: latest
+      force: ${{ github.event.inputs.force }}
+      mode: pr
+      signed_commits: true # !focus(1)
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+```

@@ -12,11 +12,11 @@ featured_image: "/media/announcement-series-a.png"
 is_featured: true
 ---
 
+import { Callout } from '~/components';
 
-
-<div className="Callout" data-title="TL;DR" data-variant="success">
+<Callout title="TL;DR" variant="success">
 We've raised $15M to revolutionize REST API development. With this latest round of investment, we're expanding our product offerings, accelerating our roadmap, and growing our exceptional team 🚀
-</div>
+</Callout>
 
 If software is eating the world, APIs are the knives and forks. They're not just connecting systems: they're fundamentally reshaping how we build, deploy, and scale software.
 
@@ -78,12 +78,12 @@ import Image from 'next/image'
 import teamImage from './assets/speakeasy-team.png'
 
 <div className="mt-10 flex justify-center">
-  <div className="Image"
-    data-src={teamImage} 
-    data-alt="Speakeasy Team" 
-    data-width={400}  
-    data-height={300} 
-    data-style={{ width: '70%', height: 'auto', align: 'center' }}
+  <Image 
+    src={teamImage} 
+    alt="Speakeasy Team" 
+    width={400}  
+    height={300} 
+    style={{ width: '70%', height: 'auto', align: 'center' }}
   />
 </div>
 

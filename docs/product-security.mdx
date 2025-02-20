@@ -3,7 +3,7 @@ title: Security and data privacy
 description: "Speakeasy prioritizes security and privacy as core development principles."
 ---
 
- 
+import { Callout } from "~/components";
 
 # Security and Data Privacy
 
@@ -73,10 +73,10 @@ Speakeasy is optional.
 
 ## Customer-Hosted Repositories
 
-<div className="Callout" data-title="Note" data-variant="info">
+<Callout title="Note" variant="info">
   The following guidance refers to artifacts hosted in the Speakeasy GitHub organization, `speakeasy-sdks`, on behalf of the
   customer.
-</div>
+</Callout>
 
 A Speakeasy-created artifact (like an SDK) can be hosted on GitHub in a repository in your GitHub organization (for example, `www.github.com/yourcompany/sdk`).
 
@@ -103,10 +103,10 @@ Here, Speakeasy requests `write` permission on `checks`, `contents`, `pull-reque
 
 ## Speakeasy-Hosted Repositories
 
-<div className="Callout" data-title="Note" data-variant="info">
+<Callout title="Note" variant="info">
   The following guidance refers to artifacts hosted on behalf of the
   customer in the Speakeasy GitHub organization, `speakeasy-sdks`.
-</div>
+</Callout>
 
 Speakeasy-hosted artifacts are created in the [`https://github.com/speakeasy-sdks` GitHub organization](https://github.com/speakeasy-sdks) owned by Speakeasy and follow the same set of security guidelines and permissions as customer-hosted artifacts. 
 

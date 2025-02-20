@@ -11,13 +11,13 @@ tags:
 featured_image: "/media/python-type-safety.png"
 ---
 
- 
+import { Callout } from "~/components";
 
-<div className="Callout" data-title="Tip" data-variant="success">
+<Callout title="Tip" variant="success">
   A massive thank you to [Sydney Runkle](https://x.com/sydneyrunkle) from the
   [Pydantic](https://pydantic.dev/) team for her invaluable feedback and
   suggestions on this post!!
-</div>
+</Callout>
 
 Python's dynamic typing is one of its greatest strengths. It is the language developers use to get things done without getting bogged down by type definitions and boilerplate code. When prototyping, you don't have time to think about unions, generics, or polymorphism - close your eyes, trust the interpreter to guess your variable's type, and then start working on the next feature.
 
@@ -63,12 +63,12 @@ This was the motivation behind developing type annotations.
 
 Type annotations were introduced in Python 3.5 to add optional type hints to your code ([PEP 484](https://www.python.org/dev/peps/pep-0484/)). Type hints can help you catch bugs while you are still writing your code by telling you when you pass the wrong type of object to a function.
 
-<div className="Callout" data-title="TIP" data-variant="info">
+<Callout title="TIP" variant="info">
 To make the most of these type hints, many developers use type checkers. Type checkers are tools that analyze your Python code without running it, looking for potential type-related errors. One popular type checker is [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), a Visual Studio Code Extension that checks your Python code for type mismatches and shows you hints in your IDE.
 
 If you're not using VS Code, [Pyright](https://github.com/microsoft/pyright/tree/main) has similar functionality and can be run from the [command line](https://microsoft.github.io/pyright/#/command-line) or as an [extension](https://microsoft.github.io/pyright/#/installation) to many text editors.
 
-</div>
+</Callout>
 
 Here's how you can add type hints to the `make_duck_quack` function:
 

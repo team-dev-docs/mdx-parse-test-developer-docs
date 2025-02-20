@@ -4,18 +4,25 @@ description: "Learn how to use Speakeasy to validate OpenAPI syntax, operations,
 sidebar_title: "Overview"
 ---
 
-{/*import Image from "next/image";*/}
- 
-{/*import vsCodeImageUrl from "../assets/vscode.svg";*/}
+import Image from "next/image";
+import { Callout } from "~/components";
+import vsCodeImageUrl from "../assets/vscode.svg";
 
 # OpenAPI document linting
 
-<div className="Callout" data-title="TIP" data-variant="info">
-  The  [Speakeasy VS Code
+<Callout title="TIP" variant="info">
+  The &nbsp;<Image
+    src={vsCodeImageUrl}
+    width="20"
+    height="20"
+    style={{ display: "inline-block" }}
+    alt='Visual Studio Code logo'
+  />&nbsp;
+  [Speakeasy VS Code
   extension](https://marketplace.visualstudio.com/items?itemName=Speakeasy.speakeasy-vscode-extension)
   provides syntax highlighting and autocompletion for editing the `lint.yaml`
   file, as well as linting for OpenAPI documents and other supported file types.
-</div>
+</Callout>
 
 In addition to running validation, you can use Speakeasy to lint your OpenAPI documents to ensure they are stylistically valid. By default, the linter runs using a [recommended set of rules](/docs/linting/linting#speakeasy-recommended), which you can optionally extend with the [available ruleset](/docs/linting/linting#available-rulesets). You can also write custom rules using the Spectral format.
 
@@ -52,7 +59,7 @@ sources:
 
 Running `speakeasy run` will lint your document as part of the workflow and generate an HTML report that you can access from a link in the command output.
 
-3. Use the [Speakeasy VS Code extension](https://marketplace.visualstudio.com/items?itemName=Speakeasy.speakeasy-vscode-extension) in your IDE.
+3. Use the <Image src={vsCodeImageUrl} width="20" height="20" style={{display: "inline-block"}} alt='Visual Studio Code logo' /> [Speakeasy VS Code extension](https://marketplace.visualstudio.com/items?itemName=Speakeasy.speakeasy-vscode-extension) in your IDE.
 
 By default, these options use the `speakeasy-recommended` ruleset to ensure your OpenAPI document meets the Speakeasy quality bar.
 

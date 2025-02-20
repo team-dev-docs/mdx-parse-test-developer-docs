@@ -4,8 +4,8 @@ sidebar_label: Create Overlays
 description: "Overlays are a quick and easy way to implement changes to your OpenAPI / Swagger spec. We explain how they work and show you how to use overlays."
 ---
 
- 
- 
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+import { Callout } from "~/components";
 
 # Create Overlays
 
@@ -39,16 +39,16 @@ For a quick generation of differences between two API versions, use the `compare
 speakeasy overlay compare --before=./openapi_original.yaml --after=./openapi.yaml > overlay.yaml
 ```
 
-<div className="Callout" data-title="Using compare" data-variant="info">
+<Callout title="Using compare" variant="info">
   The compare feature is designed to assist in identifying differences across
   OpenAPI documents. However, users requiring precise adjustments may need to
   manually edit the generated overlay file to suit their needs. You can validate
   and evaluate your JSONPath expressions [here](https://jsonpath.com/).
-</div>
+</Callout>
 
 ## Anatomy of an Overlay
 
-<div className="ScrollyCoding">
+<ScrollyCoding>
 
 #### !!steps `overlay`
 
@@ -134,13 +134,13 @@ actions:
 
 ---
 
-</div>
+</ScrollyCoding>
 
 ## Helpful references:
 
 - [Common Overlay Examples](/examples/sdk-generation/overlays/overlays)
 - [Common JSON Path Examples](/examples/sdk-generation/overlays/overlays)
 
-<div className="Callout" data-title="Try Overlay Speakeasy" data-variant="info">
+<Callout title="Try Overlay Speakeasy" variant="info">
   For a visual approach to creating or editing your overlays, visit <a href="https://overlay.speakeasy.com/" target="_blank" rel="noopener noreferrer">overlay.speakeasy.com</a>.
-</div>
+</Callout>

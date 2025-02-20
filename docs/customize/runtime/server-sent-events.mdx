@@ -4,7 +4,7 @@ sidebar_label: "Enable Server-Sent Events"
 slug: "/customize-sdks/server-sent-events/"
 ---
 
- 
+import { Callout } from "~/components";
 
 # Enabling Event-Streaming Operations
 
@@ -12,11 +12,11 @@ Server-sent events (SSE) is a core web feature that provides servers with a low 
 
 SSE is similar to WebSockets in that it uses a persistent connection but differs in that it is unidirectional - only the server sends events. SSE is simpler to implement in many existing backend HTTP frameworks.
 
-<div className="Callout" data-title="INFO" data-variant="info">
+<Callout title="INFO" variant="info">
   Speakeasy makes it easy to build SSE into generated SDKs without vendor
   extensions or heuristics. Leverage SSE by modeling SSE streams as
   `text/event-stream` responses with pure OpenAPI.
-</div>
+</Callout>
 
 Here's a short example of using an SDK to chat with an LLM and read its response as a stream:
 
@@ -34,10 +34,10 @@ for await (const event of response.chatStream) {
 }
 ```
 
-<div className="Callout" data-title="INFO" data-variant="info">
+<Callout title="INFO" variant="info">
   The SSE feature is currently supported in TypeScript, Python, Go, and Java.
   Let us know if you'd like to see support for other languages.
-</div>
+</Callout>
 
 ## Modeling SSE in OpenAPI
 
@@ -248,7 +248,7 @@ components:
       # ...
 ```
 
-<div className="Callout" data-title="IMPORTANT" data-variant="info">
+<Callout title="IMPORTANT" variant="info">
   The `stream` properties in the `ChatRequestJson` and `ChatRequestStream`
   schemas are treated as constants, ensuring that each request type always has a
   fixed stream value (false for JSON responses and true for streamed responses).
@@ -260,7 +260,7 @@ components:
 See the [Speakeasy OpenAPI reference on enums](/openapi/schemas/enums) for
 more information.
 
-</div>
+</Callout>
 
 Use `chat` for the non-streaming endpoint and `chatStreamed` for the streaming
 endpoint:
@@ -287,12 +287,12 @@ for await (const event of response.chatStream) {
 }
 ```
 
-<div className="Callout" data-title="NOTE" data-variant="info">
+<Callout title="NOTE" variant="info">
   Accross all of these examples, the schema for the events only ever specifies
   one or more of the four recognized fields. Adding other fields will trigger a
   validation error when generating an SDK with the Speakeasy CLI or GitHub
   action.
-</div>
+</Callout>
 
 ## Sentinel events
 

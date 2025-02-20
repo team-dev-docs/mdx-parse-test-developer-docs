@@ -55,6 +55,6 @@ We also create custom SDK Sandboxes documentation that shows how to work with SD
 
 ## Skip Setup and Jump to Friction-Free DevEx
 
-Speakeasy SDK Sandboxes offer both you and your SDK consumers a no-effort sandbox environment where you can validate the behavior of your SDK, and your customers can quickly explore its full capabilities. Instantly initialize a sandbox in[Github Codespaces](https://docs.github.com/en/codespaces/overview)with just a click, from any browser, whether you are in the office, on an airplane, or sitting on the beach!
+Speakeasy SDK Sandboxes offer both you and your SDK consumers a no-effort sandbox environment where you can validate the behavior of your SDK, and your customers can quickly explore its full capabilities. Instantly initialize a sandbox in [Github Codespaces](https://docs.github.com/en/codespaces/overview) with just a click, from any browser, whether you are in the office, on an airplane, or sitting on the beach!
 
-Ready to try it for yourself? [Sign up](https://app.speakeasy.com/) for free today and head over to the[SDK Sandboxes docs](/docs/advanced-setup/sdk-sandbox) to add it to your SDK today.
+Ready to try it for yourself? [Sign up](https://app.speakeasy.com/) for free today and head over to the [SDK Sandboxes docs](/docs/advanced-setup/sdk-sandbox) to add it to your SDK today.

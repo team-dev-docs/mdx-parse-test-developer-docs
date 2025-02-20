@@ -3,7 +3,7 @@ title: "Generate Java SDKs from OpenAPI / Swagger"
 description: "This post explains how Speakeasy creates a Java client from a Swagger / OpenAPI spec."
 ---
 
-{/*import { Callout } from '~/components'*/}
+import { Callout } from '~/components'
 
 # Generate a Java SDK from OpenAPI / Swagger
 
@@ -415,9 +415,9 @@ The `const` keyword in the OpenAPI specification ensures that a field is essenti
 
 To handle errors in the Java SDK, you need to check the status code of the response. If it is an error response, the `error` field of the response will contain the decoded error value.
 
-<div className="Callout" data-title="Coming Soon" data-variant="info">
+<Callout title="Coming Soon" variant="info">
 Support for throwing unsuccessful status codes as exceptions is coming soon.
-</div>
+</Callout>
 
 ## Pagination and `java.util.Stream`
 

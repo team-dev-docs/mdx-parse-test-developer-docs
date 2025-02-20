@@ -3,16 +3,18 @@ title: Contract testing
 description: "Learn how to generate and run automated testing for your API and SDKs."
 ---
 
+import { Callout } from '~/components';
+import { LanguageTestingGrid } from "~/features/shared/recipes";
 
-# Contract Testing
+# Testing with Speakeasy
 
-<div className="Callout" data-title="INFO" data-variant="info">
+<Callout title="INFO" variant="info">
 
   Testing features are in early access. Breaking changes may occur.
 
-</div>
+</Callout>
 
-Speakeasy enables you to verify API and SDK functionality by generating and running contract tests. Our solution scales from per-operation contract tests to end-to-end tests for validating any multi-step API user journey.
+Speakeasy enables you to verify SDK and API functionality by generating and running SDK tests and API tests. Our solution scales from per-operation SDK tests to end-to-end API tests for validating any multi-step API user journey.
 
 ## Design Philosophy
 
@@ -49,12 +51,14 @@ The following are requirements for enabling testing features:
 - Existing, successfully generating SDK.
 - [Speakeasy CLI](/docs/speakeasy-reference/cli/getting-started) or GitHub repository with Actions enabled.
 - [Docker](https://www.docker.com/) or equivalent container runtime, if using the mock server for local testing.
-- [Enterprise tier account](/pricing).
+- [Enterprise or Business tier account](/pricing).
+- The SDK Tests Add-On is enabled.
 
+<LanguageTestingGrid />
 
 ## Next Steps
 
-- [Enable automated test generation](/docs/customize-testing/automated-test-generation) for your SDK.
-- [Configure custom contract and end-to-end tests](/docs/customize-testing/custom-tests) for your SDK.
-- [Setup testing in GitHub Actions](/docs/customize-testing/github-actions) for your SDK.
-- [Advanced test configuration](/docs/customize-testing/advanced-test-configuration) for your tests.
+- [Bootstrapping SDK Tests](/docs/customize-testing/bootstrapping-test-generation)
+- [Customize your SDK tests](/docs/customize-testing/customizing-sdk-tests)
+- [Setup testing in GitHub Actions](/docs/customize-testing/github-actions)
+- [Configure Custom API Contract Tests](/docs/api-contract-tests)

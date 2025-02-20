@@ -4,17 +4,17 @@ sidebar_label: Customize Security Schemes
 description: "Customize your security and authentication SDK settings for OAuth."
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
- 
+import { Tabs } from "@speakeasy/nextra-theme";
+import { Callout } from "~/components";
 
 # Custom Security Schemes
 
 Custom Security Schemes define a JSON Schema for SDK security options. Combined with [SDK Hooks](/docs/customize/code/sdk-hooks), custom authentication and authorization schemes can be implemented beyond OpenAPI's capabilities.
 
-<div className="Callout" data-title="Availability" data-variant="info">
+<Callout title="Availability" variant="info">
   Custom Security Schemes are only available for [Business and Enterprise users](/pricing).
 
-</div>
+</Callout>
 
 ### Language support
 
@@ -58,9 +58,9 @@ components:
 
 Once the SDK is regenerated, the custom security scheme can be configured globally or per operation, depending on the `security` definitions.
 
-<div className="Tabs" data-items="['TypeScript', 'Python', 'Go']">
+<Tabs items={['TypeScript', 'Python', 'Go']}>
 
-<div className="TabsTab">
+<Tabs.Tab>
 ```typescript
 import { SDK } from "openapi";
 
@@ -72,8 +72,8 @@ secret: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
 });
 
 ```
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 ```python
 import openapi
 from openapi import SDK
@@ -86,8 +86,8 @@ s = SDK(
 )
 ````
 
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 ```go
 package main
 
@@ -106,8 +106,8 @@ Secret: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
 )
 
 ```
-</div>
-</div>
+</Tabs.Tab>
+</Tabs>
 
 ### Use the custom security scheme
 
@@ -115,9 +115,9 @@ Use [SDK Hooks](/docs/customize/code/sdk-hooks) to access user-provided security
 
 The following example illustrates accessing a custom security scheme in a hook and adding headers to a request:
 
-<div className="Tabs" data-items="['TypeScript', 'Python', 'Go']">
+<Tabs items={['TypeScript', 'Python', 'Go']}>
 
-<div className="TabsTab">
+<Tabs.Tab>
 ```typescript
 import { Security$outboundSchema } from "../models/components/security.js";
 import { BeforeRequestContext, BeforeRequestHook } from "./types.js";
@@ -144,8 +144,8 @@ export class CustomSecurityHook implements BeforeRequestHook {
 }
 ```
 
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 ```python
 import requests
 from openapi import SDK
@@ -166,8 +166,8 @@ security = hook_ctx.security_source
     return request
 
 ```
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 ```go
 package hooks
 
@@ -202,5 +202,5 @@ func (h *CustomSecurityHook) BeforeRequest(hookCtx BeforeRequestContext, req *ht
 
 ```
 
-</div>
-</div>
+</Tabs.Tab>
+</Tabs>

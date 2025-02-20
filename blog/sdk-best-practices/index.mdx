@@ -12,7 +12,7 @@ tags:
 featured_image: "/media/sdk-best-practices.png"
 ---
 
-{/*import { Callout } from '~/components'*/}
+import { Callout } from '~/components'
 
 ## From API-First to SDK-First
 
@@ -50,7 +50,7 @@ Type safety might be the most important aspect of SDK creation. By making your A
 
 The more that you can include in your type definition, the more feedback developers will have when they are building with your SDK. The below example shows how Speakeasy uses Zod Schemas to define the input and output types for a product object in TypeScript. This allows developers to validate the input and output of the API at runtime, and provides a clear contract for how the API should be used:
 
-```ts product.ts
+```ts title="product.ts"
 export namespace ProductInput$ {
     export type Inbound = {
         name: string;
@@ -128,10 +128,10 @@ x-speakeasy-retries:
 
 This is a meaty topic, and it’s hard to discuss in generalities (it’s different for every language), so let’s walk through an example of the type of design choices that a developer might expect of a Go SDK:
 
-- **Minimal dependencies**and relying on the Go standard library as much as possible.
-- **Struct tags and reflection based (de)serializers**to define how the types we generate are correctly serialized based on the OpenAPI document.
-- **Pointers for optional objects**including fields/parameters/response and request bodies to ensure that the user can differentiate between a field not being set and a field being set to a zero value.
-- **A Utils package**that improves readability by bundling the methods for configuring the SDK and serializing/deserializing the types we generate into a shared package, avoiding the need to duplicate in each method.
+- **Minimal dependencies** and relying on the Go standard library as much as possible.
+- **Struct tags and reflection based (de)serializers** to define how the types we generate are correctly serialized based on the OpenAPI document.
+- **Pointers for optional objects** including fields/parameters/response and request bodies to ensure that the user can differentiate between a field not being set and a field being set to a zero value.
+- **A Utils package** that improves readability by bundling the methods for configuring the SDK and serializing/deserializing the types we generate into a shared package, avoiding the need to duplicate in each method.
 
 ```go
 package shared

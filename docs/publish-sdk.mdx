@@ -4,6 +4,7 @@ description: "Learn how to publish your Speakeasy-generated SDK to popular packa
 position: 2
 ---
 
+import { Callout, Screenshot } from '~/components'
 
 # Publish SDKs
 
@@ -38,9 +39,9 @@ position: 2
 | C#         | NuGet           | PackageName              | Pascal case, period separated    |
 | Terraform  | Terraform       | terraform-provider-name  | Lower case, hyphen separated     |
 
-<div className="Callout" data-title="TIP" data-variant="success">
+<Callout title="TIP" variant="success">
 For global package managers like PyPI and Maven, ensure the package name is unique.
-</div>
+</Callout>
 
 ## Publishing packages
 
@@ -52,17 +53,13 @@ speakeasy configure publishing
 
 Select the existing SDK targets to configure publishing. If no SDK targets are available, run `speakeasy configure targets` first.
 
-<div className="Screenshot" data-variant="cli" data-docs={true}>
-  ![Screenshot of the terminal after running Speakeasy configure publishing.](./assets/publish-sdks/configure-publishing.png)
-</div>
+<Screenshot variant="cli" docs={true}>![Screenshot of the terminal after running Speakeasy configure publishing.](./assets/publish-sdks/configure-publishing.png)</Screenshot>
 
 ### 2. Provide publishing credentials
 
 Default input environment variables for publishing are provided.
 
-<div className="Screenshot" data-variant="cli" data-docs={true}>
-  ![Screenshot of the terminal prompting the user for an NPM token.](./assets/publish-sdks/configure-token.png)
-</div>
+<Screenshot variant="cli" docs={true}>![Screenshot of the terminal prompting the user for an NPM token.](./assets/publish-sdks/configure-token.png)</Screenshot>
 
 ### 3. Verify configuration files
 
@@ -72,9 +69,7 @@ Once configuration is complete, the following files will be generated or updated
 - `.github/workflows/sdk_generation.yaml`  – GitHub Action to generate SDKs.
 - `.github/workflows/sdk_publish.yaml` – GitHub Action to publish SDKs.
 
-<div className="Screenshot" data-variant="cli" data-docs={true}>
-  ![Screenshot of the terminal after succesfully running Speakeasy configure publishing.](./assets/publish-sdks/publishing-success.png)
-</div>
+<Screenshot variant="cli" docs={true}>![Screenshot of the terminal after succesfully running Speakeasy configure publishing.](./assets/publish-sdks/publishing-success.png)</Screenshot>
 
 ### 4. Set up repository secrets
 
@@ -86,9 +81,7 @@ Once configuration is complete, the following files will be generated or updated
 
 Commit and push the updated workflow files. Once your generated SDK has been pushed to GitHub, you can manually kick off publishing for your first version.
 
-<div className="Screenshot" data-variant="cli" data-docs={true}>
-  ![Screenshot of manually kicking off publishing in Github Actions.](./assets/publish-sdks/publishing-dispatch.png)
-</div>
+<Screenshot variant="cli" docs={true}>![Screenshot of manually kicking off publishing in Github Actions.](./assets/publish-sdks/publishing-dispatch.png)</Screenshot>
 
 ### 6. Complete language-specific configuration
 
@@ -227,15 +220,13 @@ targets:
 
 The SDK publishing tab in the Speakeasy dashboard provides an overview of the publishing history and offers various utilities for setting up and maintaining SDK publishing.
 
-<div className="Screenshot" data-url="https://app.speakeasy.com/" data-isLinkEnabled="true" data-docs="true">![Publishing Overview](./assets/publish-sdks/publishing-overview.png)</div>
+<Screenshot darkened url="https://app.speakeasy.com/" isLinkEnabled={true} docs={true}>![Publishing Overview](./assets/publish-sdks/publishing-overview.png)</Screenshot>
 
 If package manager secrets were not set during the initial SDK repo setup, the publishing dashboard provides an interface to attach these secrets to the repository.
 
-<div className="Screenshot" data-darkened data-url="https://app.speakeasy.com/" data-data-docs="true">![Setting Publishing Secrets](./assets/publish-sdks/set-publishing-secrets.png)</div>
+<Screenshot darkened url="https://app.speakeasy.com/org" docs={true}>![Setting Publishing Secrets](./assets/publish-sdks/set-publishing-secrets.png)</Screenshot>
 
 For GitHub actions set up with `mode:pr`, the publishing dashboard highlights open PRs in the SDK repo that are pending release. This view displays the exact SDK version that will be published upon merging the PR.
 
-<div className="Screenshot" data-url="https://app.speakeasy.com/org" data-docs={true}>
-  ![Pending Release PRs](./assets/publish-sdks/pending-release.png)
-</div>
+<Screenshot url="https://app.speakeasy.com/org" docs={true}>![Pending Release PRs](./assets/publish-sdks/pending-release.png)</Screenshot>
 

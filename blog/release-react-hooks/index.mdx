@@ -12,12 +12,12 @@ featured_image: "/media/react-query-hooks.png"
 is_featured: true
 ---
 
+import { CodeWithTabs } from "~/components/codehike/CodeTabs";
+import { Callout } from '~/components';
 
-
-
-<div className="Callout" data-title="Preview Availability" data-variant="success">
+<Callout title="Preview Availability" variant="success">
   Now in preview! Enable React hook generation for your TypeScript SDKs through the Speakeasy CLI. Check out our [getting started guide](/docs/customize/typescript/react-hooks) to try it today.
-</div>
+</Callout>
 
 Today, we're excited to announce first-class support for React hooks in our TypeScript SDKs. This new generation feature builds on top of our [standalone functions](/post/standalone-functions) work and [TanStack Query](https://tanstack.com/query/latest) (formerly React Query) to provide seamless integration between your API and React applications.
 
@@ -34,7 +34,7 @@ Used in roughly 1 in 6 React projects today, TanStack Query has become the de-fa
 - Optimistic updates and background refetching
 - Smart request deduplication and request cancellation
 
-<div className="CodeWithTabs">
+<CodeWithTabs>
 ```typescript !!tabs profile-view.tsx
 import { useActorProfile } from "@speakeasy-api/bluesky/react-query";
 
@@ -51,11 +51,11 @@ function Demo() {
   );
 
   if (status === "loading") {
-    return <span className="div">Loading...</span>;
+    return <div>Loading...</div>;
   }
 
   if (status === "error") {
-    return <span className="div">Error: {error.message}</span>;
+    return <div>Error: {error.message}</div>;
   }
 
   const { followersCount = "-", followsCount = "-" } = data;
@@ -99,7 +99,7 @@ export function useActorProfile(
   });
 }
 ```
-</div>
+</CodeWithTabs>
 
 ## End-to-end Type Safety
 

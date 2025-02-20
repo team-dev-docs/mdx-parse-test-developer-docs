@@ -11,8 +11,8 @@ tags:
 featured_image: "/media/contract-testing-with-openapi.png"
 ---
 
- 
- 
+import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
+import { Callout } from "~/components";
 
 We've previously written about [the importance of building contract & integration tests](/post/contract-testing-with-openapi) to comprehensively cover your API's endpoints, but there's still a missing piece to the puzzle. Real users don't consume your API one endpoint at a time - they implement complex workflows that chain multiple API calls together.
 
@@ -35,14 +35,14 @@ Arazzo was designed to bridge the gap between API reference documentation and re
 
 By combining these specifications, we can generate tests that validate not just the correctness of individual endpoints, but the entire user journey.
 
-<div className="Callout" data-title="Arazzo?" data-variant="info">
+<Callout title="Arazzo?" variant="info">
   Arazzo roughly translates to "tapestry" in Italian. Get it? A tapestry of API
   calls "woven" together to create a complete user experience. We're still
   undecided about how to pronounce it, though. The leading candidates are
   "ah-RAT-so" (like fatso) and "ah-RAHT-zoh" (almost like pizza, but with a
   rat). There is a minor faction pushing for "ah-razzo" as in razzle-dazzle.
   We'll let you decide.
-</div>
+</Callout>
 
 Let's look at a simplified (and mostly invalid) illustrative example. Imagine a typical e-commerce API workflow:
 
@@ -85,7 +85,7 @@ We'll use the example of an API called Build-a-bot, which allows users to create
 
 Let's examine the key components of an Arazzo specification using our Build-a-bot API example. The specification describes a workflow for creating, assembling, and activating a robot - a perfect example of a complex, multi-step process that would be difficult to test with traditional approaches.
 
-<div className="ScrollyCoding" data-fullheight>
+<ScrollyCoding fullHeight>
 
 ## !!steps
 
@@ -252,7 +252,7 @@ The `onSuccess` action specifies that after successful validation, the workflow 
 !from ./assets/arazzo.yaml.txt
 ```
 
-</div>
+</ScrollyCoding>
 
 This combination of validation patterns, data extraction, and flow control creates the foundation for testing complex API workflows.
 
@@ -852,7 +852,7 @@ The generator creates a test suite for each workflow in the Arazzo document. Eac
 
 Let's explore the structure of a generated test case.
 
-<div className="ScrollyCoding" data-fullheight>
+<ScrollyCoding fullHeight>
 
 ## !!steps
 
@@ -948,7 +948,7 @@ Finally, we extract the outputs from the step and store them in the `context` ob
 !from ./assets/generated.test.ts.txt
 ```
 
-</div>
+</ScrollyCoding>
 
 This structure repeats for each step in the workflow, creating a series of test cases that execute the workflow sequentially. The generated tests validate the API's behavior at each step, ensuring that the workflow progresses correctly.
 

@@ -4,7 +4,7 @@ description: "Managed SDKs: Learn how to generate developer-friendly documentati
 sidebar_label: "Customize Documentation"
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Tabs } from "@speakeasy/nextra-theme";
 
 # Editing Your SDK Docs
 
@@ -356,8 +356,8 @@ paths:
 
 The generated SDK will have a method commented like so:
 
-<div className="Tabs" data-items="['Go', 'Python', 'TS', 'Java', 'C#']">
-<div className="TabsTab">
+<Tabs items={['Go', 'Python', 'TS', 'Java', 'C#']}>
+<Tabs.Tab>
 
 ```go
 // ListPets - List all pets
@@ -367,8 +367,8 @@ func (s *SDK) ListPets(ctx context.Context) (*operations.ListPetsResponse, error
 }
 ```
 
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 
 ```python
 def list_pets(self) -> operations.ListPetsResponse:
@@ -378,8 +378,8 @@ def list_pets(self) -> operations.ListPetsResponse:
     # ...
 ```
 
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 
 ```typescript
   /**
@@ -394,8 +394,8 @@ def list_pets(self) -> operations.ListPetsResponse:
   }
 ```
 
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 
 ```java
   /**
@@ -408,8 +408,8 @@ def list_pets(self) -> operations.ListPetsResponse:
   }
 ```
 
-</div>
-<div className="TabsTab">
+</Tabs.Tab>
+<Tabs.Tab>
 ```csharp
   /// <summary>
   /// List all pets
@@ -423,8 +423,8 @@ def list_pets(self) -> operations.ListPetsResponse:
 
 **Note:** In C#, the operation comment will appear on the function definition on the interface, not the class itself.
 
-</div>
-</div>
+</Tabs.Tab>
+</Tabs>
 
 If both the summary and description are present, the summary will be used as the first line of the comment and the description will be used as the second line of the comment. If just the description is present, it will be used as the first line of the comment. If both are present, but you would like to omit the description as it might be too verbose, you can use the `omitdescriptionifsummarypresent` option in your `gen.yaml` file, as follows:
 
@@ -455,8 +455,8 @@ components:
 
 The generated SDK will have a model commented like so:
 
-<div className="Tabs" data-items="['Go', 'Python', 'TS', 'Java', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['Go', 'Python', 'TS', 'Java', 'C#']}>
+  <Tabs.Tab>
 
 ```go
 // Pet
@@ -465,8 +465,8 @@ type Pet struct {
     // ...
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```python
 @dataclass_json
@@ -478,8 +478,8 @@ class Pet:
     # ...
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```typescript
 // Pet
@@ -490,8 +490,8 @@ export class Pet extends SpeakeasyBase {
     // ...
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```java
 /**
@@ -504,8 +504,8 @@ public class Pet {
 }
 ```
 
-  </div>
-  <div className="TabsTab">
+  </Tabs.Tab>
+  <Tabs.Tab>
 
 ```csharp
 /// <summary>
@@ -516,8 +516,8 @@ public class Pet {
 }
 ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 ### Per-SDK Comments
 

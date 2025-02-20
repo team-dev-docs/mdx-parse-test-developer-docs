@@ -2,7 +2,7 @@
 title: Configuring module format
 ---
 
- 
+import { Callout } from "~/components";
 
 # Configuring Module Format
 
@@ -93,9 +93,9 @@ const { ApiError } = require("petstore/errors/apierror.js");
 - Your SDK will be used in diverse environments with different module requirements.
 - You prioritize developer experience and want to provide maximum flexibility.
 
-<div className="Callout" data-title="Recommendation" data-variant="info">
+<Callout title="Recommendation" variant="info">
 For most modern projects, we recommend using `dual` format. This ensures your SDK works seamlessly in any environment while still providing the performance benefits of ESM when used with modern bundlers.
-</div>
+</Callout>
 
 ## Additional Reading
 

@@ -16,6 +16,8 @@ Configure your Speakeasy workflow file.
 
 [Publishing](https://www.speakeasy.com/docs/publish-sdks/publish-sdks)
 
+[Testing](https://www.speakeasy.com/docs/customize-testing/bootstrapping-test-generation)
+
 
 
 ## Usage
@@ -45,3 +47,4 @@ speakeasy configure [flags]
 * [speakeasy configure publishing](/docs/speakeasy-reference/cli/configure/publishing)	 - Configure Speakeasy for publishing.
 * [speakeasy configure sources](/docs/speakeasy-reference/cli/configure/sources)	 - Configure new or existing sources.
 * [speakeasy configure targets](/docs/speakeasy-reference/cli/configure/targets)	 - Configure new target.
+* [speakeasy configure tests](/docs/speakeasy-reference/cli/configure/tests)	 - Configure Speakeasy SDK tests.

@@ -4,7 +4,7 @@ description: "Learn how to customize response formats."
 slug: "/customize-sdks/responses/"
 ---
 
-{/*import { Tabs } from "@speakeasy/nextra-theme";*/}
+import { Tabs } from "@speakeasy/nextra-theme";
 
 # Customize responses
 
@@ -81,8 +81,8 @@ The flat response format is the simplest and most ergonomic option, as it avoids
 
 When `responseFormat: flat` is enabled, the generated SDK code will return the `Payment` type directly with no indirection:
 
-<div className="Tabs" data-items="['TypeScript','Python','Go', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript','Python','Go', 'C#']}>
+  <Tabs.Tab>
 
     ```typescript
     export class SDK extends ClientSDK {
@@ -90,33 +90,33 @@ When `responseFormat: flat` is enabled, the generated SDK code will return the `
     }
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```python
     class SDK:
         def get_payment(self, id: str) -> components.Payment:
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```go
     func (s *SDK) GetPayment(ctx context.Context, id string) (*components.Payment, error) {}
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```csharp
     public async Task<Payment> GetPaymentAsync(string id){}
     ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 To debug HTTP metadata, users can pass a [custom client][custom-http] to the SDK instance.
 
@@ -128,8 +128,8 @@ The `envelope-http` format builds response types with a wrapper that holds the r
 
 When `envelope-http` is enabled, the generated SDK code will produce the response types below:
 
-<div className="Tabs" data-items="['TypeScript','Python','Go', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript','Python','Go', 'C#']}>
+  <Tabs.Tab>
 
     ```typescript
     class SDK extends ClientSDK {
@@ -161,9 +161,9 @@ When `envelope-http` is enabled, the generated SDK code will produce the respons
     };
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```python
     class SDK:
@@ -189,9 +189,9 @@ When `envelope-http` is enabled, the generated SDK code will produce the respons
         r"""Raw HTTP request; suitable for debugging"""
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```go
     func (s *SDK) GetPayment(ctx context.Context, id string) (*operations.GetPaymentResponse, error) {}
@@ -215,9 +215,9 @@ When `envelope-http` is enabled, the generated SDK code will produce the respons
     }
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```csharp
     Task<GetPaymentResponse> GetPaymentAsync(string id);
@@ -250,8 +250,8 @@ When `envelope-http` is enabled, the generated SDK code will produce the respons
     }
     ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>
 
 Built-in HTTP metadata is included in both custom and built-in error types that are thrown or returned from the SDK.
 
@@ -266,8 +266,8 @@ The `responseFormat: envelope` format builds response types with a wrapper that 
 
 When `responseFormat: envelope` is enabled, the generated SDK code will produce the response types below:
 
-<div className="Tabs" data-items="['TypeScript','Python','Go', 'C#']">
-  <div className="TabsTab">
+<Tabs items={['TypeScript','Python','Go', 'C#']}>
+  <Tabs.Tab>
 
     ```typescript
     class SDK extends ClientSDK {
@@ -296,9 +296,9 @@ When `responseFormat: envelope` is enabled, the generated SDK code will produce 
     };
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```python
     class SDK:
@@ -327,9 +327,9 @@ When `responseFormat: envelope` is enabled, the generated SDK code will produce 
         r"""Details about a payment"""
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```go
     func (s *SDK) GetPayment(ctx context.Context, id string) (*operations.GetPaymentResponse, error) {}
@@ -348,9 +348,9 @@ When `responseFormat: envelope` is enabled, the generated SDK code will produce 
     }
     ```
 
-  </div>
+  </Tabs.Tab>
 
-  <div className="TabsTab">
+  <Tabs.Tab>
 
     ```csharp
     Task<GetPaymentResponse> GetPaymentAsync(string id);
@@ -382,5 +382,5 @@ When `responseFormat: envelope` is enabled, the generated SDK code will produce 
     }
     ```
 
-  </div>
-</div>
+  </Tabs.Tab>
+</Tabs>

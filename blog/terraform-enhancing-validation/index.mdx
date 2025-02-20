@@ -16,9 +16,9 @@ When working with APIs, ensuring that the values we send meet specific requireme
 
 ### The Problem with Missing Validation
 
-APIs often enforce strict value requirements, such as minimum and maximum string lengths, numerical ranges, or specific formats. When a Terraform Provider interacts with an API but lacks validation for these requirements, Terraform'svalidateandplanoperations may proceed without issues. However, theapplyoperation can fail due to API errors, leading to frustrating and time-consuming feedback loops. These failures can occur in the middle of applying resources, causing further complications and delays.
+APIs often enforce strict value requirements, such as minimum and maximum string lengths, numerical ranges, or specific formats. When a Terraform Provider interacts with an API but lacks validation for these requirements, Terraform's validate and plan operations may proceed without issues. However, the apply operation can fail due to API errors, leading to frustrating and time-consuming feedback loops. These failures can occur in the middle of applying resources, causing further complications and delays.
 
-Imagine you're deploying multiple resources, and halfway through the process, an API error occurs because of an invalid string length. You would need to fix the issue and rerun theapplyoperation, wasting valuable time and resources. The goal is to enhance the user experience by having Terraform raise validation errors before applying configurations, ensuring smoother deployments and reducing the risk of mid-apply failures.
+Imagine you're deploying multiple resources, and halfway through the process, an API error occurs because of an invalid string length. You would need to fix the issue and rerun the apply operation, wasting valuable time and resources. The goal is to enhance the user experience by having Terraform raise validation errors before applying configurations, ensuring smoother deployments and reducing the risk of mid-apply failures.
 
 ### Why Does It Matter?
 
@@ -75,7 +75,7 @@ resource "user" "test" {
 }
 ```
 
-Running`terraform validate`will produce an error if the`username`length does not meet the specified criteria:
+Running `terraform validate` will produce an error if the `username` length does not meet the specified criteria:
 
 ```go
 - Error: Invalid value for field "username": String length must be between 6 and 64 characters.
@@ -92,9 +92,9 @@ Speakeasy simplifies the process of adding configuration validation to Terraform
 
 By default, these OpenAPI specification properties are automatically handled:
 
-- For`string`types: `enum`, `maxLength`,`minLength`, and`pattern`
-- Forintegertypes: `enum`, `minimum`and`maximum`
-- For`array`types:`maxItems`,`minItems`, and`uniqueItems`
+- For `string` types: `enum`, `maxLength`,`minLength`, and `pattern`
+- For integer types: `enum`, `minimum` and `maximum`
+- For `array` types: `maxItems`, `minItems`, and `uniqueItems`
 
 For scenarios not covered by these default handlers, Speakeasy supports custom validation logic. If you’re interested in finding out more, see our [Terraform Provider generation documentation](/docs/create-terraform) and join our [Slack](https://speakeasy-dev.slack.com/ssb/redirect#/shared-invite/email) to chat with our engineering team.
 

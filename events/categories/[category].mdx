@@ -1,0 +1,11 @@
+---
+title: "Events"
+description: "Speakeasy events"
+---
+
+import { Category, getStaticPaths as getCategoryStaticPaths, getStaticProps as getCategoryStaticProps } from '~/features/events/category';
+
+<Category />
+
+export const getStaticPaths = getCategoryStaticPaths;
+export const getStaticProps = getCategoryStaticProps;
