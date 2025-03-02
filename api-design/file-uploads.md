@@ -1,79 +1,67 @@
-# File Uploads
+# File Upload API Design
 
-This document outlines best practices for implementing file uploads in our API.
+This document outlines the design for file upload functionality in our API.
 
-## Multipart Form Data
+## Overview
 
-For most file upload scenarios, use multipart/form-data as the content type. This allows for efficient uploading of files along with other form fields.
+The file upload API allows clients to upload files to our server securely and efficiently. It supports both single and multiple file uploads, as well as large file uploads through chunked transfer.
 
-Example:
+## Endpoints
 
-```http
-POST /upload HTTP/1.1
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+### Single File Upload
+`POST /api/v1/upload`
 
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="example.jpg"
-Content-Type: image/jpeg
+### Multiple File Upload
+`POST /api/v1/upload/multiple`
 
-(binary data)
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="description"
+### Chunked File Upload
+`POST /api/v1/upload/chunked`
 
-This is an example image
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-```
+## Request Format
 
-## Chunked Uploads
+- Content-Type: `multipart/form-data`
+- File field name: `file` (for single uploads) or `files[]` (for multiple uploads)
 
-For large files or scenarios with potentially intermittent network connections, implement chunked uploads:
-
-1. Initiate upload and get an upload ID
-2. Upload chunks with progress tracking
-3. Finalize upload
-
-Example endpoints:
-
-- `POST /uploads/initiate`
-- `PUT /uploads/{uploadId}/chunks/{chunkNumber}`
-- `POST /uploads/{uploadId}/complete`
-
-## Security Considerations
-
-- Implement file type validation
-- Set maximum file size limits
-- Scan uploaded files for malware
-- Use HTTPS for all file transfer operations
-
-## Error Handling
-
-Provide clear error messages for common issues:
-
-- File too large
-- Invalid file type
-- Upload interrupted
-- Server-side processing errors
-
-## Client-side Considerations
-
-When building client applications:
-
-- Show progress indicators for uploads
-- Allow cancellation of in-progress uploads
-- Implement retry logic for failed chunks in chunked uploads
-
-## API Responses
-
-Return useful metadata after successful uploads:
+## Response Format
 
 ```json
 {
-  "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-  "filename": "example.jpg",
-  "size": 1048576,
-  "mimeType": "image/jpeg",
-  "url": "https://example.com/files/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  "success": true,
+  "fileId": "1234567890abcdef",
+  "fileName": "example.jpg",
+  "fileSize": 1048576,
+  "mimeType": "image/jpeg"
 }
 ```
 
-Remember to handle CORS appropriately if your API needs to accept uploads from web browsers on different domains.
+## Error Handling
+
+In case of errors, the API will return appropriate HTTP status codes along with error messages in the response body.
+
+## Large File Uploads
+
+For large files, we recommend using the chunked upload endpoint. This allows for resumable uploads in case of intermittent network issues.
+
+## Security Considerations
+
+- File size limits are enforced to prevent abuse
+- File types are validated to ensure only allowed file types are uploaded
+- Authentication and authorization are required for all upload endpoints
+
+## Performance Optimization
+
+- Use of cloud storage for scalability
+- Implement caching mechanisms for frequently accessed files
+- Consider using a CDN for faster file delivery
+
+## Monitoring and Logging
+
+All file upload activities are logged for auditing purposes. Monitoring is in place to track upload success rates and identify potential issues.
+
+## Future Improvements
+
+- Implement direct-to-S3 uploads for improved performance
+- Add support for file versioning
+- Integrate with virus scanning services for enhanced security
+
+For more detailed information on implementation, please refer to the API reference documentation.
