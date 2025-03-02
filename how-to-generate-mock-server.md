@@ -6,9 +6,8 @@ This guide will walk you through the process of generating a mock server using t
 
 Before you begin, make sure you have the following:
 
-* Node.js installed on your machine
-
-* An OpenAPI specification file (YAML or JSON format)
+- Node.js installed on your machine
+- An OpenAPI specification file (YAML or JSON format)
 
 ## Steps
 
@@ -60,9 +59,7 @@ For more advanced configuration options, refer to the [Prism documentation](http
 If you encounter any issues:
 
 1. Ensure your OpenAPI specification is valid
-
 2. Check that the file path is correct
-
 3. Verify that the required ports are not in use by other applications
 
 For further assistance, consult the [Prism GitHub repository](https://github.com/stoplightio/prism) or open an issue there.
