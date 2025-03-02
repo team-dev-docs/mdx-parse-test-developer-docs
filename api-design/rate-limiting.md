@@ -1,1 +1,0 @@
-[Content of api-design/rate-limiting.md remains unchanged]
