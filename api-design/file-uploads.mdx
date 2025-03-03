@@ -46,13 +46,13 @@ particular resource URL.
 ## POST or PUT
 
 There is no particular [HTTP method](/api-design/http-methods) specific to file
-uploads, instead we use the appropriate hTTP method for the resource or
+uploads, instead we use the appropriate HTTP method for the resource or
 collection being worked with.
 
 For the example of a single avatar for each user, the URL is already known, and
 it does not make any difference whether this is the first avatar they have
 uploaded, or they have remade the same request 10 times in a row after an
-intermitted internet connection messed up the first few. This should use a
+intermittent internet connection messed up the first few. This should use a
 `PUT`, because that means "The end result should be this, regardless of what is
 there right now."
 
@@ -329,4 +329,4 @@ they're going, and what sort of clients will be using the API.
 The YouTube approach is a bit complex, but a combination of 1 and 2 usually take care of the
 job, and help avoid complicated multipart uploads. 
 
-As always, build defensively, and never trust any user input at any point. 
+As always, build defensively, and never trust any user input at any point.
