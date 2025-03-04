@@ -179,9 +179,9 @@ Content-Type: application/json
 }
 ```
 
-**What Could Go Wrong**: THis can be a big source of problems for an API, even
+**What Could Go Wrong**: This can be a big source of problems for an API, even
 if the use case is something small and simple like importing an avatar for a
-user. THe URL could be:
+user. The URL could be:
 
 - A malicious file the API is being asked to download.
 - A very large file the API will run out of resources trying to download.
