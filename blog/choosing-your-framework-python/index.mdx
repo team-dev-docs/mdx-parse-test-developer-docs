@@ -11,16 +11,15 @@ tags:
 featured_image: "/media/choosing-your-framework-python.png"
 ---
 
-import { IconGrid } from "~/features/shared/recipes";
-import { pickingAPythonFrameworkData } from "~/data/post/picking-a-python-framework";
-
 We're fortunate to live in a time when a wide selection of Python API frameworks is available to us. But an abundance of choice can also be overwhelming. Do you go for the latest, trending option or stick with the tried-and-tested framework that offers security and control? 
 
 Whether you're a startup founder who needs to deliver an MVP in a few weeks while taking scale and performance into consideration, or part of a large organization running hundreds of microservices needing reliable and robust technologies, choosing the right API framework is a critical decision. The key is recognizing that every framework choice involves trade-offs, which shift based on your project's unique needs. Failing to account for this can lead to frustration down the road.
 
-In this post, we discuss the factors to consider when choosing a REST API framework and explores popular options, highlighting each framework's strengths and weaknesses. At the end of the article, we'll suggest a pragmatic approach you can take to make an informed decision.
+In this post, we discuss the factors to consider when choosing a REST API framework and explore popular options, highlighting each framework's strengths and weaknesses. At the end of the article, we'll suggest a pragmatic approach you can take to make an informed decision.
 
-<IconGrid {...pickingAPythonFrameworkData} />
+<div>
+  <!-- Icon grid content would go here -->
+</div>
 
 ## Factors to consider when choosing a Python API framework
 
@@ -151,7 +150,7 @@ app.static('/static', './static')
 Another point in Sanic's favor is its interesting approach to handling TLS, a process that can be complicated to understand and set up. With Sanic, you can start your server using your certificate files, or even better, let it automatically set up local TLS certificates, enabling secure access with little configuration. 
 
 ```bash
-sanic path.to.server:app \--dev \--auto-tls
+sanic path.to.server:app --dev --auto-tls
 ```
 
 ### FastAPI: Build modern and highly typed REST APIs
