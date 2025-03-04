@@ -30,11 +30,11 @@ Example of complex JSON request:
 }
 ```
 
-## XML: Ye Oldé Standard
+## XML: Ye Olde Standard
 
 Any modern API will support JSON. Occasionally they will support XML as well.
 
-XML is relict of the early internet. It dominated web APIs in the 2000s with
+XML is a relic of the early internet. It dominated web APIs in the 2000s with
 standards like SOAP and XML-RPC, but was largely displaced by JSON in the 2010s
 due to JSON's simplicity and natural fit with JavaScript. Today, XML persists
 mainly in legacy systems, enterprise SOAP services, and specific domains like
@@ -44,7 +44,7 @@ publishing (DocBook), feed syndication (RSS/Atom), and configuration files
 JSON is a lot easier to work with than XML, and it is a lot easier to read. It
 is also more compact, which is important when sending data over the wire.
 
-An example of a bunch of different data types in JSON.
+An example of a bunch of different data types in JSON:
 
 ```json
 {
@@ -58,12 +58,12 @@ An example of a bunch of different data types in JSON.
 }
 ```
 
-This same data in XML.
+This same data in XML:
 
 ```xml
 <places>
     <place>
-        <id>1</id>,
+        <id>1</id>
         <name>This is a bunch of text.</name>
         <is_true>0</is_true>
         <maybe />
@@ -88,7 +88,7 @@ something most people just don't bother with anymore.
 It's not just that it's old, it's cumbersome to work with, and suffers from a
 lack of data types like XML but with even more awkward syntax.
 
-Everything is a string. To handle a boolean a client has to send `1` or `0`,
+Everything is a string. To handle a boolean, a client has to send `1` or `0`,
 which will be read as `"1"` or `"0"`. Some would suggest sending `property=true`, but that is
 a literal `"true"` string which can be confusing to deal with.
 
@@ -101,12 +101,12 @@ place_id=1&message=This%20is%20a%20bunch%20of%20text.&with_friends[]=1&with_frie
 ```
 
 This is a bit of a mess, as the message needs to be "URL encoded" and the
-`with_friends` is an array with awkward syntax. On top of that it's not clear
+`with_friends` is an array with awkward syntax. On top of that, it's not clear
 what the data types are. It is also a bit of a pain to work with on the
-server-side, as the data needs to be parsed and spit up properly, then converted
+server-side, as the data needs to be parsed and split up properly, then converted
 to the correct data types.
 
-For comparison, the same data in JSON is a lot easier to work with.
+For comparison, the same data in JSON is a lot easier to work with:
 
 ```http
 POST /checkins HTTP/1.1
@@ -125,7 +125,6 @@ an integer, the `message` is a string, and `with_friends` is an array of
 integers.
 
 ## Multipart Form Data: An Occasionally Helpful Nightmare
-
 
 Multipart forms are a way to send data in multiple parts as a single HTTP request, often used in REST APIs for handling mixed types of data, such as JSON and binary files (e.g., images or documents). Unlike standard form submission, where data is encoded as application/x-www-form-urlencoded, multipart forms use the multipart/form-data encoding, which allows for the inclusion of both text and file content in the same request.
 
@@ -154,8 +153,7 @@ Content-Type: image/jpeg
 ```
 
 This is either confusing or brilliant depending on perspective, but it's
-generally a massive pain to work with. 
-
+generally a massive pain to work with.
 
 ## Best Practices
 
