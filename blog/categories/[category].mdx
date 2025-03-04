@@ -4,9 +4,37 @@ description: "The Speakeasy Blog offers actionable advice for creating SDKs and 
 breadcrumb: false
 ---
 
-import { Category, getStaticPaths as getCategoryStaticPaths, getStaticProps as getCategoryStaticProps } from '~/features/blog/category';
+<div id="category-container"></div>
 
-<Category />
+<script>
+  // Function to fetch and render category content
+  async function renderCategory() {
+    const categoryContainer = document.getElementById('category-container');
+    const category = window.location.pathname.split('/').pop();
+    
+    try {
+      const response = await fetch(`/api/blog/category/${category}`);
+      const data = await response.json();
+      
+      // Render category content
+      categoryContainer.innerHTML = `
+        <h1>${data.title}</h1>
+        <p>${data.description}</p>
+        <ul>
+          ${data.posts.map(post => `
+            <li>
+              <a href="${post.url}">${post.title}</a>
+              <p>${post.excerpt}</p>
+            </li>
+          `).join('')}
+        </ul>
+      `;
+    } catch (error) {
+      console.error('Error fetching category data:', error);
+      categoryContainer.innerHTML = '<p>Error loading category content.</p>';
+    }
+  }
 
-export const getStaticPaths = getCategoryStaticPaths;
-export const getStaticProps = getCategoryStaticProps;
+  // Call the render function when the page loads
+  window.addEventListener('DOMContentLoaded', renderCategory);
+</script>
