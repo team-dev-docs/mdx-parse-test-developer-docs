@@ -2,8 +2,6 @@
 description: "Design useful API errors to save clients time."
 ---
 
-import { Callout } from "~/components";
-
 # Returning informative API Errors
 
 When building an API it's natural to put most of the focus into building a
@@ -334,7 +332,7 @@ tooling interoperable and avoid reinventing the wheel.
 
 ### Retry-After
 
-API designers want their API to be as usable as possbile, so whenever it makes
+API designers want their API to be as usable as possible, so whenever it makes
 sense, let consumers know when and if they should come back and try again., and if so, when. The
 `Retry-After` header is a great way to do this.
 
@@ -349,10 +347,10 @@ bombarding your API with requests when it's already struggling.
 
 Learn more about [Retry-After on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After).
 
-<Callout title="NOTE" variant="info">
+<div>
   <p>
     Help your API consumers out by{" "}
     <a href="/docs/runtime/retries">enabling retry logic</a> in your Speakeasy
     SDK.
   </p>
-</Callout>
+</div>
