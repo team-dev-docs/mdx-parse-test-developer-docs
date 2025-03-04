@@ -2,6 +2,8 @@
 description: "API Pagination is a common pattern for managing large data sets in APIs. This guide covers the basics of API pagination and best practices."
 ---
 
+import { Callout } from '~/components'
+
 # Paginating API responses
 
 Pagination is a crucial concept that needs to be understood and designed into a
@@ -276,7 +278,7 @@ the query parameters for cursor or limit), links can once again save the day:
 
 **Consistency**
 
-- Pro: Cursor-based pagination data remains consistent in more scenarios, even if new data is added or removed, because the cursor acts as a stable merker identifying a specific record in the dataset instead of "the 10th one" which might change between requests.
+- Pro: Cursor-based pagination data remains consistent in more scenarios, even if new data is added or removed, because the cursor acts as a stable marker identifying a specific record in the dataset instead of "the 10th one" which might change between requests.
 
 **See it in action**
 
@@ -333,6 +335,6 @@ with a realistic dataset instead of testing with a handful of records as assumin
 Adding or drastically changing pagination later could be a whole mess of
 backwards compatibility breaks.
 
-<div data-title="NOTE" data-variant="info">
+<Callout title="NOTE" variant="info">
   <p>Pagination can be tricky to work with for API clients, but Speakeasy SDKs can help out. Learn about <a href="/docs/runtime/pagination">adding pagination</a> to your Speakeasy SDK.</p>
-</div>
+</Callout>
