@@ -127,7 +127,7 @@ The response here will have a simple body:
 That `user` was inferred from the token, and the `url` is the resulting URL to
 the avatar that has been uploaded. Normally this would be some sort of Content
 Delivery Network (CDN) URL, but it could be a direct-to-S3 URL, or a URL to a Go
-service that handles file uploads. It's up to you, but its good to split off
+service that handles file uploads. It's up to you, but it's good to split up
 file uploads to a separate service to keep your API servers free to do more
 impactful work than serving files.
 
@@ -139,7 +139,7 @@ images directly from the photo libraries on the mobile device, and the web teams
 were pulling avatars from Facebook or Twitter profiles after they have done a
 "social login" flow.
 
-This is common because its harder for the web application to access the raw
+This is common because it's harder for the web application to access the raw
 content of a file using just browser-based JavaScript. At some point a server
 needs to be involved to read that, so whether they have uploaded via cloudinary
 or some other upload service, the API server is going to need to take a URL and
@@ -329,4 +329,4 @@ they're going, and what sort of clients will be using the API.
 The YouTube approach is a bit complex, but a combination of 1 and 2 usually take care of the
 job, and help avoid complicated multipart uploads. 
 
-As always, build defensively, and never trust any user input at any point. 
+As always, build defensively, and never trust any user input at any point.
