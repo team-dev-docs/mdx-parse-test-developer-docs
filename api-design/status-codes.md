@@ -48,7 +48,7 @@ forgotten to send authentication details, provided invalid data, requested a
 resource that no longer exists, or done something else wrong which needs fixing.
 
 There are a lot of status codes for client failures, but here are the most
-common ones to be found see in API responses:
+common ones to be found in API responses:
 
 - *400 Bad Request* - The request was invalid or cannot be served. The exact error should be explained in the error payload.
 - *401 Unauthorized* - The request requires an authentication token.
