@@ -307,7 +307,7 @@ OWASP is an online community that produces freely available content to help
 organizations avoid making costly security mistakes with their software.
 
 The [OWASP API Security Project](https://owasp.org/API-Security/) helps focus
-specific on risks and problems that can affect insecure APIs, and illustrating
+specific on risks and problems that can effect insecure APIs, and illustrating
 how these risks may be mitigated. To make sure an API is secure as possible,
 it's worth reading through the [OWASP API Security Top 10: 2023
 Edition](https://owasp.org/API-Security/editions/2023/en/0x00-header/) and
@@ -331,7 +331,7 @@ Remember, every design decision is a trade-off. Security measures often add
 complexity or impact usability. The goal is to strike the right balance,
 keeping the needs of both API consumers and the business in mind. 
 
-There's no need to go to massive massive and intrusive lengths to secure
+There's no need to go to massive and intrusive lengths to secure
 information that is fine out in the public, but it is important to establish
 good practices for limiting interactions for more sensitive data. 
 
