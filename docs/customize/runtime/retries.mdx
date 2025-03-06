@@ -4,8 +4,6 @@ description: "Automatically retry failed requests in your Speakeasy SDKs. Enable
 slug: "/customize-sdks/retries/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-
 # Retries
 
 With Speakeasy, you can generate SDKs that will automatically retry requests that fail due to network errors or any configured HTTP status code. You can enable retries globally for all requests or on a per-request basis by using the `x-speakeasy-retries` extension in your OpenAPI document. The SDK end user can then override the default configuration by passing in a `RetryConfig` object to the operation at runtime.
@@ -126,15 +124,15 @@ To override the retry strategy globally, initialize the SDK object with the appr
 
 In this example, we use the `RetryConfig` object to disable retries globally:
 
-<Tabs items={['TS', 'Python', 'Go', 'Java', 'C#']}>
-  <Tabs.Tab>
+<div data-tabs>
+  <div data-tab>
 
 ```typescript
 const sdk = new SDK({retryConfig: {strategy: "none"}});
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```python
 s = SDK(retry_config=RetryConfig(
@@ -144,15 +142,15 @@ s = SDK(retry_config=RetryConfig(
 ))
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```go
 s := sdk.New(sdk.WithRetryConfig(utils.RetryConfig{Strategy: "none"}))
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```java
 SDK s = SDK.builder()
@@ -160,8 +158,8 @@ SDK s = SDK.builder()
     .build();
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```csharp
 var sdk = new SDK(
@@ -170,15 +168,15 @@ var sdk = new SDK(
 ));
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 ### Request-Level Override
 
 Any endpoints that support retries allow retry configuration to be overridden. In Go, override request-level retry configuration with `operations.WithRetries`. In Python and TypeScript, the optional `retries` is accepted.
 
-<Tabs items={['TS', 'Python', 'Go', 'Java', 'C#']}>
-<Tabs.Tab>
+<div data-tabs>
+<div data-tab>
 
 ```typescript
 const sdk = new SDK({});
@@ -194,8 +192,8 @@ await sdk.findPetsByStatus(request, {
 });
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```python
 s = sdk()
@@ -209,8 +207,8 @@ res = s.find_pets_by_status(request, RetryConfig(strategy='backoff',
 ))
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```go
 s := sdk.New()
@@ -228,8 +226,8 @@ s.FindPetsByStatus(&operations.FindPetsByStatusRequest{},
 )
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```java
 import <namepace>.SDK;
@@ -249,8 +247,8 @@ FindPetsByStatusResponse res = sdk.findPetsByStatus()
     .call();
 ```
 
-  </Tabs.Tab>
-  <Tabs.Tab>
+  </div>
+  <div data-tab>
 
 ```csharp
 var sdk = new SDK();
@@ -268,8 +266,8 @@ var res = await sdk.FindPetsByStatusAsync(retryConfig: new RetryConfig(
 
 ```
 
-  </Tabs.Tab>
-</Tabs>
+  </div>
+</div>
 
 ## Idempotency
 
@@ -313,7 +311,7 @@ paths:
 
 ## Respecting `Retry-After`
 
-If your API returns an HTTP standard `retry-after` header, the SDK will respect that value as the retry interval as long as the time is in the future and below the max elapsed retry time.
+If your API returns an HTTP standard `retry-after` header, the SDK will respect that value as the retry interval as long as the time is in the future and below the maximum elapsed retry time.
 You don't need to change any configurations to enable this; simply return a `retry-after` header from your API. We currently support this feature in TypeScript and will add support for additional languages in the future.
 
 ```yaml
