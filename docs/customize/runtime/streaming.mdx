@@ -4,9 +4,6 @@ sidebar_label: "Enable streaming support"
 slug: "/customize-sdks/file-streaming/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { Callout } from "~/components";
-
 # Enabling file streaming operations
 
 Support for streaming is critical for applications that need to send or receive large amounts of data between client and server without first buffering the data into memory, potentially exhausting this system resource.
@@ -33,9 +30,9 @@ In an OpenAPI document, this can be modeled as a binary stream. Here's an exampl
               format: binary
 ```
 
-<Tabs items={['TypeScript', 'Go']}>
+<div data-tabs data-items="['TypeScript', 'Go']">
 
-<Tabs.Tab>
+<div data-tab>
 
 For response streaming in TypeScript SDKs, expose a `ReadableStream`, which is part of the [Streams API web standard](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Using_readable_streams).
 
@@ -59,9 +56,9 @@ async function run() {
 run();
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div data-tab>
 
 Use any [`io.Reader`](https://pkg.go.dev/io#Reader) implementation to read the data, such as calling [`io.Copy()`](https://pkg.go.dev/io#Copy) to a file.
 
@@ -86,9 +83,9 @@ defer response.Data.Close()
 _, err = io.Copy(file, response.Data)
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
 ## Streaming uploads
 
@@ -123,11 +120,11 @@ In this example, a request to upload a file is managed as a `multipart/form-data
               $ref: "#/components/schemas/File"
 ```
 
-<Tabs items={['TypeScript', 'Go']}>
+<div data-tabs data-items="['TypeScript', 'Go']">
 
-<Tabs.Tab>
+<div data-tab>
 
-As an example, in Node.js v20, streaming a large file to a server using an SDK is only a handful of lines. On the browser,
+As an example, in Node.js v20, streaming a large file to a server using an SDK is only a handful of lines. In the browser,
 users typically select files using `<input type="file">`, and the SDK call looks like the sample code below.
 
 ```typescript
@@ -151,12 +148,12 @@ Depending on your JavaScript runtime, convenient utilities can return a handle t
 
 - **Node.js v20+:** Since version 20, Node.js comes with a native `openAsBlob` function in [`node:fs`](https://nodejs.org/docs/latest-v20.x/api/fs.html#fsopenasblobpath-options).
 - **Bun:** The native [`Bun.file`](https://bun.sh/docs/api/file-io#reading-files-bun-file) function produces a file handle that can be used for streaming file uploads.
-- **Browsers:** All supported browsers return an instance to a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
+- **Browsers:** All supported browsers return an instance of a [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) when reading the value from an `<input type="file">` element.
 - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div data-tab>
 
 Use any [`io.Reader`](https://pkg.go.dev/io#Reader) implementation, such as calling [`os.Open()`](https://pkg.go.dev/os#Open) on an existing file.
 
@@ -173,6 +170,6 @@ if err != nil {
 response, err := s.upload(ctx, file)
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
