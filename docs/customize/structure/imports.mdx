@@ -4,22 +4,18 @@ description: "How to customize the import paths and model locations of generated
 slug: "/customize-sdks/imports/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
-
 # Customize imports
 
 Speakeasy allows you to customize the paths we generate models to and your users import models from.
 
 By default, Speakeasy uses an OpenAPI-based naming scheme for the namespaces models are bucketed into, for example:
 
-<Callout title="INFO" variant="info">
+<div data-callout data-title="INFO" data-variant="info">
   Currently only supported for C#, Go, Python, TypeScript, and Unity SDKs. More
   languages will be added soon.
-</Callout>
+</div>
 
-<ScrollyCoding>
+<div data-scrolly-coding>
 
 #### !!steps `Components`
 
@@ -66,17 +62,17 @@ Models that are used in error status codes are placed in the `models/errors` dir
 # !focus(13:16)
 ```
 
-</ScrollyCoding>
+</div>
 
-<Callout title="WARN" variant="info">
+<div data-callout data-title="WARN" data-variant="info">
   The default names for the model directories are consistent across most
   target languages, but C# makes the exception that the `models/Operations` directory is
   called `models/Requests` by default.
-</Callout>
+</div>
 
 ## Customize import paths
 
-<ScrollyCoding>
+<div data-scrolly-coding>
 
 ### !!steps `imports`
 
@@ -122,7 +118,7 @@ The `paths` section contains a map of bucket names to paths relative to the root
 
 - `shared` refers to the models generated from the `components` section of the OpenAPI specification. (Note: `shared` is a legacy name for the bucket, retained for backward compatibility.)
 - `operations` refers to the models generated for the request and responses of operations in the OpenAPI specification.
-- `errors` refers to the models generated for schemas referenced in error status codes responses.
+- `errors` refers to the models generated for schemas referenced in error status code responses.
 - `callbacks` refers to models generated for schemas within the `callbacks` section of an operation.
 - `webhooks` refers to models generated from the `webhooks` section of an OpenAPI 3.1 document.
 
@@ -130,15 +126,15 @@ The `paths` section contains a map of bucket names to paths relative to the root
 # !focus(8:13)
 ```
 
-</ScrollyCoding>
+</div>
 
 You can customize these paths to any path that exists relative to the root of the SDK.
 
-<Callout title="CAUTION" variant="warning">
+<div data-callout data-title="CAUTION" data-variant="warning">
   If you are providing custom path names, make sure there is no conflict with
   any of the existing directories in the SDK. Conflicts will result in
   compilation issues.
-</Callout>
+</div>
 
 Different buckets can also be configured to use the same path, for example:
 
@@ -179,9 +175,9 @@ You will configure global imports slightly differently for different languages:
 
 <br></br>
 
-<Tabs items={['Typescript', 'Python', 'Go', "C#", "Unity"]}>
+<div data-tabs data-items='["Typescript", "Python", "Go", "C#", "Unity"]'>
 
-<Tabs.Tab>
+<div data-tab>
 For TypeScript to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -210,7 +206,7 @@ typescript:
       webhooks: ""
 ```
 
-For global imports in TypeScript, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in TypeScript, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The configuration example above will result in a directory structure like this:
 
@@ -238,9 +234,9 @@ Import models like so:
 import { User, GetDrinkRequest, SDK } from '@speakeasy/bar'
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div data-tab>
 For Python to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -269,7 +265,7 @@ python:
       webhooks: ""
 ```
 
-For global imports in Python, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in Python, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The configuration example above will result in a directory structure as follows:
 
@@ -305,9 +301,9 @@ import speakeasybar
 from speakeasybar.models import operations, components
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div data-tab>
 For Go to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -358,9 +354,9 @@ import (
 )
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div data-tab>
 For C# to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -389,7 +385,7 @@ csharp:
       webhooks: ""
 ```
 
-For global imports in C#, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in C#, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The above configuration will result in a directory structure like this:
 
@@ -420,9 +416,9 @@ As all the models will be under the root namespace of the SDK, import models lik
 using SpeakeasyBar;
 ```
 
-</Tabs.Tab>
+</div>
 
-<Tabs.Tab>
+<div data-tab>
 For Unity to configure global imports, the `imports` section of your `gen.yaml` needs to include the following:
 
 ```yaml gen.yaml
@@ -451,7 +447,7 @@ unity:
       webhooks: ""
 ```
 
-For global imports in Unity, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in Unity, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The configuration example above will result in a directory structure like this:
 
@@ -466,7 +462,7 @@ The configuration example above will result in a directory structure like this:
 │  │  ├─ UpdateUserRequest.cs
 │  │  ├─ UpdateUserResponse.cs
 │  │  ├─ GetDrinkRequest.cs
-��  │  ├─ GetDrinkResponse.cs
+│  │  ├─ GetDrinkResponse.cs
 │  │  ├─ UpdateDrinkRequest.cs
 │  │  ├─ UpdateDrinkResponse.cs
 │  │  ├─ SDKError.cs
@@ -482,13 +478,13 @@ As all the models will be under the root namespace of the SDK, import models lik
 using SpeakeasyBar;
 ```
 
-</Tabs.Tab>
+</div>
 
-</Tabs>
+</div>
 
-<Callout title="CAUTION" variant="warning">
+<div data-callout data-title="CAUTION" data-variant="warning">
 Global imports will cause namespace pollution for the import and file clutter in the directory models are generated to.
 
 Large APIs containing many models (especially many inline models) will inevitably lead to name conflicts. Rename types verbosely to ensure each class is unique within the namespace.
 
-</Callout>
+</div>
