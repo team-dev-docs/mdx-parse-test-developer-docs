@@ -2,8 +2,6 @@
 title: Disabling barrel files
 ---
 
-import { Callout } from "~/components";
-
 # Disabling Barrel Files
 
 By default, the SDK generator creates "barrel files" or "index.ts" files that centralize module re-exports within an SDK package.
@@ -69,9 +67,9 @@ On the other hand, disabling barrel files can have some advantages:
   - Hot module replacement (HMR) becomes more precise
   - TypeScript type checking performance improves
 
-<Callout title="Performance tip" variant="info">
-When combined with `moduleFormat: dual`, disabling barrel files provides optimal tree-shaking performance. The ESM format&apos;s static analysis capabilities work best with direct imports, allowing bundlers to eliminate unused code more effectively.
-</Callout>
+<div data-callout data-title="Performance tip" data-variant="info">
+When combined with `moduleFormat: dual`, disabling barrel files provides optimal tree-shaking performance. The ESM format's static analysis capabilities work best with direct imports, allowing bundlers to eliminate unused code more effectively.
+</div>
 
 ## Making the Right Choice
 
@@ -88,18 +86,18 @@ The decision to use `useIndexModules` depends on your project's priorities:
   - Your project doesn't use a bundler with tree-shaking
   - You prefer centralized import management
 
-<Callout title="Recommendation" variant="info">
+<div data-callout data-title="Recommendation" data-variant="info">
 For modern web applications, we recommend setting `useIndexModules: false`. While barrel files offer convenient imports, the performance benefits of direct imports typically outweigh this convenience, especially when using modern IDEs with good import management features.
-</Callout>
+</div>
 
-<Callout title="Note" variant="info">
+<div data-callout data-title="Note" data-variant="info">
   Note: This article draws information from the following sources: - [Why you
   should avoid barrel files in
   Javascript](https://laniewski.me/blog/pitfalls-of-barrel-files-in-javascript-modules/)
   by Bartosz Łaniewski - [Please Stop Using Barrel
   Files](https://tkdodo.eu/blog/please-stop-using-barrel-files) by Dominik
   Dorfmeister
-</Callout>
+</div>
 
 ## Additional Reading
 
