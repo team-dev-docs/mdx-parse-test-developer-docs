@@ -4,8 +4,6 @@ description: "Group API methods into namespaces for a better object-oriented SDK
 slug: "/customize-sdks/namespaces/"
 ---
 
-import { CodeWithTabs } from "~/components/codehike/CodeTabs";
-
 # Customize Namespaces
 
 When you're exposing your API to users, you may want to group API methods into namespaces to give your SDK an object-oriented interface. This type of interface can help users better conceptualize the objects they are manipulating when they use the API.
@@ -114,58 +112,59 @@ sdk.wine.GetVintage("wine")
 
 You can use `tags` or the `x-speakeasy-group` extension to define nested namespaces for your operations using `.` notion. There is no limit to the number of levels you can define.
 
-<CodeWithTabs>
-
-```yaml !!tabs Tags
-# !focus(6:7)
-paths:
-  /drink/{drink_type}/get_vintage/:
-    get:
-      operationId: getVintage
-      summary: Check the vintage of the wine
-      tags:
-        - drinks.wine
-      parameters:
-        - name: drink_type
-          in: path
-          description: The type of drink
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: the wine vintage
-          content:
-            application/json:
+<div data-tabs>
+  <div data-tab="Tags">
+    ```yaml
+    # !focus(6:7)
+    paths:
+      /drink/{drink_type}/get_vintage/:
+        get:
+          operationId: getVintage
+          summary: Check the vintage of the wine
+          tags:
+            - drinks.wine
+          parameters:
+            - name: drink_type
+              in: path
+              description: The type of drink
+              required: true
               schema:
-                $ref: "#/components/schemas/Vintage"
-```
-
-```yaml !!tabs x-speakeasy-group
-# !focus(6)
-paths:
-  /drink/{drink_type}/get_vintage/:
-    get:
-      operationId: getVintage
-      summary: Check the vintage of the wine
-      x-speakeasy-group: drinks.wine
-      parameters:
-        - name: drink_type
-          in: path
-          description: The type of drink
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: the wine vintage
-          content:
-            application/json:
+                type: string
+          responses:
+            "200":
+              description: the wine vintage
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Vintage"
+    ```
+  </div>
+  <div data-tab="x-speakeasy-group">
+    ```yaml
+    # !focus(6)
+    paths:
+      /drink/{drink_type}/get_vintage/:
+        get:
+          operationId: getVintage
+          summary: Check the vintage of the wine
+          x-speakeasy-group: drinks.wine
+          parameters:
+            - name: drink_type
+              in: path
+              description: The type of drink
+              required: true
               schema:
-                $ref: "#/components/schemas/Vintage"
-```
-
-</CodeWithTabs>
+                type: string
+          responses:
+            "200":
+              description: the wine vintage
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Vintage"
+    ```
+  </div>
+</div>
 
 The generated SDK will include a method, invoked as follows:
 
@@ -178,61 +177,63 @@ sdk.Drinks.Wine.GetVintage("wine")
 
 If you want to add a method to multiple namespaces, list multiple values in `tags` or the `x-speakeasy-group` extension. Both accept an array of values:
 
-<CodeWithTabs>
-
-```yaml !!tabs Tags
-# !focus(6:8)
-paths:
-  /drink/{drink_type}/get_vintage/:
-    get:
-      operationId: getVintage
-      summary: Check the vintage of the wine
-      tags:
-        - drinks
-        - wine
-      parameters:
-        - name: drink_type
-          in: path
-          description: The type of drink
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: the wine vintage
-          content:
-            application/json:
+<div data-tabs>
+  <div data-tab="Tags">
+    ```yaml
+    # !focus(6:8)
+    paths:
+      /drink/{drink_type}/get_vintage/:
+        get:
+          operationId: getVintage
+          summary: Check the vintage of the wine
+          tags:
+            - drinks
+            - wine
+          parameters:
+            - name: drink_type
+              in: path
+              description: The type of drink
+              required: true
               schema:
-                $ref: "#/components/schemas/Vintage"
-```
-
-```yaml !!tabs x-speakeasy-group
-# !focus(6:8)
-paths:
-  /drink/{drink_type}/get_vintage/:
-    get:
-      operationId: getVintage
-      summary: Check the vintage of the wine
-      x-speakeasy-group:
-        - drinks
-        - wine
-      parameters:
-        - name: drink_type
-          in: path
-          description: The type of drink
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: the wine vintage
-          content:
-            application/json:
+                type: string
+          responses:
+            "200":
+              description: the wine vintage
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Vintage"
+    ```
+  </div>
+  <div data-tab="x-speakeasy-group">
+    ```yaml
+    # !focus(6:8)
+    paths:
+      /drink/{drink_type}/get_vintage/:
+        get:
+          operationId: getVintage
+          summary: Check the vintage of the wine
+          x-speakeasy-group:
+            - drinks
+            - wine
+          parameters:
+            - name: drink_type
+              in: path
+              description: The type of drink
+              required: true
               schema:
-                $ref: "#/components/schemas/Vintage"
-```
+                type: string
+          responses:
+            "200":
+              description: the wine vintage
+              content:
+                application/json:
+                  schema:
+                    $ref: "#/components/schemas/Vintage"
+    ```
+  </div>
+</div>
 
-</CodeWithTabs>
 The generated SDK will include methods that can be invoked as follows:
 
 ```go
