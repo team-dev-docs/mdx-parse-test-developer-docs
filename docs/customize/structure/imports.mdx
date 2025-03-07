@@ -4,20 +4,16 @@ description: "How to customize the import paths and model locations of generated
 slug: "/customize-sdks/imports/"
 ---
 
-import { Tabs } from "@speakeasy/nextra-theme";
-import { ScrollyCoding } from "~/components/codehike/Scrollycoding";
-import { Callout } from "~/components";
-
 # Customize imports
 
 Speakeasy allows you to customize the paths we generate models to and your users import models from.
 
 By default, Speakeasy uses an OpenAPI-based naming scheme for the namespaces models are bucketed into, for example:
 
-<Callout title="INFO" variant="info">
+<div data-callout data-title="INFO" data-variant="info">
   Currently only supported for C#, Go, Python, TypeScript, and Unity SDKs. More
   languages will be added soon.
-</Callout>
+</div>
 
 <ScrollyCoding>
 
@@ -68,11 +64,11 @@ Models that are used in error status codes are placed in the `models/errors` dir
 
 </ScrollyCoding>
 
-<Callout title="WARN" variant="info">
+<div data-callout data-title="WARN" data-variant="info">
   The default names for the model directories are consistent across most
   target languages, but C# makes the exception that the `models/Operations` directory is
   called `models/Requests` by default.
-</Callout>
+</div>
 
 ## Customize import paths
 
@@ -134,11 +130,11 @@ The `paths` section contains a map of bucket names to paths relative to the root
 
 You can customize these paths to any path that exists relative to the root of the SDK.
 
-<Callout title="CAUTION" variant="warning">
+<div data-callout data-title="CAUTION" data-variant="warning">
   If you are providing custom path names, make sure there is no conflict with
   any of the existing directories in the SDK. Conflicts will result in
   compilation issues.
-</Callout>
+</div>
 
 Different buckets can also be configured to use the same path, for example:
 
@@ -210,7 +206,7 @@ typescript:
       webhooks: ""
 ```
 
-For global imports in TypeScript, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in TypeScript, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The configuration example above will result in a directory structure like this:
 
@@ -269,7 +265,7 @@ python:
       webhooks: ""
 ```
 
-For global imports in Python, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in Python, models will always be generated to the `models` directory, regardless of whether the `""` or `"models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The configuration example above will result in a directory structure as follows:
 
@@ -389,7 +385,7 @@ csharp:
       webhooks: ""
 ```
 
-For global imports in C#, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in C#, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The above configuration will result in a directory structure like this:
 
@@ -451,7 +447,7 @@ unity:
       webhooks: ""
 ```
 
-For global imports in Unity, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn&apos;t cluttered with files.
+For global imports in Unity, models will always be generated to the `Models` directory, regardless of whether the `""` or `"Models"` path is specified. However, global imports will only kick in if one of these two values is used for all buckets. This is to ensure the root directory isn't cluttered with files.
 
 The configuration example above will result in a directory structure like this:
 
@@ -486,9 +482,9 @@ using SpeakeasyBar;
 
 </Tabs>
 
-<Callout title="CAUTION" variant="warning">
+<div data-callout data-title="CAUTION" data-variant="warning">
 Global imports will cause namespace pollution for the import and file clutter in the directory models are generated to.
 
 Large APIs containing many models (especially many inline models) will inevitably lead to name conflicts. Rename types verbosely to ensure each class is unique within the namespace.
 
-</Callout>
+</div>
