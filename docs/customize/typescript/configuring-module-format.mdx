@@ -2,7 +2,7 @@
 title: Configuring module format
 ---
 
-import { Callout } from "~/components";
+
 
 # Configuring Module Format
 
@@ -10,9 +10,9 @@ Modern SDKs need to balance compatibility with performance. The `moduleFormat` o
 
 ## How to Configure Module Format
 
-To configure the module format, update `gen.yaml` (which is often located in the SDK’s `.speakeasy` directory) file under the `typescript` section:
+To configure the module format, update `gen.yaml` (which is often located in the SDK's `.speakeasy` directory) file under the `typescript` section:
 
-```yaml <sdk-root>/.speakeasy/gen.yaml
+```yaml
 typescript:
   # add or modify `moduleFormat`
   moduleFormat: "commonjs" # or "esm" or "dual"
@@ -21,18 +21,23 @@ typescript:
 
 ### Supported Options
 
-- **`"commonjs"` (default)**: Builds SDK for CommonJS. Widely supported across Node.js environments but less optimized for modern bundlers and tree-shaking.
-- **`"esm"`**: Builds SDK for ECMAScript Modules, the modern standard for JavaScript modules. Provides optimal tree-shaking and significantly smaller bundles when used with bundlers like Webpack, Rollup, or Vite.
-- **`"dual"`**: Builds SDK for both CJS and ESM formats. Provides the best of both worlds - ESM's superior tree-shaking and bundle optimization while maintaining compatibility with older CommonJS environments. The slight build time increase is often worth the flexibility and performance benefits.
+* `"commonjs"`**&#x20;(default)**: Builds SDK for CommonJS. Widely supported across Node.js environments but less optimized for modern bundlers and tree-shaking.
+
+* `"esm"`: Builds SDK for ECMAScript Modules, the modern standard for JavaScript modules. Provides optimal tree-shaking and significantly smaller bundles when used with bundlers like Webpack, Rollup, or Vite.
+
+* `"dual"`: Builds SDK for both CJS and ESM formats. Provides the best of both worlds - ESM's superior tree-shaking and bundle optimization while maintaining compatibility with older CommonJS environments. The slight build time increase is often worth the flexibility and performance benefits.
 
 ## Module Format Overview
 
 `moduleFormat` determines the module system targeted during SDK build. It impacts:
 
-- Node.js project compatibility,
-- Bundler tree-shaking capabilities,
-- SDK bundle size, and
-- Build performance.
+* Node.js project compatibility,
+
+* Bundler tree-shaking capabilities,
+
+* SDK bundle size, and
+
+* Build performance.
 
 ### Example Outputs for Each Option
 
@@ -40,7 +45,7 @@ typescript:
 
 When configured with `commonjs`:
 
-```javascript example.js
+```javascript
 // CommonJS import in consumer code
 const { ApiError } = require("petstore/errors/apierror.js");
 
@@ -52,7 +57,7 @@ import { ApiError } from "petstore/errors/apierror.js";
 
 When configured with `esm`:
 
-```javascript example.js
+```javascript
 // Native ESM import in consumer code
 import { ApiError } from "petstore/errors/apierror.js";
 
@@ -63,7 +68,7 @@ import { ApiError } from "petstore/errors/apierror.js";
 
 When configured with `dual`:
 
-```javascript example.js
+```javascript
 // ESM import (no interop code)
 import { ApiError } from "petstore/errors/apierror.js";
 
@@ -73,31 +78,36 @@ const { ApiError } = require("petstore/errors/apierror.js");
 
 ## How to Decide Which Format to Use
 
-**Use CommonJS (`commonjs`) if...**
+**Use CommonJS (**`commonjs`**) if...**
 
-- The SDK is used primarily in Node.js environments or older projects.
-- Bundle size optimization is not a critical requirement.
-- You need maximum compatibility with legacy systems.
+* The SDK is used primarily in Node.js environments or older projects.
 
-**Use ESM (`esm`) if...**
+* Bundle size optimization is not a critical requirement.
 
-- SDK consumers use modern bundlers like Vite, Webpack, or Rollup.
-- Tree-shaking and bundle size optimization are top priorities.
-- Your project is already using ESM throughout.
-- You want to leverage the latest JavaScript features and tooling.
+* You need maximum compatibility with legacy systems.
 
-**Use Dual Mode (`dual`) if...**
+**Use ESM (**`esm`**) if...**
 
-- You need to support both modern and legacy environments.
-- You want ESM's superior tree-shaking while maintaining CommonJS compatibility.
-- Your SDK will be used in diverse environments with different module requirements.
-- You prioritize developer experience and want to provide maximum flexibility.
+* SDK consumers use modern bundlers like Vite, Webpack, or Rollup.
 
-<Callout title="Recommendation" variant="info">
-For most modern projects, we recommend using `dual` format. This ensures your SDK works seamlessly in any environment while still providing the performance benefits of ESM when used with modern bundlers.
-</Callout>
+* Tree-shaking and bundle size optimization are top priorities.
+
+* Your project is already using ESM throughout.
+
+* You want to leverage the latest JavaScript features and tooling.
+
+**Use Dual Mode (**`dual`**) if...**
+
+* You need to support both modern and legacy environments.
+
+* You want ESM's superior tree-shaking while maintaining CommonJS compatibility.
+
+* Your SDK will be used in diverse environments with different module requirements.
+
+* You prioritize developer experience and want to provide maximum flexibility.
 
 ## Additional Reading
 
-- [Typescript Configuration Options](/docs/gen-reference/ts-config)
-- [Lean SDKs with Standalone Functions](/post/standalone-functions)
+* [Typescript Configuration Options](/docs/gen-reference/ts-config)
+
+* [Lean SDKs with Standalone Functions](/post/standalone-functions)
