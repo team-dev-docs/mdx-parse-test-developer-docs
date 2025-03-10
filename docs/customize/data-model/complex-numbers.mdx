@@ -15,4 +15,3 @@ To support arbitrary precision numbers, Speakeasy introduces two new formats you
 Generated SDKs treat `bigint` and `decimal` values as arbitrary precision and ensure their precision is maintained.
 
 During serialization, however, the value will be cast into the `type` of the field, which may result in a loss of precision. To prevent this, avoid using a numeric `type` in your OpenAPI document, and rather use the `string` type with a `bigint` or `decimal` format. This ensures that the value is serialized as a string, preserving its full precision, subject to the typical limitations of arbitrary precision decimal values in your language of choice.
-
