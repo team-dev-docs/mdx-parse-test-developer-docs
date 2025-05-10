@@ -2,15 +2,13 @@
 title: Configuring module format
 ---
 
-import { Callout } from "~/components";
-
 # Configuring Module Format
 
 Modern SDKs need to balance compatibility with performance. The `moduleFormat` option in the SDK generator allows developers to control whether an SDK is built for CommonJS (CJS), ECMAScript Modules (ESM), or both. This choice impacts bundle size, tree-shaking performance, and compatibility with Node.js and modern bundlers.
 
 ## How to Configure Module Format
 
-To configure the module format, update `gen.yaml` (which is often located in the SDK’s `.speakeasy` directory) file under the `typescript` section:
+To configure the module format, update `gen.yaml` (which is often located in the SDK's `.speakeasy` directory) file under the `typescript` section:
 
 ```yaml <sdk-root>/.speakeasy/gen.yaml
 typescript:
@@ -93,9 +91,9 @@ const { ApiError } = require("petstore/errors/apierror.js");
 - Your SDK will be used in diverse environments with different module requirements.
 - You prioritize developer experience and want to provide maximum flexibility.
 
-<Callout title="Recommendation" variant="info">
-For most modern projects, we recommend using `dual` format. This ensures your SDK works seamlessly in any environment while still providing the performance benefits of ESM when used with modern bundlers.
-</Callout>
+<div data-callout data-title="Recommendation" data-variant="info">
+  For most modern projects, we recommend using `dual` format. This ensures your SDK works seamlessly in any environment while still providing the performance benefits of ESM when used with modern bundlers.
+</div>
 
 ## Additional Reading
 
