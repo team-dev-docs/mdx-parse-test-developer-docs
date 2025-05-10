@@ -2,8 +2,6 @@
 description: "Best practices and common patterns for API requests."
 ---
 
-import { CodeWithTabs } from "~/components/codehike/CodeTabs";
-
 # Sending request data
 
 Understanding how to properly structure and handle request data is crucial for building robust APIs. This guide covers best practices and common patterns for working with API request data.
@@ -56,69 +54,66 @@ when receiving it.
 Most of you will interact with APIs using a programming language, and the code
 to send a request will look something like this:
 
+```typescript
+import axios from 'axios';
 
-<CodeWithTabs>
-    ```typescript !!tabs main.js
-    import axios from 'axios';
+const response = await axios.post('https://api.example.org/places', {
+  name: 'High Wood',
+  lat: 50.464569783,
+  lon: -4.486597585,
+});
+```
 
-    const response = await axios.post('https://api.example.org/places', {
-      name: 'High Wood',
-      lat: 50.464569783,
-      lon: -4.486597585,
-    });
-    ```
+```python
+import json
+import requests
 
-    ```python !!tabs main.py
-    import json
-    import requests
+headers = {
+    'Content-Type': 'application/json',
+}
+payload = {
+    'name': 'High Wood',
+    'lat': 50.464569783,
+    'lon': -4.486597585,
+}
+req = requests.post(
+  'https://api.example.org/places',
+  data=json.dumps(payload),
+  headers=headers
+)
+```
 
-    headers = {
-        'Content-Type': 'application/json',
-    }
-    payload = {
-        'name': 'High Wood',
-        'lat': 50.464569783,
-        'lon': -4.486597585,
-    }
-    req = requests.post(
-      'https://api.example.org/places',
-      data=json.dumps(payload),
-      headers=headers
-    )
-    ```
+```php
+$client = new Guzzle\Http\Client('https://api.example.org');
 
-    ```php !!tabs main.php
-    $client = new Guzzle\Http\Client('https://api.example.org');
+$headers = [
+    'Content-Type' => 'application/json',
+];
+$payload = [
+    'name' => 'High Wood',
+    'lat' => 50.464569783,
+    'lon' => -4.486597585,
+];
+$req = $client->post('/places', [
+  'headers' => $headers,
+  'json' => $payload,
+]);
+```
 
-    $headers = [
-        'Content-Type' => 'application/json',
-    ];
-    $payload = [
-        'name' => 'High Wood',
-        'lat' => 50.464569783,
-        'lon' => -4.486597585,
-    ];
-    $req = $client->post('/places', [
-      'headers' => $headers,
-      'json' => $payload,
-    ]);
-    ```
+```ruby
+conn = Faraday.new(
+  url: 'https://api.example.org',
+  headers: { 'Content-Type' => 'application/json' }
+)
 
-    ```ruby !!tabs main.rb
-    conn = Faraday.new(
-      url: 'https://api.example.org',
-      headers: { 'Content-Type' => 'application/json' }
-    )
-
-    response = conn.post('/places') do |req|
-      req.body = {
-        name: 'High Wood',
-        lat: 50.464569783,
-        lon: -4.486597585,
-      }.to_json
-    end
-    ```
-</CodeWithTabs>
+response = conn.post('/places') do |req|
+  req.body = {
+    name: 'High Wood',
+    lat: 50.464569783,
+    lon: -4.486597585,
+  }.to_json
+end
+```
 
 HTTP tooling is essentially the same thing no matter the language. It's all
 about URLs, methods, body, and headers. This makes REST API design a lot easier,

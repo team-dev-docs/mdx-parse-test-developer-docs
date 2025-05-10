@@ -36,7 +36,7 @@ The module includes a number of features on top of the standard [text/template](
 
 ## Why'd we build it?
 
-Speakeasy needed a way of templating complex hierarchy's of templates that all relied on each other and the content they contained (like for when you generate SDKs from API Specs). By building a templating engine that allows more complex logic to be run at templating time via JS and allowing templates to template other templates, we unlock the ability to tailor templates to our needs based on the target output.
+Speakeasy needed a way of templating complex hierarchies of templates that all relied on each other and the content they contained (like for when you generate SDKs from API Specs). By building a templating engine that allows more complex logic to be run at templating time via JS and allowing templates to template other templates, we unlock the ability to tailor templates to our needs based on the target output.
 
 This allows us to decouple templating from our core binary, allowing new templates to be provided at runtime (think plugins) without the core go code/binary needing to know what templates there are, what data they need, enabling the templating to call itself on a dynamic set of files.
 
@@ -116,7 +116,7 @@ This text is computed from JavaScript!
 
 ## How should you use it?
 
-`easytemplate` allows you to control templating directly from scripts or other templates which among other things, allows you to:
+`easytemplate` allows you to control the templating process directly from scripts or other templates which among other things, allows you to:
 
 - Break templates into smaller, more manageable templates and reuse them, while also including them within one another without the need for your Go code to know about them or control the flow of templating them.
 - Provide templates and scripts at runtime allowing pluggable templating for your application.
